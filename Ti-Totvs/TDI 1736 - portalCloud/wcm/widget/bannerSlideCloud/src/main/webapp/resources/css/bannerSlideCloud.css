@@ -1,0 +1,9 @@
+#slideBanner > a.right.carousel-control{
+    display: none;
+}
+
+#slideBanner > a.left.carousel-control{
+    display: none;
+   
+}
+

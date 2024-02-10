@@ -1,0 +1,68 @@
+/* css passo1.ftl */
+
+#passo1-ftl > div > div > div.modal-header{
+    margin-bottom: 15px;
+}
+
+#passo1-ftl > div > div > div.modal-header > h4{
+    font-size: 50px;
+    font-weight: bold !important;
+}
+
+#passo1-ftl > div > div > div.modal-body{
+    height: 80vh;
+}
+
+#passo1-ftl #area-nav-button{
+    display: none;
+}
+
+#passo1-ftl #respostas > table > thead > tr > th > h1{
+    font-weight: bold !important;
+}
+
+#passo1-ftl .table-datatable thead{
+    display: none;
+}
+
+/* css passo2.ftl */
+
+#passo2-ftl > div > div > div.modal-header{
+    margin-bottom: 15px;
+}
+
+#passo2-ftl > div > div > div.modal-header > h4{
+    font-size: 50px;
+    font-weight: bold !important;
+    text-align: center;
+}
+
+#passo2-ftl > div > div > div.modal-body{
+    height: 80vh;
+}
+
+#passo2-ftl #contatosPriorizar > table {
+    font-weight: bold !important;
+}
+
+
+
+/* css passo3.ftl */
+
+#passo3-ftl > div > div > div.modal-header{
+    margin-bottom: 15px;
+}
+
+#passo3-ftl > div > div > div.modal-header > h4{
+    font-size: 50px;
+    font-weight: bold !important;
+    text-align: center;
+}
+
+#passo3-ftl > div > div > div.modal-body{
+    height: 80vh;
+}
+
+#passo3-ftl #contatosUrgente > table {
+    font-weight: bold !important;
+}

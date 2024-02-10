@@ -1,0 +1,1071 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+    </processDefinitionPK>
+    <processDescription>TESTE CONTAS A PAGAR COMISSOES</processDescription>
+    <instruction></instruction>
+    <active>true</active>
+    <publicProcess>true</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>COMISSOES</categoryId>
+    <managerEngineAllocationId></managerEngineAllocationId>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>false</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>1</complementsLevel>
+    <notifyRequisitionerComplements>true</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>true</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+      <version>18</version>
+    </processDefinitionVersionPK>
+    <versionDescription></versionDescription>
+    <formId>11488839</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>false</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>2</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>false</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </processStatePK>
+      <stateName>Início</stateName>
+      <stateDescription>Início</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>140</positionX>
+      <positionY>96</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>12</sequence>
+      </processStatePK>
+      <stateName>Confere Informações</stateName>
+      <stateDescription>Confere Informações</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;CONTAS_A_PAGAR&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>3600</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>3600</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>104</positionX>
+      <positionY>272</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>14</sequence>
+      </processStatePK>
+      <stateName>Verifica Inconsistência</stateName>
+      <stateDescription>Verifica Inconsistência</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;4&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>390</positionX>
+      <positionY>79</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>17</sequence>
+      </processStatePK>
+      <stateName>Confere os Dados Fiscais</stateName>
+      <stateDescription>Confere os Dados Fiscais</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;FISCAL&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>390</positionX>
+      <positionY>510</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>20</sequence>
+      </processStatePK>
+      <stateName>Processa Pagamento</stateName>
+      <stateDescription>Processa Pagamento</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;CONTAS_A_PAGAR&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>560</positionX>
+      <positionY>272</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>24</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>413</positionX>
+      <positionY>263</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>30</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>127</positionX>
+      <positionY>501</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>35</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>760</positionX>
+      <positionY>263</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>22</sequence>
+      </processStatePK>
+      <stateName>Fim</stateName>
+      <stateDescription>Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>772</positionX>
+      <positionY>96</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>18</version>
+        <sequence>24</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;idAprovado&quot;)== &apos;2&apos;</condition>
+      <destinationSequenceId>14</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;4&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>18</version>
+        <sequence>24</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;idAprovado&quot;)== &apos;1&apos;</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;FISCAL&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>18</version>
+        <sequence>30</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;idAprovadorFiscal&quot;) == &apos;2&apos;</condition>
+      <destinationSequenceId>12</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;CONTAS_A_PAGAR&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>18</version>
+        <sequence>30</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;idAprovadorFiscal&quot;) == &apos;1&apos;</condition>
+      <destinationSequenceId>20</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;CONTAS_A_PAGAR&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>18</version>
+        <sequence>35</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;idAprovadoPagamento&quot;) == &apos;1&apos;</condition>
+      <destinationSequenceId>22</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;4&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>18</version>
+        <sequence>35</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;idAprovadoPagamento&quot;) == &apos;2&apos;</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;FISCAL&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>25</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>12</initialStateSequence>
+      <finalStateSequence>24</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>27</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>24</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>28</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>24</initialStateSequence>
+      <finalStateSequence>14</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>29</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>14</initialStateSequence>
+      <finalStateSequence>12</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>31</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>17</initialStateSequence>
+      <finalStateSequence>30</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>32</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>30</initialStateSequence>
+      <finalStateSequence>12</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>33</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>30</initialStateSequence>
+      <finalStateSequence>20</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>34</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>4</initialStateSequence>
+      <finalStateSequence>12</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>36</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>20</initialStateSequence>
+      <finalStateSequence>35</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>37</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>35</initialStateSequence>
+      <finalStateSequence>22</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <linkSequence>38</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>35</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterProcessCreate</eventId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterProcessCreate(processId) {&#xd;
+	var identificador = hAPI.getCardValue(&quot;idCNPJ_canal&quot;) + hAPI.getCardValue(&quot;idCodigo_fornecedor&quot;);&#xd;
+	var dataset = DatasetFactory.getDataset(&quot;ds_sql_consulta_fluig&quot;, [ &quot;SELECT MD5(&apos;&quot; + identificador + &quot;&apos;) AS MD5&quot; ], null, null);&#xd;
+	var MD5 = dataset.getValue(0, &quot;MD5&quot;);&#xd;
+	hAPI.setCardValue(&quot;identificador&quot;, MD5);&#xd;
+	hAPI.setCardValue(&quot;acesso&quot;, MD5.substring(0, 2) + MD5.substring(10, 12) + MD5.substring(20, 22) + MD5.substring(29, 31));&#xd;
+	hAPI.setCardValue(&quot;localizacao&quot;, &quot;Pendente anexar a nota fiscal&quot;);&#xd;
+	hAPI.setCardValue(&quot;solicitacao&quot;, processId);&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterProcessFinish</eventId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterProcessFinish(processId) {&#xd;
+	hAPI.setCardValue(&quot;localizacao&quot;, &quot;Processo finalizado&quot;);&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeTaskSave</eventId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeTaskSave(colleagueId,nextSequenceId,userList){&#xd;
+	var atividade = getValue(&quot;WKNumState&quot;);&#xd;
+	&#xd;
+	if(nextSequenceId == 14)&#xd;
+		hAPI.setCardValue(&quot;localizacao&quot;, &quot;Verificar Inconsistências&quot;);&#xd;
+	if(nextSequenceId == 12)&#xd;
+		hAPI.setCardValue(&quot;localizacao&quot;, &quot;Processo em validação&quot;);&#xd;
+	if(nextSequenceId == 17)&#xd;
+		hAPI.setCardValue(&quot;localizacao&quot;, &quot;Lançamento fiscal&quot;);&#xd;
+	if(nextSequenceId == 20)&#xd;
+		hAPI.setCardValue(&quot;localizacao&quot;, &quot;Processando pagamento&quot;);&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterCancelProcess</eventId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterCancelProcess(colleagueId, processId) {&#xd;
+	hAPI.setCardValue(&quot;localizacao&quot;, &quot;Processo cancelado&quot;);&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeStateEntry</eventId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeStateEntry(sequenceId) {&#xd;
+&#xd;
+    if (sequenceId == 22) {&#xd;
+&#xd;
+        var processo = getValue(&quot;WKNumProces&quot;);&#xd;
+        var folderId = 10251004;&#xd;
+        var competencia = hAPI.getCardValue(&quot;DataPagamento&quot;);&#xd;
+        var ano = competencia.substr(0, 4);&#xd;
+        var mes = competencia.substr(5, 2);&#xd;
+        var Dia = competencia.substr(8);&#xd;
+        var fornecedor = hAPI.getCardValue(&quot;idRazao&quot;);&#xd;
+        var solicitacao = hAPI.getCardValue(&quot;solicitacao&quot;);&#xd;
+&#xd;
+        var parseDataPagamento = parseData(competencia);&#xd;
+        hAPI.setCardValue(&quot;parseDataPagamento&quot;, parseDataPagamento);&#xd;
+&#xd;
+        // Verificar se tem pasta do ano&#xd;
+        try {&#xd;
+&#xd;
+            var pasta = consultarPastas(folderId, ano);&#xd;
+&#xd;
+            if (!pasta) {&#xd;
+&#xd;
+                //Cria a pasta do Ano&#xd;
+                var dto = docAPI.newDocumentDto();&#xd;
+                dto.setDocumentDescription(ano);&#xd;
+                dto.setDocumentType(&quot;1&quot;);&#xd;
+                dto.setParentDocumentId(folderId);&#xd;
+                dto.setDocumentTypeId(&quot;&quot;);&#xd;
+&#xd;
+                var folder = docAPI.createFolder(dto, null, null);&#xd;
+&#xd;
+                var folderYear = folder.getDocumentId();&#xd;
+&#xd;
+            } else {&#xd;
+                var folderYear = pasta;&#xd;
+            }&#xd;
+&#xd;
+&#xd;
+        } catch (e) {&#xd;
+&#xd;
+            throw &quot; &gt;&gt;&gt; ERROR &gt;&gt;&gt; Consultar/Criar pasta Ano &lt;&lt;&lt; | &quot; + e.name + &quot; - &quot; + e.message;&#xd;
+&#xd;
+        };&#xd;
+&#xd;
+        // verificar se tem pasta do mes dentro da pasta do ano&#xd;
+        try {&#xd;
+&#xd;
+            var pasta = consultarPastas(folderYear, mes);&#xd;
+&#xd;
+            if (!pasta) {&#xd;
+&#xd;
+                //Cria a pasta do Mes&#xd;
+                var dto = docAPI.newDocumentDto();&#xd;
+                dto.setDocumentDescription(mes);&#xd;
+                dto.setDocumentType(&quot;1&quot;);&#xd;
+                dto.setParentDocumentId(folderYear);&#xd;
+                dto.setDocumentTypeId(&quot;&quot;);&#xd;
+&#xd;
+                var folder = docAPI.createFolder(dto, null, null);&#xd;
+&#xd;
+                var folderMonth = folder.getDocumentId();&#xd;
+&#xd;
+            } else {&#xd;
+                var folderMonth = pasta;&#xd;
+            }&#xd;
+&#xd;
+&#xd;
+        } catch (e) {&#xd;
+&#xd;
+            throw &quot; &gt;&gt;&gt; ERROR &gt;&gt;&gt; Consultar/Criar pasta Mes &lt;&lt;&lt; | &quot; + e.name + &quot; - &quot; + e.message;&#xd;
+&#xd;
+        };&#xd;
+&#xd;
+        // verificar se tem pasta do dia dentro da pasta do mes&#xd;
+        try {&#xd;
+&#xd;
+            var pasta = consultarPastas(folderMonth, Dia);&#xd;
+&#xd;
+            if (!pasta) {&#xd;
+&#xd;
+                //Cria a pasta da Dia&#xd;
+                var dto = docAPI.newDocumentDto();&#xd;
+                dto.setDocumentDescription(Dia);&#xd;
+                dto.setDocumentType(&quot;1&quot;);&#xd;
+                dto.setParentDocumentId(folderMonth);&#xd;
+                dto.setDocumentTypeId(&quot;&quot;);&#xd;
+&#xd;
+                var folder = docAPI.createFolder(dto, null, null);&#xd;
+&#xd;
+                var folderDay = folder.getDocumentId();&#xd;
+            } else {&#xd;
+                var folderDay = pasta;&#xd;
+            }&#xd;
+&#xd;
+        } catch (e) {&#xd;
+&#xd;
+            throw &quot; &gt;&gt;&gt; ERROR &gt;&gt;&gt; Consultar/Criar pasta Dia &lt;&lt;&lt; | &quot; + e.name + &quot; - &quot; + e.message;&#xd;
+&#xd;
+        };&#xd;
+&#xd;
+        // verificar se tem pasta da fornecedor dentro da pasta do Dia&#xd;
+        try {&#xd;
+&#xd;
+            var pasta = consultarPastas(folderDay, fornecedor);&#xd;
+&#xd;
+            if (!pasta) {&#xd;
+&#xd;
+                //Cria a pasta da fornecedor&#xd;
+                var dto = docAPI.newDocumentDto();&#xd;
+                dto.setDocumentDescription(fornecedor);&#xd;
+                dto.setDocumentType(&quot;1&quot;);&#xd;
+                dto.setParentDocumentId(folderDay);&#xd;
+                dto.setDocumentTypeId(&quot;&quot;);&#xd;
+&#xd;
+                var folder = docAPI.createFolder(dto, null, null);&#xd;
+&#xd;
+                var folderfornecedor = folder.getDocumentId();&#xd;
+            } else {&#xd;
+                var folderfornecedor = pasta;&#xd;
+            }&#xd;
+&#xd;
+        } catch (e) {&#xd;
+&#xd;
+            throw &quot; &gt;&gt;&gt; ERROR &gt;&gt;&gt; Consultar/Criar pasta fornecedor &lt;&lt;&lt; | &quot; + e.name + &quot; - &quot; + e.message;&#xd;
+&#xd;
+        };&#xd;
+&#xd;
+        //Cria os anexos na pasta do fornecedor&#xd;
+        try {&#xd;
+            //pego a lista dos anexos&#xd;
+            var anexosDoProcesso = hAPI.listAttachments();&#xd;
+&#xd;
+            //variavel para recuperar a data&#xd;
+            var calendar = java.util.Calendar.getInstance().getTime();&#xd;
+&#xd;
+            //se tiver anexos&#xd;
+            if (anexosDoProcesso.size() &gt; 0) {&#xd;
+&#xd;
+                //passo por todos os anexos&#xd;
+                for (var i = 0; i &lt; anexosDoProcesso.size(); i++) {&#xd;
+&#xd;
+                    //jogo o anexo na variavel&#xd;
+                    var doc = anexosDoProcesso.get(i);&#xd;
+&#xd;
+                    var descricao = &quot;(&quot; + solicitacao + &quot;) &quot; + doc.getDocumentDescription();&#xd;
+&#xd;
+                    //defino as propriedades ...&#xd;
+                    doc.setParentDocumentId(parseInt(&quot;&quot; + folderfornecedor)); // pasta destino&#xd;
+                    doc.setVersionDescription(&quot;Processo: &quot; + processo);&#xd;
+                    doc.setExpires(false);&#xd;
+                    doc.setCreateDate(calendar);&#xd;
+                    doc.setTopicId(1);&#xd;
+                    doc.setUserNotify(false);&#xd;
+                    doc.setValidationStartDate(calendar);&#xd;
+                    doc.setVersionOption(&quot;0&quot;);&#xd;
+                    doc.setUpdateIsoProperties(true);&#xd;
+                    doc.setDocumentDescription(descricao);&#xd;
+                    doc.setAdditionalComments(&quot;Processo Nota Fiscal Pagamento&quot;);&#xd;
+&#xd;
+                    //inclui o anexo à pasta&#xd;
+                    hAPI.publishWorkflowAttachment(doc);&#xd;
+&#xd;
+                }&#xd;
+            }&#xd;
+        } catch (e) {&#xd;
+&#xd;
+            throw &quot; &gt;&gt;&gt; ERROR &gt;&gt;&gt; Salvar anexos &lt;&lt;&lt; | &quot; + e.name + &quot; - &quot; + e.message;&#xd;
+        }&#xd;
+    }&#xd;
+&#xd;
+}&#xd;
+&#xd;
+&#xd;
+function consultarPastas(folder, description) {&#xd;
+    var constraints = new Array();&#xd;
+    constraints.push(DatasetFactory.createConstraint(&quot;parentDocumentId&quot;, folder, folder, ConstraintType.MUST));&#xd;
+    constraints.push(DatasetFactory.createConstraint(&quot;documentDescription&quot;, description, description, ConstraintType.MUST));&#xd;
+    constraints.push(DatasetFactory.createConstraint(&quot;activeVersion&quot;, &quot;true&quot;, &quot;true&quot;, ConstraintType.MUST));&#xd;
+    var resultado = DatasetFactory.getDataset(&quot;document&quot;, null, constraints, null);&#xd;
+&#xd;
+    if (resultado != null &amp;&amp; resultado.values != null &amp;&amp; resultado.values.length &gt; 0) {&#xd;
+        return resultado.getValue(0, &quot;documentPK.documentId&quot;);&#xd;
+    }&#xd;
+    return false;&#xd;
+}&#xd;
+&#xd;
+function parseData(data) {&#xd;
+    var mes = data.substr(5, 2)&#xd;
+    var dia = data.substr(8, 2)&#xd;
+    var ano = data.substr(2, 2)&#xd;
+&#xd;
+    return dia + &apos;/&apos; + mes + &apos;/&apos; + ano;&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list/>
+  <list>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>611</height>
+      <width>851</width>
+      <positionX>10</positionX>
+      <positionY>10</positionY>
+      <stateName>Pool</stateName>
+      <type>1</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>FFFF80</color>
+      <height>203</height>
+      <width>821</width>
+      <positionX>40</positionX>
+      <positionY>10</positionY>
+      <stateName>Solicitante</stateName>
+      <type>2</type>
+      <parentSequence>1</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>80FF80</color>
+      <height>203</height>
+      <width>821</width>
+      <positionX>40</positionX>
+      <positionY>213</positionY>
+      <stateName>Contas a Pagar</stateName>
+      <type>2</type>
+      <parentSequence>1</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>3</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>82b0b7</color>
+      <height>205</height>
+      <width>821</width>
+      <positionX>40</positionX>
+      <positionY>416</positionY>
+      <stateName>Fiscal</stateName>
+      <type>2</type>
+      <parentSequence>1</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </swimLanePK>
+    </SwimLane>
+  </list>
+  <list/>
+  <list/>
+  <list>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+        <version>18</version>
+        <linkSequence>38</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>789</positionX>
+      <positionY>545</positionY>
+    </ProcessLinkBend>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list>
+    <ProcessAttachmentRules>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>TESTE CONTAS A PAGAR COMISSOES</processId>
+      <processVersion>18</processVersion>
+      <stateSequence>4</stateSequence>
+      <operator>2</operator>
+      <amount>0</amount>
+      <name></name>
+      <message>Anexar arquivos.</message>
+    </ProcessAttachmentRules>
+  </list>
+  <list/>
+</list>

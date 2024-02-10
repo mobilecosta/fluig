@@ -1,0 +1,44 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="custom.js"></script>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<input type="hidden" name="grupo" id="grupo">
+	<div class="panel panel-primary">
+		<div class="panel-totvs panel-heading">
+			Cadastro Opções de Acessos Techfin !
+		</div>
+		<div class="panel-body">
+			<button class="btn btn-primary" style="margin-bottom: 10px;" id="addAcessos">Adicionar Acesso</button>
+			<table class="table table-striped table-bordered" tablename="tabelaAcessos"
+				id="tabelaAcessos" nodeletebutton="true" noaddbutton="true">
+				<thead>
+					<tr>
+						<th>Acessos</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="col-md-2">
+							<input type="text" name="acessos" id="acessos" class="form-control">
+						</td>
+						<td class="col-md-1">
+							<i class="fluigicon fluigicon-trash icon-md" id="btnExcluirAcessos"
+								style="cursor: pointer;" onclick="excluirAcessos(this)"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</form>
+</div>
+</body>
+</html>

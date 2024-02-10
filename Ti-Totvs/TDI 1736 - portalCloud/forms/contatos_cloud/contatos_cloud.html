@@ -1,0 +1,128 @@
+<html>
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+			<ul class="nav nav-tabs" role="tablist" id="listTab">
+				<li name="linkMain" id="linkMain" class="active"><a href="#main" role="tab" data-toggle="tab">
+						Contatos Cloud (Priorizar)</a></li>
+				<li name="linktabela2" id="linktabela2"><a href="#tabela2" role="tab" data-toggle="tab">
+						Contatos Cloud (Urgente)</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="main">
+					<div class="panel panel-warning" style="background-color: #f7f7f7; border-style: none;">
+						<div class="panel-heading" style="background-color: #58595b">
+							<h3 class="panel-title" style="color: white">Contatos Cloud (Priorizar)</h3>
+						</div>
+					</div>
+					<div class="panel-body">
+						<button class="btn btn-primary" style="margin-bottom: 10px;" id="addPriorizar">Adicionar
+							Usuario</button>
+						<table class="table table-striped table-bordered" tablename="contatosPriorizar"
+							id="contatosPriorizar" nodeletebutton="true" noaddbutton="true">
+							<thead>
+								<tr>
+									<th>Assunto</th>
+									<th>Área</th>
+									<th>Nome do responsável</th>
+									<th>Telefone</th>
+									<th>E-mail</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="col-md-2">
+										<input type="text" name="assuntoPriorizar" id="assuntoPriorizar"
+											class="form-control">
+									</td>
+									<td class="col-md-2">
+										<input type="text" name="areaPriorizar" id="areaPriorizar" class="form-control">
+									</td>
+									<td class="col-md-3">
+										<input type="text" name="nomePriorizar" id="nomePriorizar" class="form-control">
+									</td>
+									<td class="col-md-2">
+										<input type="text" name="telefonePriorizar" id="telefonePriorizar"
+											class="form-control">
+									</td>
+									<td class="col-md-3">
+										<input type="text" name="emailPriorizar" id="emailPriorizar"
+											class="form-control">
+									</td>
+									<td class="col-md-1">
+										<i class="fluigicon fluigicon-trash icon-md" id="btnExcluirPriorizar"
+											style="cursor: pointer;" onclick="excluirContato(this)"></i>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane" id="tabela2">
+					<div class="panel panel-warning" style="background-color: #f7f7f7; border-style: none;">
+						<div class="panel-heading" style="background-color: #58595b">
+							<h3 class="panel-title" style="color: white">Contatos Cloud (Urgente)</h3>
+						</div>
+					</div>
+					<div class="panel-body">
+						<button class="btn btn-primary" style="margin-bottom: 10px;" id="addUrgente">Adicionar
+							Usuario</button>
+						<table class="table table-striped table-bordered" tablename="contatosUrgente"
+							id="contatosUrgente" nodeletebutton="true" noaddbutton="true">
+							<thead>
+								<tr>
+									<th>Assunto</th>
+									<th>Área</th>
+									<th>Nome do responsável</th>
+									<th>Telefone</th>
+									<th>E-mail</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="col-md-2">
+										<input type="text" name="assuntoUrgente" id="assuntoUrgente"
+											class="form-control">
+									</td>
+									<td class="col-md-2">
+										<input type="text" name="areaUrgente" id="areaUrgente" class="form-control">
+									</td>
+									<td class="col-md-3">
+										<input type="text" name="nomeUrgente" id="nomeUrgente" class="form-control">
+									</td>
+									<td class="col-md-2">
+										<input type="text" name="telefoneUrgente" id="telefoneUrgente"
+											class="form-control">
+									</td>
+									<td class="col-md-3">
+										<input type="text" name="emailUrgente" id="emailUrgente" class="form-control">
+									</td>
+									<td class="col-md-1">
+										<i class="fluigicon fluigicon-trash icon-md" id="btnExcluirUrgente"
+											style="cursor: pointer;" onclick="excluirContato(this)"></i>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>

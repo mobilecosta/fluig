@@ -1,0 +1,855 @@
+<html>
+	<head>
+		<title>Solicita&#231;&#227;o&#32;de&#32;Pagamento</title>
+		<link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide.min.css">
+		<script src="/portal/resources/js/jquery/jquery.js"></script>
+		<script src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+		<script src="/portal/resources/js/mustache/mustache-min.js"></script>
+		<script src="/portal/resources/style-guide/js/fluig-style-guide.min.js"></script>
+		
+		<script src="/totvs/js/totvs-tdi-3.0.js"></script>
+		
+		<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+		<script type="text/javascript" src="custom.js"></script>
+	</head>
+	<body class="fluig-style-guide" onload="init()">
+		<form class="form-horizontal" name="form" role="form"> 
+			<!--  padrao fluxo -->
+			<input type="hidden" id="matriculaUsuario" name="matriculaUsuario"/>
+			<input type="hidden" id="usuarioCorrente" name="usuarioCorrente"/>
+			<!--  novo - 18/08 -->
+			<input type="hidden" id="emailUsuarioCorrente" name="emailUsuarioCorrente"/>
+			<input type="hidden" id="numAtiv" name="numAtiv" value=""/>
+			<input type="hidden" id="hiddenMobile" name="hiddenMobile" value=""/>
+
+			<!-- matricula destinatario despesa - utilizado para localizar aprvador, caso o solic nao tenha excecao ccusto -->
+			<input type="hidden" id="hiddenMatrDest" name="hiddenMatrDest"/>
+			<input type="hidden" id="hiddenMatrDestAnt" name="hiddenMatrDestAnt"/>
+
+			<!-- guarda o papel ou matricula do gestor/area de aprovacao - 1a aprovacao -->
+			<input type="hidden" id="hiddengestorAprovadorPri" name="hiddengestorAprovadorPri"/>
+
+			<!-- guarda o papel ou matricula do gestor/area de aprovacao - 1a aprovacao -->
+			<!--  nao pode ser usado para testar se foi para revisao -->
+			<input type="hidden" id="hiddenRetornouRevisaoPri" name="hiddenRetornouRevisaoPri"/>
+			<!--  eh usado para testar na condicao toda vez que for para revisao -->
+			<input type="hidden" id="hiddenRetornouRevisao"	name="hiddenRetornouRevisao"/>				
+			<input type="hidden" id="hiddenCodEmp" name="hiddenCodEmp"/>
+			<input type="hidden" id="hiddenCodFilial" name="hiddenCodFilial"/>
+			<input type="hidden" id="hiddenNmFilial" name="hiddenNmFilial"/>
+			<input type="hidden" id="hiddenNovoFornec" name="hiddenNovoFornec"/>
+			<input type="hidden" id="hiddentipoFornec" name="hiddentipoFornec"/>		
+			<input type="hidden" id="hiddenLojaFornec" name="hiddenLojaFornec"/>
+			<input type="hidden" id="hiddenCodBanco" name="hiddenCodBanco"/>
+			<!-- input type="hidden" id="hiddenNmBanco" name="hiddenNmBanco"/-->
+			<input type="hidden" id="hiddenCodAgencia" 	name="hiddenCodAgencia"/>
+			<input type="hidden" id="hiddenContaC" name="hiddenContaC"/>
+			
+			<!--  guarda a descricao do item para ser usada no relatorio -->
+			<input type="hidden" id="hiddenDescItem" name="hiddenDescItem"/>
+			<input type="hidden" id="hiddenFim"	name="hiddenFim"/>
+						
+			<!--  guarda a matricula dos aprovadores -->
+			<input type="hidden" id="hiddenMatrGestor" name="hiddenMatrGestor"/>
+			<input type="hidden" id="hiddenMatrFiscal"	name="hiddenMatrFiscal"/>
+			<input type="hidden" id="hiddenMatrContasPagar" name="hiddenMatrContasPagar"/>
+			<input type="hidden" id="hiddenMatrCPGeraTitulo" name="hiddenMatrCPGeraTitulo"/>
+			
+			<!-- guarda o tipo aprovador para colocar no label da aprovacao de gestor -->
+			<input type="hidden" id="hiddenTipoAprovador" name="hiddenTipoAprovador"/>
+			
+			<!-- guarda se na aprovacao do gestor deve ir para aprovacao PA ou nao-->
+			<input type="hidden" id="hiddenVaiParaAprovPA" 	name="hiddenVaiParaAprovPA"/>
+			
+			<!-- guarda se encontrou faixa de aprovacao no caso de aprovador por niveis -->
+			<input type="hidden" id="hiddenEncontrouFaixaAprovador"	name="hiddenEncontrouFaixaAprovador"/>
+			
+			<!-- guarda se encontrou e-mail do aprovador no caso de aprovador por niveis -->
+			<input type="hidden" id="hiddenEncontrouEmailAprovador"	name="hiddenEncontrouEmailAprovador"/>
+			
+			<input type="hidden" id="hiddenRefazFaixaAprovador"	name="hiddenRefazFaixaAprovador"/>
+			
+			<!-- guarda no display fields o valor do campo, e na after task complete compara - se for diferente coloca comentario no historico -->						
+			<input type="hidden" id="hiddenValorBrutoAnterior"	name="hiddenValorBrutoAnterior"/>
+			<input type="hidden" id="hiddenAcrescimoAnterior"	name="hiddenAcrescimoAnterior"/>
+			<input type="hidden" id="hiddenDecrescimoAnterior"	name="hiddenDecrescimoAnterior"/>
+			<input type="hidden" id="hiddenValorInssAnterior"	name="hiddenValorInssAnterior"/>
+			<input type="hidden" id="hiddenValorIssAnterior"	name="hiddenValorIssAnterior"/>
+			<input type="hidden" id="hiddenValorIrrfAnterior"	name="hiddenValorIrrfAnterior"/>
+			<input type="hidden" id="hiddenValorCsllAnterior"	name="hiddenValorCsllAnterior"/>
+			<input type="hidden" id="hiddenValorPisAnterior"	name="hiddenValorPisAnterior"/>
+			<input type="hidden" id="hiddenValorCofinsAnterior"	name="hiddenValorCofinsAnterior"/>
+			<input type="hidden" id="hiddenValorMultaAnterior"	name="hiddenValorMultaAnterior"/>
+			<input type="hidden" id="hiddenValorJurosAnterior"	name="hiddenValorJurosAnterior"/>
+			<input type="hidden" id="hiddenValorCMonAnterior"	name="hiddenValorCMonAnterior"/>
+			<input type="hidden" id="hiddenValorTaxasAnterior"	name="hiddenValorTaxasAnterior"/>
+			<input type="hidden" id="hiddenValorPagarAnterior"	name="hiddenValorPagarAnterior"/>
+			
+			<!-- guarda no after task complete o resultado de cima, se alterou dados, ira aparecer um label abaixo da aprovacao -->
+			<input type="hidden" id="hiddenSolicCorrecaoAlterouVal"	name="hiddenSolicCorrecaoAlterouVal"/>						
+			<input type="hidden" id="hiddenGestorAlterouValor"	name="hiddenGestorAlterouValor"/>
+			<input type="hidden" id="hiddenFiscalAlterouValor"	name="hiddenFiscalAlterouValor"/>
+			<input type="hidden" id="hiddenContasPagarAlterouValor"	 name="hiddenContasPagarAlterouValor"/>
+			<input type="hidden" id="hiddenCPGeraTituloAlterouValor" name="hiddenCPGeraTituloAlterouValor"/>
+			
+			<!-- utilizado para validar se solicitação já passou pelas atividades em questão -->
+			<input type="hidden" id="hiddenGestorPassou" name="hiddenGestorPassou"/>
+			<input type="hidden" id="hiddenFiscalPassou" name="hiddenFiscalPassou"/>
+			<input type="hidden" id="hiddenContasPagarPassou" name="hiddenContasPagarPassou"/>
+			<input type="hidden" id="hiddenCPGeraTituloPassou" name="hiddenCPGeraTituloPassou"/>
+			
+			<!-- utilizado para validar se solicitação foi aprovada nas atividades em questão -->
+			<input type="hidden" id="hiddenGestorAprovou" name="hiddenGestorAprovou"/>
+			<input type="hidden" id="hiddenFiscalAprovou" name="hiddenFiscalAprovou"/>
+			<input type="hidden" id="hiddenContasPagarAprovou" name="hiddenContasPagarAprovou"/>
+			<input type="hidden" id="hiddenCPGeraTituloAprovou" name="hiddenCPGeraTituloAprovou"/>
+			
+			<!-- guarda se o pagamento excedeu - usado em condicao de ativ automatica-->
+			<input type="hidden" id="hiddenPagamentoExcedeu"	name="hiddenPagamentoExcedeu"/>
+
+			<!-- guarda se o titulo eh valido - usado na condicao de ativ automatica para finalizar o fluxo -->
+			<input type="hidden" id="hiddenValidaTitulo"		name="hiddenValidaTitulo"/>
+
+			<!-- guarda texto para aparecer no campo identificador - central de tarefas  -->
+			<input type="hidden" id="hiddenIdentificador" 		name="hiddenIdentificador" value=""/>
+			
+			<!-- APROVADORES DE GESTAO-DESTINATARIO-FAIXA VALOR PROTHEUS -->
+			<input type="hidden" id="hiddenAprovadorDaVez" 		name="hiddenAprovadorDaVez" value=""/>
+			<input type="hidden" id="hiddenNumTotAprovac" 		name="hiddenNumTotAprovac" value=""/>
+			<input type="hidden" id="hiddenNumeroDaVez" 		name="hiddenNumeroDaVez" value=""/>
+			
+			<!-- CASO TENHA MAIS DE UM APROVADOR - SO PODE PASSAR PARA CRIAR A FICHA 1 VEZ -->
+			<input type="hidden" id="hiddenCriouFichaPasta"	name="hiddenCriouFichaPasta"/>
+			<input type="hidden" id="hiddenEncontrouGroupSolicPag"		name="hiddenEncontrouGroupSolicPag" value=""/>
+			
+			<!-- DADOS SOLICITANTE INICIO -->
+			<div class="panel panel-default">
+				<div class="panel-totvs panel-heading">DADOS DO SOLICITANTE</div>
+			    <div class="panel-body">
+			    	<div class="form-group">
+					    <label for="cdSolicitacao" class="col-sm-3 control-label">N&uacute;mero da Solicita&ccedil;&atilde;o</label>
+					    <div class="col-sm-7">
+					    	<input id="cdSolicitacao" name="cdSolicitacao" class="form-control" style="width: 320px" readonly type="text" />
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="nmUsuario" class="col-sm-3 control-label">Usu&aacute;rio de abertura:</label>
+					    <div class="col-sm-7">
+					    	<input id="nmUsuario" name="nmUsuario" class="form-control" style="width: 320px" readonly type="text" />
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="dtRegistro" class="col-sm-3 control-label">Data da solicita&ccedil;&atilde;o</label>
+					    <div class="col-sm-7">
+					    	<input id="dtRegistro" name="dtRegistro" class="form-control" style="width: 320px" readonly type="text" />
+					    </div>
+					</div>
+			   	</div>
+			</div>
+			<!-- FIM DADOS SOLICITANTE-->
+			<!-- ATIVIDADE CORRIGIR - INICIO--> 
+			<div class="panel panel-default" id="divCorrecao" >
+				<div class="panel-totvs panel-heading">CORRE&Ccedil;&Atilde;O SOLICITA&Ccedil;&Atilde;O - OBSERVA&Ccedil;&Otilde;ES ENVIO DE APROVA&Ccedil;&Atilde;O</div>
+			    <div class="panel-body">
+			    	<div class="form-group">
+					    <label for="obsIncons" class="col-sm-3 control-label">inconsist&ecirc;ncias:</label>
+					    <div class="col-sm-7">
+					    	<textarea id="obsIncons" name="obsIncons" rows=3 cols=90  class="form-control" style="width: 445px"  readonly ></textarea> 
+					    </div>
+					</div>
+			    </div>
+			</div>
+			<!-- FIM - ATIVIDADE CORRIGIR-->
+			<!-- CORPO  INICIO-->
+			<div class="panel panel-default" id="corpo" >
+				<div class="panel-totvs panel-heading">DADOS PARA CADASTRO DA SOLICITA&Ccedil;&Atilde;O DE PAGAMENTO</div>
+			    <div class="panel-body">
+					<div class="form-group">
+					    <label for="nomebeneficiario" class="col-sm-3 control-label">Benefici&aacute;rio:</label>
+					    <div class="col-sm-5">
+							<div class="input-group">
+								<input id="matriculabeneficiario" name="matriculabeneficiario" type="hidden" /> 
+								<input id="emailbeneficiario" name="emailbeneficiario" type="hidden" /> 
+								<input id="nomebeneficiario" name="nomebeneficiario" class="form-control" readonly type="text" /> <span class="input-group-addon group-zoom no-view zoom-click"
+									data-event="beneficiario" onclick="zoomBeneficiario();">
+									<span class="fluigicon fluigicon-zoom-in"></span>
+								</span>
+							</div>
+						</div>
+					</div>
+			    	<div class="form-group">
+					    <label for="nomeDepartamento" id="labeldepart" class="col-sm-3 control-label">Departamento do Solicitante:</label>
+					    <div class="col-sm-7">
+					   		<input type="text" name="codDepartamento" class="form-control" id="codDepartamento" style="width: 120px" readonly > 
+							<input type="text" name="nomeDepartamento" class="form-control" id="nomeDepartamento" style="width: 320px; margin-left:5px" readonly data-required="true" >
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="areaSolic" id="labelAreaSolic" class="col-sm-3 control-label">&Aacute;rea:</label>
+					    <div class="col-sm-7">
+					    	<select name="areaSolic" id="areaSolic" onblur="AguardeGestorAprovador('aprovador');" style="width:445px" class="form-control" data-required="true" >
+								<option value="x" selected="selected">Selecione!</option>
+								<option value="1">Administra&ccedil;&atilde;o de Gente</option>
+								<!-- option value="2">Comiss&otilde;es</option-->
+								<option value="3">Fiscal</option>
+								<option value="4">Outra &Aacute;rea</option>	
+								<option value="5">Conting&ecirc;ncia Trabalhista</option>
+								<option value="6">Conting&ecirc;ncia C&iacute;vel</option>
+								<option value="7">Conting&ecirc;ncia Tribut&aacute;ria</option>							
+								<option value="8">Acordos Judiciais Trabalhista</option>							
+								<option value="9">Acordos Judiciais Cível</option>							
+								<option value="10">Acordos Judiciais Tributária</option>							
+							</select>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="razaoSocial" id="labelEmpPag" class="col-sm-3 control-label">Empresa Pagadora:</label>
+					    <div class="col-sm-7">
+							<div class="input-group">
+								<input type="text" name="razaoSocial" class="form-control" id="razaoSocial" readonly data-required="true" >
+								<span  id="IdBtZoom1" class="input-group-addon group-zoom no-view zoom-click" data-event="empresa" onclick="zoomEmpresa();" >
+						    		<span class="fluigicon fluigicon-zoom-in"></span>
+						    	</span>
+								<span  id="IdBtZoom1" class="input-group-addon group-zoom no-view zoom-clear" data-event="empresa" onclick="limpaZoom('cnpjEmpresa,hiddenCodEmp,razaoSocial,hiddenCodFilial,hiddenNmFilial','1');" >
+						    		<span class="fluigicon fluigicon-remove"></span>
+						    	</span>
+							</div>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="cnpjEmpresa" id="labelCnpjEmpPag" class="col-sm-3 control-label">CNPJ:</label>
+					    <div class="col-sm-7">
+							<input type="text" name="cnpjEmpresa" class="form-control" id="cnpjEmpresa" style="width: 200px;" readonly >
+					    </div>
+					</div>
+			    </div>
+				<div class="panel-totvs panel-heading">DADOS DESTINATARIO DESPESA</div>
+				<div class="panel-body">
+					<div class="form-group">
+					    <label for="codCentroCusto" id="labelCcustoDest" class="col-sm-3 control-label">Centro de Custo/Departamento:</label>
+					    <div class="col-sm-2">
+							<input type="text" name="codCentroCusto" class="form-control" id="codCentroCusto" data-required="true" onblur="aguardeCentroCusto(this);">
+					    </div>
+					    <div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" name="nomeCentroCusto" class="form-control" id="nomeCentroCusto" readonly data-required="true">
+								<span  id="IdBtZoom6" class="input-group-addon group-zoom no-view zoom-click" data-event="empresa" onclick="zoomCcusto();" >
+						    		<span class="fluigicon fluigicon-zoom-in"></span>
+						    	</span>
+								<span  id="IdBtZoom6Clear" class="input-group-addon group-zoom no-view zoom-clear" data-event="empresa" onclick="limpaZoom('nomeCentroCusto,codCentroCusto','6');" >
+						    		<span class="fluigicon fluigicon-remove"></span>
+						    	</span>
+							</div>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="codItemContabil" id="labelItemDest" class="col-sm-3 control-label">Item Cont&aacute;bil:</label>
+					    <div class="col-sm-2">
+							<input type="text" name="codItemContabil" class="form-control" id="codItemContabil" data-required="true" onblur="aguardeItemContabil(this);">
+					    </div>
+					    <div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" name="nomeItemContabil" class="form-control" id="nomeItemContabil" readonly data-required="true">
+								<span  id="IdBtZoom7" class="input-group-addon group-zoom no-view zoom-click" data-event="empresa" onclick="zoomItemContabil();" >
+						    		<span class="fluigicon fluigicon-zoom-in"></span>
+						    	</span>
+								<span  id="IdBtZoom7Clear" class="input-group-addon group-zoom no-view zoom-clear" data-event="empresa" onclick="limpaZoom('codItemContabil,nomeItemContabil','7');" >
+						    		<span class="fluigicon fluigicon-remove"></span>
+						    	</span>
+							</div>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="codClasse" id="labelClasse" class="col-sm-3 control-label">Classe :</label>
+					    <div class="col-sm-2">
+							<input type="text" name="codClasse" class="form-control" id="codClasse" data-required="true" onblur="aguardeClasse(this);">
+					    </div>
+					    <div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" name="nomeClasse" class="form-control" id="nomeClasse" readonly data-required="true">
+								<span  id="IdBtZoom7" class="input-group-addon group-zoom no-view zoom-click" data-event="empresa" onclick="zoomClasse();" >
+						    		<span class="fluigicon fluigicon-zoom-in"></span>
+						    	</span>
+								<span  id="IdBtZoom7Clear" class="input-group-addon group-zoom no-view zoom-clear" data-event="empresa" onclick="limpaZoom('codClasse,nomeClasse','8');" >
+						    		<span class="fluigicon fluigicon-remove"></span>
+						    	</span>
+							</div>
+					    </div>
+					</div>
+				</div>
+				<div class="panel-totvs panel-heading">DADOS FORNECEDOR</div>
+				<div class="panel-body">
+					<div class="form-group">
+					    <label for="idEmpresa" id="labelidEmpresa" class="col-sm-3 control-label">Raz&atilde;o Social / Nome:</label>
+					    <div class="col-sm-2">
+							<input type="text" name="idEmpresa" class="form-control" id="idEmpresa" readonly data-required="true">
+					    </div>
+					    <div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" name="nomeEmpresa" id="nomeEmpresa" class="form-control" onclick="limpaDesc(this);" onblur="verificaDesc(this);" onfocus="guardaValAnt(this);">
+								<span  id="IdBtZoom3" class="input-group-addon group-zoom no-view zoom-click" data-event="empresa" onclick="zoomFornecedor();" >
+						    		<span class="fluigicon fluigicon-zoom-in"></span>
+						    	</span>
+								<span  id="idBtLimpar1" class="input-group-addon group-zoom no-view zoom-clear" data-event="empresa" onclick="limpaDadosFornec();" >
+						    		<span class="fluigicon fluigicon-remove"></span>
+						    	</span>
+							</div>
+					    </div>
+					    <div class="col-sm-10 control-label">
+					    	<span><small>
+					    		 Caso  o fornecedor nao esteja cadastrado &eacute; necess&aacute;rio abrir um chamado atrav&eacute;s do Portal de Clientes 
+								  <a href="https://suporte.totvs.com" target="_blank">https:// suporte.totvs.com</a>
+								  <br>
+									e escolher a op&ccedil;&atilde;o Auto Atendimento CST / Atendimento CST / Abertura de Chamados / Cadastro  de Fornecedor. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    	</small></span>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="tipoFornec" id="labeltipoFornec" class="col-sm-3 control-label">Tipo Fornecedor:</label>
+					    <div class="col-sm-3">
+							<select name="tipoFornec" id="tipoFornec" class="form-control" onchange="mascaraCnpjCpf();" >
+								<option value="x" selected="selected">Selecione!</option>
+								<option value="1">Pessoa F&iacute;sica</option>
+								<option value="2">Pessoa Jur&iacute;dica</option>
+							</select>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="cpfCnpjFornec" id="labelcpfCnpjFornec" class="col-sm-3 control-label">CNPJ / CPF:</label>
+					    <div class="col-sm-7">
+							<div class="input-group">
+								<input type="text" name="cpfCnpjFornec" class="form-control" id="cpfCnpjFornec" data-required="true" onclick="limpaCNPJ(this);">
+								<span  id="IdBtZoom4" class="input-group-addon group-zoom no-view zoom-click" data-event="cnpj" onclick="zoomFornecedorCPNJ();" >
+						    		<span class="fluigicon fluigicon-zoom-in"></span>
+						    	</span>
+								<span  id="idBtLimpar2" class="input-group-addon group-zoom no-view zoom-clear" data-event="cnpj" onclick="limpaDadosFornec();" >
+						    		<span class="fluigicon fluigicon-remove"></span>
+						    	</span>
+							</div>
+					    </div>
+					</div>
+				</div>
+				<div class="panel-totvs panel-heading">DADOS BANC&Aacute;RIOS</div>
+				<div class="panel-body">
+					<div class="form-group">
+					    <label for="formaPagto" id="labelformaPagto" class="col-sm-3 control-label">Forma Pagamento:</label>
+					    <div class="col-sm-3">
+							<select name="formaPagto" id="formaPagto" class="form-control" onchange="desabilitaCampoFomaPagto(this);" onblur="messageDadosBancarios();" >
+								<option value="x" selected="selected">Selecione!</option>
+								<option value="1">Boleto Banc&aacute;rio</option>
+								<option value="2">Dep&oacute;sito em C/C</option>
+								<!--  bianca solicitou retirar
+									<option value="3">Outros</option>
+								 -->
+							</select>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="IdBanco" id="labelBanco" class="col-sm-3 control-label">Banco:</label>
+					    <div class="col-sm-2">
+							<input type="text" name="IdBanco" class="form-control" id="IdBanco" readonly data-required="true">
+							<!-- input type="text" name="nmBanco" class="form-control" id="nmBanco" style="width: 320px; margin-left:5px" readonly data-required="true" onclick="limpaDesc(this);" onblur="verificaDesc(this); " onfocus="guardaValAnt(this);"-->
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="IdAg" id="labelAgencia" class="col-sm-3 control-label">Ag&ecirc;ncia:</label>
+					    <div class="col-sm-3">
+							<input type="text" name="IdAg" class="form-control" id="IdAg" readonly data-required="true">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="conta" id="labelCC" class="col-sm-3 control-label">C/C:</label>
+					    <div class="col-sm-3">
+							<input type="text" name="conta" class="form-control" id="conta" readonly data-required="true">
+					    </div>
+					    <div class="col-sm-10 control-label">
+					    	<span><small>
+					    		 Caso os dados banc&aacute;rios n&atilde;o estejam de acordo, &eacute; necess&aacute;rio abrir um chamado atrav&eacute;s do Portal de Clientes 
+					    		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<br>
+								<a href="https://suporte.totvs.com" target="_blank">https:// suporte.totvs.com</a>
+								CST(Centro Administrativo)/Cadastro de Fornecedor informando novos dados banc&aacute;rios &nbsp;&nbsp;&nbsp;
+					    	</small></span>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="Inform" class="col-sm-3 control-label">Informa&ccedil;&otilde;es Complementares:</label>
+					    <div class="col-sm-5">
+							<input type="text" name="Inform" class="form-control" id="Inform">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="dataPagamento" id="labeldataPagto" class="col-sm-3 control-label">Data Pagamento:</label>
+					    <div class="col-sm-2">
+							<input type="text" name="dataPagamento" class="form-control" id="dataPagamento" onChange="verificaData(this);" data-required="true" data-type="date" data-format="dd/mm/yy" />
+					    </div>
+					</div>
+				</div>
+				<div class="panel-totvs panel-heading">DETALHES DO PAGAMENTO - ITEM</div>
+				<div class="panel-body">
+					<div class="form-group">
+					    <label for="descricaoItem" id="labeldescricaoItem" class="col-sm-3 control-label">Item:</label>
+					    <div class="col-sm-5">
+					    	<select id="descricaoItem" name="descricaoItem" class="form-control" data-required="true" dataset="dsItemSolicPagamento" datasetkey="item" datasetvalue="descricao" addBlankLine="false" onchange="messagePagtoAntecipado(this);">
+							</select>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="codNatureza" id="labelNatureza" class="col-sm-3 control-label">Natureza:</label>
+					    <div class="col-sm-2">
+							<input type="text" name="codNatureza" class="form-control" id="codNatureza" readonly >
+					    </div>
+					    <div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" name="nomeNatureza" id="nomeNatureza" class="form-control" readonly onclick="limpaDesc(this);" onblur="verificaDesc(this);" onfocus="guardaValAnt(this);">
+								<span  id="IdBtZoom7" class="input-group-addon group-zoom no-view zoom-click" data-event="natureza" onclick="zoomNatureza();" >
+						    		<span class="fluigicon fluigicon-zoom-in"></span>
+						    	</span>
+								<span  id="IdBtZoom7Clear" class="input-group-addon group-zoom no-view zoom-clear" data-event="natureza" onclick="limpaZoom('codNatureza,nomeNatureza','5');" >
+						    		<span class="fluigicon fluigicon-remove"></span>
+						    	</span>
+							</div>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="mesReferencia" id="labelmesReferencia"  class="col-sm-3 control-label">Competencia:</label>
+					    <div class="col-sm-2">
+					    	<select id="mesReferencia" name="mesReferencia" class="form-control" data-required="true">
+									<option value="x">M&ecirc;s</option>
+									<option value="1">01</option>
+									<option value="2">02</option>
+									<option value="3">03</option>
+									<option value="4">04</option>
+									<option value="5">05</option>
+									<option value="6">06</option>
+									<option value="7">07</option>
+									<option value="8">08</option>
+									<option value="9">09</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+							</select>
+						</div>
+					    <div class="col-sm-2">
+							<select id="anoReferencia" name="anoReferencia" class="form-control" data-required="true">
+								<option value="x">Ano</option>
+								<option value="2014">2014</option>
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+								<option value="2018">2018</option>
+								<option value="2019">2019</option>
+								<option value="2020">2020</option>
+								<option value="2021">2021</option>
+								<option value="2022">2022</option>
+								<option value="2023">2023</option>
+								<option value="2024">2024</option>
+								<option value="2025">2025</option>
+								<option value="2026">2026</option>
+								<option value="2027">2027</option>
+								<option value="2028">2028</option>
+								<option value="2029">2029</option>
+								<option value="2030">2030</option>
+								<option value="2031">2031</option>
+								<option value="2032">2032</option>
+								<option value="2033">2033</option>
+								<option value="2034">2034</option>
+								<option value="2035">2035</option>
+								<option value="2036">2036</option>
+								<option value="2037">2037</option>
+								<option value="2038">2038</option>
+								<option value="2039">2039</option>
+								<option value="2040">2040</option>
+							</select>
+						</div>
+						<div class="col-sm-6 control-label col-sm-offset-3">
+					    	<span><small>
+								Obs: Deve ser preenchido de acordo com a data de realiza&ccedil;&atilde;o do servi&atilde;o ou compra de mercadoria.
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</small></span>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="justificativaItem" id="labeljustificativaItem" class="col-sm-3 control-label">Justificativa:</label>
+					    <div class="col-sm-5">
+					    	<input type="text" name="justificativaItem" id="justificativaItem" class="form-control" data-required="true">
+					    </div>
+					    <div class="col-sm-7 control-label col-sm-offset-3">
+					    	<span><small>
+								Obs: Justificativa deve estar preenchida de forma clara para que possa ser classificada a natureza da forma correta.
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</small></span>
+					    </div>
+					</div>
+					<div class="form-group has-success has-feedback" style="margin-top:15px">
+					    <label for="valorBruto" id="labelvalorBruto" class="col-sm-3 control-label">Valor Bruto:</label>
+					    <div class="col-sm-3">
+					    	<input type="text" name="valorBruto" id="valorBruto" value="0,00" class="form-control input-lg" data-required="true" onclick="mostraAguardeVal();pegaValBrutoAtual();" onfocus="mostraAguardeVal();pegaValBrutoAtual();" onblur="calcValorPagar('html');">
+					    </div>
+					</div>
+					<div class="form-group has-success has-feedback" style="margin-top:15px; margin-bottom:15px !important;">
+					    <label for="retencao" id="labelretencaoImposto" class="col-sm-3 control-label">Reten&ccedil;&atilde;o?</label>
+					    <div class="col-sm-2">
+					    	<select name="retencao" id="retencao" class="form-control input-lg" onchange="messageRetencao();">
+								<option value="x" selected="selected">Selecione!</option>
+								<option value="1">Sim</option>
+								<option value="2">N&atilde;o</option>
+							</select>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorInss" class="col-sm-3 control-label">INSS:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorInss" id="valorInss" class="form-control" value="0,00" readonly>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorIss" class="col-sm-3 control-label">ISS:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorIss" id="valorIss" class="form-control" value="0,00" readonly>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label class="col-sm-3 control-label">IMPOSTOS:</label>
+					</div>
+					<div class="form-group">
+					    <label for="valorIrrf" class="col-sm-3 control-label">IRRF:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorIrrf" id="valorIrrf" class="form-control" value="0,00" readonly>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorCsll" class="col-sm-3 control-label">CSLL:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorCsll" id="valorCsll" class="form-control" value="0,00" readonly>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorPis" class="col-sm-3 control-label">Pis:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorPis" id="valorPis" class="form-control" value="0,00" readonly>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorCofins" class="col-sm-3 control-label">Cofins:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorCofins" id="valorCofins" class="form-control" value="0,00" readonly>
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="decrescimo" id="labelDecrescimo" class="col-sm-3 control-label">Decr&eacute;scimo:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="decrescimo" id="decrescimo" class="form-control" value="0,00" onblur="calcValorPagar('html');" onclick="mostraAguardeVal();pegaValBrutoAtual();" onfocus="mostraAguardeVal();pegaValBrutoAtual();">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label class="col-sm-3 control-label">OUTROS IMPOSTOS:</label>
+					</div>
+					<div class="form-group">
+					    <label for="valorMulta" class="col-sm-3 control-label">Multa:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorMulta" id="valorMulta" class="form-control" value="0,00" onblur="calcValorPagar('html');" onclick="mostraAguardeVal();pegaValBrutoAtual();" onfocus="mostraAguardeVal();pegaValBrutoAtual();">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorMulta" class="col-sm-3 control-label">Juros:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorJuros" id="valorJuros" class="form-control" value="0,00" onblur="calcValorPagar('html');" onclick="mostraAguardeVal();pegaValBrutoAtual();" onfocus="mostraAguardeVal();pegaValBrutoAtual();">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorCMon" class="col-sm-3 control-label">C.Mon.:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorCMon" id="valorCMon" class="form-control" value="0,00" onblur="calcValorPagar('html');" onclick="mostraAguardeVal();pegaValBrutoAtual();" onfocus="mostraAguardeVal();pegaValBrutoAtual();">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="valorTaxas" class="col-sm-3 control-label">Taxas:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorTaxas" id="valorTaxas" class="form-control" value="0,00" onblur="calcValorPagar('html');" onclick="mostraAguardeVal();pegaValBrutoAtual();" onfocus="mostraAguardeVal();pegaValBrutoAtual();">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="acrescimo" id="labelAcrescimo" class="col-sm-3 control-label">Acr&eacute;scimo:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="acrescimo" id="acrescimo" class="form-control" value="0,00" onblur="calcValorPagar('html');" onclick="mostraAguardeVal();pegaValBrutoAtual();" onfocus="mostraAguardeVal();pegaValBrutoAtual();">
+					    </div>
+					</div>
+					<div class="form-group has-success has-feedback" style="margin-top:15px">
+					    <label for="valorPagar" class="col-sm-3 control-label">VALOR A PAGAR:</label>
+					    <div class="col-sm-2">
+					    	<input type="text" name="valorPagar" id="valorPagar" class="form-control input-lg" value="0" readonly style="width:200px">
+					    </div>
+					    <span id="obsValorPagarRetenc" class="col-sm-7 control-label"><small></small></span>
+					</div>
+					<div class="form-group">
+					     <span id="labelAvisoAlteracaoSolicCorrecao" class="col-sm-7 control-label"><small>
+					     	** O Solicitante realizou ajustes nos valores da solicita&ccedil;&atilde;o - Atividade Corre&ccedil;&atilde;o.
+					     </small></span>
+					</div>
+				</div>
+			</div>
+			<!-- FIM CORPO  -->
+			<!--  APROVACAO GESTOR(ES) INICIO -->
+			<div class="panel panel-default" id="divAprovGestores" >
+				<div class="panel-totvs panel-heading" id="h2aprovacgest">APROVA&Ccedil;&Atilde;O GESTORES</div>
+			    <div class="panel-body">
+			    	<table class="table-striped"  id="tbAprovacoes" tablename="tbAprovacoes" noaddbutton="true" nodeletebutton="true" width="100%">
+						<tr>
+							<th rowspan="20"> <label id="marcador"> &nbsp;</label></th>
+							<th><label style="font-size: small;font-weight:normal">Tipo Aprovador</label></th>
+							<th><label style="font-size: small;font-weight:normal">Aprovador Sugerido<br>Protheus-RD0</label></th>
+							<th><label style="font-size: small;font-weight:normal">Nome Aprovador <br>Executante</label></th>
+							<th><label style="font-size: small;font-weight:normal">E-mail Aprovador	Executante</label></th>
+							<th><label style="font-size: small;font-weight:normal">Data</label></th>
+							<th><label style="font-size: small;font-weight:normal">Hora</label></th>
+							<th><label style="font-size: small;font-weight:normal">Observa&ccedil;&atilde;o</label></th>
+						</tr>
+						<tr>
+							<td>
+								<input id="idTipoAprovac" name="idTipoAprovac" style="width: 120px" class="form-control input-sm" type="text" readonly />
+							</td>
+							<td><input id="idSugeridoDataset" name="idSugeridoDataset" style="width: 180px" class="form-control input-sm" type="text" readonly /></td>
+							<td>
+								<input type="hidden" id="idMatrAprovador" name="idMatrAprovador"/>
+								<input id="idNomeAprovador" name="idNomeAprovador" style="width: 180px" class="form-control input-sm" type="text" readonly />
+							</td>
+							<td><input id="idEmailAprovador" name="idEmailAprovador" style="width: 180px" class="form-control input-sm" type="text" readonly /></td>
+							<td><input id="idDataAprov" name="idDataAprov" style="width: 80px" class="form-control input-sm" type="text" readonly /></td>
+							<td><input id="idHoraAprov" name="idHoraAprov" style="width: 75px" class="form-control input-sm" type="text" readonly /></td>														
+							<td>
+								<textarea id="idObsAprov" name="idObsAprov" rows=3 cols=30 readonly style="width: 120px" class="form-control input-sm"></textarea>
+							</td>
+						</tr>
+					</table>
+			    </div>
+			</div>
+			<!--  APROVACAO GESTOR(ES) FIM-->
+			
+			 <div class="panel panel-default" id="divAvalPrimNivel">
+				<div class="panel-totvs panel-heading">AVALIA&Ccedil;&Atilde;O PRIMEIRO N&Iacute;VEL</div>
+			    <div class="panel-body">
+				    <div class="form-group">
+						<label for="dtAvalPrimNivel" class="col-sm-3 control-label">Data:</label>
+						<div class="col-sm-2">
+							<input type="text" id="dtAvalPrimNivel" class="form-control" name="dtAvalPrimNivel" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="hrAvalPrimNivel" class="col-sm-3 control-label">Hora:</label>
+						<div class="col-sm-2">
+							<input type="text" id="hrAvalPrimNivel" class="form-control" name="hrAvalPrimNivel" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nmAvalPrimNivel" class="col-sm-3 control-label">Nome:</label>
+						<div class="col-sm-4">
+							<input type="text" id="nmAvalPrimNivel" class="form-control" name="nmAvalPrimNivel" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="obsAvalPrimNivel" class="col-sm-3 control-label required">OBSERVACAO:</label>
+						<div class="col-sm-5">
+							<textarea id="obsAvalPrimNivel" name="obsAvalPrimNivel" rows=3 cols=80 class="form-control"></textarea>
+						</div>
+					</div>
+			   	</div>
+			</div> 
+			
+			<!-- APROVACAO FISCAL INICIO -->
+			<div class="panel panel-default" id="divAprovFiscal" >
+				<div class="panel-totvs panel-heading">APROVA&Ccedil;&Atilde;O &Aacute;REA FISCAL</div>
+			    <div class="panel-body">
+				    <div class="form-group">
+						<label for="dtFiscal" class="col-sm-3 control-label">Data:</label>
+						<div class="col-sm-2">
+							<input type="text" id="dtFiscal" class="form-control" name="dtFiscal" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="hrFiscal" class="col-sm-3 control-label">Hora:</label>
+						<div class="col-sm-2">
+							<input type="text" id="hrFiscal" class="form-control" name="hrFiscal" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nmFiscal" class="col-sm-3 control-label">Nome Aprovador:</label>
+						<div class="col-sm-4">
+							<input type="text" id="nmFiscal" class="form-control" name="nmFiscal" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="observacoesFiscalAprovacao" class="col-sm-3 control-label">OBSERVACAO:</label>
+						<div class="col-sm-5">
+							<textarea id="observacoesFiscalAprovacao" name="observacoesFiscalAprovacao" rows=3 cols=80 class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+					     <span id="labelAvisoAlteracaoFiscal" class="col-sm-5 control-label"><small>
+					     	** O respons&aacute;vel realizou ajustes nos valores da solicita&ccedil;&atilde;o.
+					     </small></span>
+					</div>
+					<div class="form-group">
+					     <span id="labelRetencao" class="col-sm-5 control-label"><small>
+					     ** Favor verificar os valores de impostos (abaixo).
+					     </small></span>
+					</div>
+			   	</div>
+			</div>
+			<!-- FIM APROVACAO FISCAL -->
+			<!-- APROVACAO CONTAS PAGAR INICIO -->
+			<div class="panel panel-default" id="divAprovContasPagar" >
+				<div class="panel-totvs panel-heading">APROVA&Ccedil;&Atilde;O GESTOR CONTAS A PAGAR</div>
+			    <div class="panel-body">
+				    <div class="form-group">
+						<label for="dtContasPagar" class="col-sm-3 control-label">Data:</label>
+						<div class="col-sm-2">
+							<input type="text" id="dtContasPagar" class="form-control" name="dtContasPagar" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="hrContasPagar" class="col-sm-3 control-label">Hora:</label>
+						<div class="col-sm-2">
+							<input type="text" id="hrContasPagar" class="form-control" name="hrContasPagar" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nmContasPagar" class="col-sm-3 control-label">Nome Aprovador:</label>
+						<div class="col-sm-4">
+							<input type="text" id="nmContasPagar" class="form-control" name="nmContasPagar" readonly />
+						</div>
+					</div>	
+					<div class="form-group">
+						<label for="observacoesContasPagarAprovac" class="col-sm-3 control-label">OBSERVACAO:</label>
+						<div class="col-sm-5">
+							<textarea id="observacoesContasPagarAprovac" name="observacoesContasPagarAprovac" rows=3 cols=80 class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+					     <span id="labelAvisoAlteracaoContasPagar" class="col-sm-5 control-label"><small>
+					     ** O respons&aacute;vel realizou ajustes nos valores da solicita&ccedil;&atilde;o.
+					     </small></span>
+					</div>
+			   	</div>
+			</div>
+			<!-- FIM APROVACAO CONTAS PAGAR -->
+			<!-- APROVACAO CP GERA TITULO INICIO -->
+			<div class="panel panel-default" id="divCPGeraTitulo" >
+				<div class="panel-totvs panel-heading">APROVA&Ccedil;&Atilde;O GESTOR CONTAS A PAGAR</div>
+			    <div class="panel-body">
+				    <div class="form-group">
+						<label for="dtCPGeraTitulo" class="col-sm-3 control-label">Data:</label>
+						<div class="col-sm-2">
+							<input type="text" id="dtCPGeraTitulo" class="form-control" name="dtCPGeraTitulo" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="hrCPGeraTitulo" class="col-sm-3 control-label">Hora:</label>
+						<div class="col-sm-2">
+							<input type="text" id="hrCPGeraTitulo" class="form-control" name="hrCPGeraTitulo" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nmCPGeraTitulo" class="col-sm-3 control-label">Nome Aprovador:</label>
+						<div class="col-sm-4">
+							<input type="text" id="nmCPGeraTitulo" class="form-control" name="nmCPGeraTitulo" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="statusCPGeraTitulo" id="labelSitCPGeraTitulo" class="col-sm-3 control-label">SITUACAO:</label>
+						<div class="col-sm-3">
+							<select size="1" name="statusCPGeraTitulo" id="statusCPGeraTitulo" class="form-control" onchange="habilitaDivCPGeraTituloIntegr();gravaSituacao(this)">
+								<option value="x" selected="selected">Selecione!</option>
+								<option value="1">Aprovado</option>
+								<option value="2">Reprovado</option>
+								<option value="3">Revisar</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="observacoesCPGeraTituloAprovac" class="col-sm-3 control-label">OBSERVACAO:</label>
+						<div class="col-sm-5">
+							<textarea id="observacoesCPGeraTituloAprovac" name="observacoesCPGeraTituloAprovac" rows=3 cols=80 class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+					     <span id="labelAvisoAlteracaoCPGeraTitulo" class="col-sm-5 control-label"><small>
+					     ** O respons&aacute;vel realizou ajustes nos valores da solicita&ccedil;&atilde;o.
+					     </small></span>
+					</div>
+			   	</div>
+			</div>
+			<div class="panel panel-default" id="divCPGeraTituloIntegr" >   
+		   		<div class="panel-totvs panel-heading">DADOS INTEGRA&Ccedil;&Atilde;O PROTHEUS - GERA&Ccedil;&Atilde;O DO T&Iacute;TULO</div>
+		   		<div class="panel-body">
+					<div class="form-group">
+						<label for="gerouManual" class="col-sm-3 control-label">Manual?</label>
+						<div class="col-sm-2">
+							<select name="gerouManual" id="gerouManual" onchange="habilitaCamposGeraTitulo();" class="form-control">
+								<option value="1">Sim</option>
+								<option value="2"  selected="selected">Nao</option>
+						</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="codPrefixo" id="labelCodPrefixo" class="col-sm-3 control-label">Prefixo:</label>
+						<div class="col-sm-3">
+							<input type="text" id="codPrefixo" class="form-control" name="codPrefixo" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="numTitulo" id="labelTitulo" class="col-sm-3 control-label">Titulo:</label>
+						<div class="col-sm-2">
+							<input type="text" id="numTitulo" class="form-control" name="numTitulo" style="width: 100px" readonly/>
+							<button type="button" id="idBtLimpar" class="btn btn-default btn-zoom"  title="Limpa Titulo" onClick="limpaTitulo();">
+								<span class="fluigicon fluigicon-remove"></span>
+							</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="codPortador" id="labelPortador" class="col-sm-3 control-label">Portador:</label>
+						<div class="col-sm-7">
+							<input type="text" id="codPortador" class="form-control" name="codPortador" style="width: 100px" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="codBarras" id="labelCodBarras" class="col-sm-3 control-label">C&oacute;digo de Barras:</label>
+						<div class="col-sm-5">
+							<input type="text" id="codBarras" class="form-control" name="codBarras" />
+						</div>
+					</div>
+					<div class="form-group">
+					    <div class="col-sm-1 control-label">
+							<button type="button" id="imgValidacaoOk" class="btn btn-success">
+					    		<span class="fluigicon fluigicon-thumbs-up"></span>
+					    	</button>
+							<button type="button" id="imgValidacaoNok" class="btn btn-danger">
+					    		<span class="fluigicon fluigicon-thumbs-up"></span>
+					    	</button>
+                        </div>
+						<div class="col-sm-2">
+							<button type="button" style="float: right" name="btValidarTitulo" id="btValidarTitulo" class="btn btn-default" value="VALIDAR TITULO" title="VALIDAR TITULO" onClick="aguardeValidaTitulo();">
+								VALIDAR TITULO
+					    	</button>
+						</div>
+						<div class="col-sm-5">
+							<input type="text" id="retornoConsultaTit" readonly class="form-control" name="retornoConsultaTit" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-3">
+							<button type="button" style="float: right" name="btGerarTitulo" id="btGerarTitulo" class="btn btn-default" value="GERAR TITULO" title="GERAR TITULO" onClick="aguardeGeraTitulo();">
+								GERAR TITULO
+					    	</button>
+						</div>
+						<div class="col-sm-5">
+							<textarea id="retornoIntegracao" name="retornoIntegracao" rows=3 cols=80 class="form-control" readonly ></textarea>
+						</div>
+					</div>
+		   		</div>
+			</div>
+			<!-- FIM APROVACAO CP GERA TITULO -->
+		</form>
+	</body>
+</html>

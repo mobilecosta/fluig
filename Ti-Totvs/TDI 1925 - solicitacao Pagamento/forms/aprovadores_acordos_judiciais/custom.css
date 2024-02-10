@@ -1,0 +1,14 @@
+#aprovadores th{
+    text-align: center;
+}
+
+.inline {
+    display: inline;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+input {
+    text-align: center; 
+}
+

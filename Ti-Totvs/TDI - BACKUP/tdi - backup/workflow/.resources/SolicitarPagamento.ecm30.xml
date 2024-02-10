@@ -1,0 +1,3755 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>SolicitarPagamento</processId>
+    </processDefinitionPK>
+    <processDescription>CST - Solicitacao de Pagamentos</processDescription>
+    <instruction>A T E N C A O  !!!&#xd;
+Para que a solicitação vá para aprovação, deve-se clicar no botao ENVIAR.&#xd;
+O Botao Salvar, gravara os dados informados, porem a solicitacao ficará em sua tarefa a concluir.</instruction>
+    <active>true</active>
+    <publicProcess>false</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>CST.Contas a Pagar</categoryId>
+    <managerEngineAllocationId>Papel</managerEngineAllocationId>
+    <managerEngineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_CPAGARTITULO&lt;/Role&gt;&lt;/AssignmentController&gt;</managerEngineAllocationConfiguration>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>true</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>0</complementsLevel>
+    <notifyRequisitionerComplements>false</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>false</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>CST - Solicitacao de Pagamentos</processId>
+      <version>71</version>
+    </processDefinitionVersionPK>
+    <versionDescription>Nova Versão.</versionDescription>
+    <formId>2367085</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>true</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>1</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>true</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </processStatePK>
+      <stateName>1-Início</stateName>
+      <stateDescription>1-Início</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>false</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>0</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>60</positionX>
+      <positionY>106</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>5</sequence>
+      </processStatePK>
+      <stateName>5-Valida dados/Gera titulo</stateName>
+      <stateDescription>5-Valida dados/Gera titulo</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_CPAGARTITULO&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>false</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>0</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>86400</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>680</positionX>
+      <positionY>580</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>6</sequence>
+      </processStatePK>
+      <stateName>6-Corrigir solicitacao</stateName>
+      <stateDescription>6-Corrigir solicitacao</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>14400</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>86400</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>527</positionX>
+      <positionY>89</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>55</sequence>
+      </processStatePK>
+      <stateName>55-Aprovacao Area Fiscal</stateName>
+      <stateDescription>55-Aprovacao Area Fiscal</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>14400</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_PAFISCAL&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>28800</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>86400</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>710</positionX>
+      <positionY>363</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>142</sequence>
+      </processStatePK>
+      <stateName>142-Aprovacao Gestor Contas a Pagar</stateName>
+      <stateDescription>142-Aprovacao Gestor Contas a Pagar</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>28800</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_CONTAS_PAGAR_PA&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>28800</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>86400</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>780</positionX>
+      <positionY>466</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>155</sequence>
+      </processStatePK>
+      <stateName>155-Aprovação Gestor-Hierarquia</stateName>
+      <stateDescription>155-Aprovação Gestor-Hierarquia</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>3596400</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;hiddenAprovadorDaVez&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>28800</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>86400</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>527</positionX>
+      <positionY>241</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>173</sequence>
+      </processStatePK>
+      <stateName>173-Autom. Cust. Validar Anexos</stateName>
+      <stateDescription>173-Autom. Cust. Validar Anexos</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>false</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>0</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>149</positionX>
+      <positionY>82</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>177</sequence>
+      </processStatePK>
+      <stateName>177-Autom. Cust. Validar Gestor</stateName>
+      <stateDescription>177-Autom. Cust. Validar Gestor</stateDescription>
+      <instruction>Acesse &lt;a href=&quot;http://tdn.totvs.com/pages/viewpage.action?pageId=118884510&quot; target=&quot;_blank&quot;&gt;aqui&lt;/a&gt; a documentação do processo.</instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>false</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>0</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>350</positionX>
+      <positionY>160</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>247</sequence>
+      </processStatePK>
+      <stateName>Validar PA</stateName>
+      <stateDescription>Validar PA</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_VALIDACAO_PRIMEIRO_NIVEL&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>40</positionX>
+      <positionY>255</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </processStatePK>
+      <stateName>2-Verifica Alcada/Regra Areas</stateName>
+      <stateDescription>2-Verifica Alcada/Regra Areas</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>172</positionX>
+      <positionY>340</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>43</sequence>
+      </processStatePK>
+      <stateName>43-Item é PA?</stateName>
+      <stateDescription>43-Item é PA?</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>550</positionX>
+      <positionY>347</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>133</sequence>
+      </processStatePK>
+      <stateName>133-Decisao Area Contas a Pagar</stateName>
+      <stateDescription>133-Decisao Area Contas a Pagar</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>550</positionX>
+      <positionY>564</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>244</sequence>
+      </processStatePK>
+      <stateName>É PA?</stateName>
+      <stateDescription>É PA?</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>172</positionX>
+      <positionY>200</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>7</sequence>
+      </processStatePK>
+      <stateName>7-Fim</stateName>
+      <stateDescription>7-Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>562</positionX>
+      <positionY>703</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>96</sequence>
+      </processStatePK>
+      <stateName>96-Reprovado</stateName>
+      <stateDescription>96-Reprovado</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>185</positionX>
+      <positionY>703</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>71</version>
+        <sequence>2</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;areaSolic&quot;) == &quot;1&quot;</condition>
+      <destinationSequenceId>5</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_CPAGARTITULO&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>71</version>
+        <sequence>2</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&apos;hiddenRetornouRevisao&apos;) != &quot;&quot;
+</condition>
+      <destinationSequenceId>6</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>71</version>
+        <sequence>2</sequence>
+      </conditionProcessStatePK>
+      <condition>parseInt(hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;), 10) &gt;= parseInt(hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;),10)</condition>
+      <destinationSequenceId>177</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>4</expressionOrder>
+        <version>71</version>
+        <sequence>2</sequence>
+      </conditionProcessStatePK>
+      <condition>(hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) &lt; hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)) || (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) != hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;))</condition>
+      <destinationSequenceId>43</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>71</version>
+        <sequence>43</sequence>
+      </conditionProcessStatePK>
+      <condition> hAPI.getCardValue(&quot;hiddenVaiParaAprovPA&quot;) == &quot;Nao&quot; || hAPI.getCardValue(&quot;descricaoItem&quot;) != &quot;00&quot;</condition>
+      <destinationSequenceId>133</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>71</version>
+        <sequence>43</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;descricaoItem&quot;) == &quot;00&quot;  &amp;&amp; hAPI.getCardValue(&quot;hiddenFiscalAprovou&quot;) != &quot;&quot; &amp;&amp; hAPI.getCardValue(&quot;hiddenContasPagarAprovou&quot;) != &quot;&quot;</condition>
+      <destinationSequenceId>133</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>71</version>
+        <sequence>43</sequence>
+      </conditionProcessStatePK>
+      <condition>validaStatusFiscalPA()</condition>
+      <destinationSequenceId>55</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_PAFISCAL&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>4</expressionOrder>
+        <version>71</version>
+        <sequence>43</sequence>
+      </conditionProcessStatePK>
+      <condition>validaStatusCPagarPA()</condition>
+      <destinationSequenceId>142</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_CONTAS_PAGAR_PA&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>5</expressionOrder>
+        <version>71</version>
+        <sequence>43</sequence>
+      </conditionProcessStatePK>
+      <condition>true</condition>
+      <destinationSequenceId>133</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>71</version>
+        <sequence>133</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;statusCPGeraTitulo&quot;) == &quot;x&quot; </condition>
+      <destinationSequenceId>5</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;SOLIC_PAGAMENTO_CPAGARTITULO&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>71</version>
+        <sequence>133</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;statusCPGeraTitulo&quot;) == &quot;2&quot; </condition>
+      <destinationSequenceId>96</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>71</version>
+        <sequence>133</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;statusCPGeraTitulo&quot;) == &quot;3&quot; </condition>
+      <destinationSequenceId>6</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>4</expressionOrder>
+        <version>71</version>
+        <sequence>133</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;statusCPGeraTitulo&quot;) == &quot;1&quot; &amp;&amp; hAPI.getCardValue(&quot;hiddenValidaTitulo&quot;) == &quot;OK&quot; </condition>
+      <destinationSequenceId>7</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>5</expressionOrder>
+        <version>71</version>
+        <sequence>133</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;statusCPGeraTitulo&quot;) == &quot;1&quot; &amp;&amp; hAPI.getCardValue(&quot;gerouManual&quot;) == &quot;1&quot;</condition>
+      <destinationSequenceId>7</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;1&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>71</version>
+        <sequence>244</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;descricaoItem&quot;)==&quot;00&quot;</condition>
+      <destinationSequenceId>247</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>71</version>
+        <sequence>244</sequence>
+      </conditionProcessStatePK>
+      <condition>true</condition>
+      <destinationSequenceId>2</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>128</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>43</initialStateSequence>
+      <finalStateSequence>96</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 96-Reprovado</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>136</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>133</initialStateSequence>
+      <finalStateSequence>96</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 96-Reprovado</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>138</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>133</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 6-Corrigir solicitacao</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>139</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>133</initialStateSequence>
+      <finalStateSequence>7</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 7-Fim</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>162</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>133</initialStateSequence>
+      <finalStateSequence>5</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 5-Valida dados/Gera titulo</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>167</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>5</initialStateSequence>
+      <finalStateSequence>133</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 133-Decisao Area Contas a Pagar</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>193</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>true</returnPermited>
+      <initialStateSequence>1</initialStateSequence>
+      <finalStateSequence>173</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 173-Autom. Cust. Validar Anexos</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>196</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>177</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 177-Autom. Cust. Validar Gestor</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>197</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>177</initialStateSequence>
+      <finalStateSequence>155</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 155-Aprovação Gestor-Hierarquia</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>200</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>6</initialStateSequence>
+      <finalStateSequence>173</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 173-Autom. Cust. Validar Anexos</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>201</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>43</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 6-Corrigir solicitacao</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>202</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 6-Corrigir solicitacao</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>217</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>43</initialStateSequence>
+      <finalStateSequence>133</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 133-Decisao Area Contas a Pagar</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>218</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>43</initialStateSequence>
+      <finalStateSequence>55</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 55-Aprovacao Area Fiscal</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>219</linkSequence>
+      </processLinkPK>
+      <actionLabel>Aprovar</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>55</initialStateSequence>
+      <finalStateSequence>43</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 43-Item é PA?</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>220</linkSequence>
+      </processLinkPK>
+      <actionLabel>Aprovar</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>142</initialStateSequence>
+      <finalStateSequence>43</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 43-Item é PA?</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>221</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>43</initialStateSequence>
+      <finalStateSequence>142</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 142-Aprovacao Gestor Contas a Pagar</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>232</linkSequence>
+      </processLinkPK>
+      <actionLabel>Aprovar</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>155</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>Aprovar</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>233</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>43</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 43-Item é PA?</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>234</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>96</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 96-Reprovado</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>235</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>177</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 2-Verifica Alcada/Regra Areas</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>237</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>5</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>238</linkSequence>
+      </processLinkPK>
+      <actionLabel>Corrigir</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>155</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 6-Corrigir solicitacao</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>239</linkSequence>
+      </processLinkPK>
+      <actionLabel>Reprovar</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>155</initialStateSequence>
+      <finalStateSequence>96</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>para 96-Reprovado</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>240</linkSequence>
+      </processLinkPK>
+      <actionLabel>Cancelar</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>55</initialStateSequence>
+      <finalStateSequence>96</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>241</linkSequence>
+      </processLinkPK>
+      <actionLabel>Corrigir</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>55</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>242</linkSequence>
+      </processLinkPK>
+      <actionLabel>Cancelar</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>142</initialStateSequence>
+      <finalStateSequence>96</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>243</linkSequence>
+      </processLinkPK>
+      <actionLabel>Corrigir</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>142</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>245</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>173</initialStateSequence>
+      <finalStateSequence>244</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>246</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>244</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>248</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>244</initialStateSequence>
+      <finalStateSequence>247</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>249</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>247</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>250</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>247</initialStateSequence>
+      <finalStateSequence>6</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>251</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>155</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>true</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterTaskComplete</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterTaskComplete(colleagueId,nextSequenceId,userList){
+	var numcompany  = new java.lang.Integer(getValue(&quot;WKCompany&quot;)); 
+	var processo 	= getValue(&quot;WKNumProces&quot;);    
+	var ativAtual 	= getValue(&quot;WKNumState&quot;); // onde esta antes de entrar na proxima atividade
+	var usuario 	= getValue(&quot;WKUser&quot;);
+	var isMobile = getValue(&quot;WKMobile&quot;);
+	var comentario  = &quot;&quot;;
+	var observacoes ;
+	
+	log.info (&quot;*************************SOLICPAGTOCRIS - AFTER TASK COMPLETE **********************&quot; + 
+			  &quot; - processo: &quot; + processo + &quot; - ATIVIDADE: &quot; + ativAtual + &quot; - PROXIMA ATIVIDADE: &quot;+nextSequenceId);
+
+	if(nextSequenceId == 247){
+		var papel = &quot;SOLIC_PAGAMENTO_VALIDACAO_PRIMEIRO_NIVEL&quot;;
+		var c1 = DatasetFactory.createConstraint(&quot;workflowColleagueRolePK.companyId&quot;, getValue(&quot;WKCompany&quot;), getValue(&quot;WKCompany&quot;), ConstraintType.MUST);
+		var c2 = DatasetFactory.createConstraint(&quot;workflowColleagueRolePK.roleId&quot;, papel, papel,ConstraintType.MUST);
+		var dataset = DatasetFactory.getDataset(&quot;workflowColleagueRole&quot;,null,[c1,c2],null);
+		log.info(&quot;dataset.rowCount: &quot;+dataset.rowsCount);
+		if(dataset &amp;&amp; dataset.rowsCount &gt; 0){
+			if(dataset.rowsCount == 1){
+				userList.clear();
+				userList.add(dataset.getValue(0,&quot;workflowColleagueRolePK.colleagueId&quot;));
+				log.info(&quot;colleagueId: &quot;+dataset.getValue(0,&quot;workflowColleagueRolePK.colleagueId&quot;));
+			}
+		}
+	}
+	
+	if (ativAtual == &quot;155&quot;){
+		
+		hAPI.setCardValue(&quot;hiddenGestorPassou&quot;,&quot;sim&quot;);	
+		if(nextSequenceId == 2)
+			hAPI.setCardValue(&quot;hiddenGestorAprovou&quot;,&quot;sim&quot;);						
+		
+		var numAprovacDavez = hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;);
+		
+		if(hAPI.getCardValue(&quot;idDataAprov___&quot;+numAprovacDavez) == &quot;&quot;){
+			 var today = new Date();
+			 var formatoData = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;);
+			 var formatoHora = new java.text.SimpleDateFormat(&quot;HH:mm:ss&quot;);
+			 
+			 var data = formatoData.format(today);
+			 var hora = formatoHora.format(today);
+			 
+			 hAPI.setCardValue(&quot;idDataAprov___&quot;+numAprovacDavez,data);
+			 hAPI.setCardValue(&quot;idHoraAprov___&quot;+numAprovacDavez,hora);
+			 
+			 var formatoDataHora = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy HH:mm:ss&quot;);
+				
+			 var c1 = DatasetFactory.createConstraint(&quot;processInstanceId&quot;, processo, processo, ConstraintType.MUST);
+			 var c2 = DatasetFactory.createConstraint(&quot;active&quot;, true, true, ConstraintType.MUST);
+			
+			 var ds = DatasetFactory.getDataset(&quot;processTask&quot;, null, [c1,c2], null);
+			
+			 var deadline = ds.getValue(0, &quot;deadline&quot;);
+			 var pDeadline = formatoDataHora.format(deadline);
+			 log.info(&quot;#pDeadline: &quot;+pDeadline);
+			
+			 var dataAtual = new Date();
+			 var pDataAtual = formatoDataHora.format(dataAtual);
+			 log.info(&quot;#pDataAtual: &quot;+pDataAtual);	
+			 
+			 log.info(&quot;Solicitacao &quot;+processo+&quot; aprovada via mobile? = &quot;+isMobile);
+			 
+			 if((pDataAtual&gt;pDeadline)){
+				 if (isMobile == null || isMobile==false){
+					 hAPI.setCardValue(&quot;idObsAprov___&quot;+numAprovacDavez,&quot;Aprovação compulsória, sem recusa do aprovador.&quot;);
+			 }} 
+		}
+	} 
+	else if (ativAtual == &quot;55&quot;){
+		hAPI.setCardValue(&quot;hiddenFiscalPassou&quot;,&quot;sim&quot;);
+		if(nextSequenceId == 43)
+			hAPI.setCardValue(&quot;hiddenFiscalAprovou&quot;,&quot;sim&quot;);	
+	}
+	else if (ativAtual == &quot;142&quot;){
+		hAPI.setCardValue(&quot;hiddenContasPagarPassou&quot;,&quot;sim&quot;);		
+		if(nextSequenceId == 43)
+			hAPI.setCardValue(&quot;hiddenContasPagarAprovou&quot;,&quot;sim&quot;);	
+	}
+	else if (ativAtual == &quot;5&quot;){
+		hAPI.setCardValue(&quot;hiddenCPGeraTituloPassou&quot;,&quot;sim&quot;);
+		if(nextSequenceId == 133)
+			hAPI.setCardValue(&quot;hiddenCPGeraTituloAprovou&quot;,&quot;sim&quot;);	
+	}
+	
+	// COMPARANDO VALORES E ALIMENTANDO O HISTORICO
+	if (ativAtual == &quot;155&quot; || ativAtual == &quot;55&quot; || ativAtual == &quot;142&quot; || ativAtual == &quot;5&quot; || ativAtual == &quot;6&quot;){ 
+
+		log.info (&quot;SOLICPAGTO - AFTER TASK COMPLETE - atividade &quot; + ativAtual);
+
+		var form = hAPI.getCardData(processo); // pega todos os campos do formulario de uma vez so
+
+		
+		if (form.get(&quot;hiddenValorBrutoAnterior&quot;) != form.get(&quot;valorBruto&quot;)) {
+			comentario = comentario +
+						&quot;VALOR BRUTO de: &quot; + form.get(&quot;hiddenValorBrutoAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorBruto&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenAcrescimoAnterior&quot;) != form.get(&quot;acrescimo&quot;)) {
+			comentario = comentario +
+						&quot;ACRESCIMO de: &quot; + form.get(&quot;hiddenAcrescimoAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;acrescimo&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenDecrescimoAnterior&quot;) != form.get(&quot;decrescimo&quot;)) {
+			comentario = comentario +
+						&quot;DECRESCIMO de: &quot; + form.get(&quot;hiddenDecrescimoAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;decrescimo&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorInssAnterior&quot;) != form.get(&quot;valorInss&quot;)) {
+			comentario = comentario +
+						&quot;Valor Inss de: &quot; + form.get(&quot;hiddenValorInssAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorInss&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorIssAnterior&quot;) != form.get(&quot;valorIss&quot;)) {
+			comentario = comentario +
+						&quot;Valor Iss de: &quot; + form.get(&quot;hiddenValorIssAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorIss&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorIrrfAnterior&quot;) != form.get(&quot;valorIrrf&quot;)) {
+			comentario = comentario +
+						&quot;Valor Irrf de: &quot; + form.get(&quot;hiddenValorIrrfAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorIrrf&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorCsllAnterior&quot;) != form.get(&quot;valorCsll&quot;)) {
+			comentario = comentario +
+						&quot;Valor Csll de: &quot; + form.get(&quot;hiddenValorCsllAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorCsll&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorPisAnterior&quot;) != form.get(&quot;valorPis&quot;)) {
+			comentario = comentario +
+						&quot;Valor Pis de: &quot; + form.get(&quot;hiddenValorPisAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorPis&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorCofinsAnterior&quot;) != form.get(&quot;valorCofins&quot;)) {
+			comentario = comentario +
+						&quot;Valor Cofins de: &quot; + form.get(&quot;hiddenValorCofinsAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorCofins&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorMultaAnterior&quot;) != form.get(&quot;valorMulta&quot;)) {
+			comentario = comentario +
+						&quot;Valor Multa de: &quot; + form.get(&quot;hiddenValorMultaAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorMulta&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorJurosAnterior&quot;) != form.get(&quot;valorJuros&quot;)) {
+			comentario = comentario +
+						&quot;Valor Juros de: &quot; + form.get(&quot;hiddenValorJurosAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorJuros&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorCMonAnterior&quot;) != form.get(&quot;valorCMon&quot;)) {
+			comentario = comentario +
+						&quot;Valor Correcao Mon. de: &quot; + form.get(&quot;hiddenValorCMonAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorCMon&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorTaxasAnterior&quot;) != form.get(&quot;valorTaxas&quot;)) {
+			comentario = comentario +
+						 &quot;Valor Taxas de: &quot; + form.get(&quot;hiddenValorTaxasAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorTaxas&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+		if (form.get(&quot;hiddenValorPagarAnterior&quot;) != form.get(&quot;valorPagar&quot;)) {
+			comentario = comentario + 
+						&quot;O VALOR A PAGAR ficou De: &quot; + form.get(&quot;hiddenValorPagarAnterior&quot;) + &quot; Para: &quot; + form.get(&quot;valorPagar&quot;) + &quot;&lt;br&gt;&quot;;
+		}
+
+		
+		// testa so no final, se alterou alguma coisa a variavel comentario estara dif de branco
+		if (comentario == &quot;&quot;){
+			if (ativAtual == &quot;6&quot;){
+				hAPI.setCardValue(&quot;hiddenSolicCorrecaoAlterouVal&quot;,&quot;Nao&quot;);		
+			} 
+			else if (ativAtual == &quot;155&quot;){
+				hAPI.setCardValue(&quot;hiddenGestorAlterouValor&quot;,&quot;Nao&quot;);		
+			} 
+			else if (ativAtual == &quot;55&quot;){
+				hAPI.setCardValue(&quot;hiddenFiscalAlterouValor&quot;,&quot;Nao&quot;);
+			}
+			else if (ativAtual == &quot;142&quot;){
+				hAPI.setCardValue(&quot;hiddenContasPagarAlterouValor&quot;,&quot;Nao&quot;);				
+			}
+			else if (ativAtual == &quot;5&quot;){
+				hAPI.setCardValue(&quot;hiddenCPGeraTituloAlterouValor&quot;,&quot;Nao&quot;);
+			}
+		} 
+		else{
+			comentario = &quot;Nesta atividade foram alterados os seguintes campos: &lt;br&gt;&quot; +
+						 comentario ;
+			
+			if (ativAtual == &quot;6&quot;){
+				hAPI.setCardValue(&quot;hiddenSolicCorrecaoAlterouVal&quot;,&quot;Sim&quot;);		
+			} 
+			else if (ativAtual == &quot;155&quot;){
+				hAPI.setCardValue(&quot;hiddenGestorAlterouValor&quot;,&quot;Sim&quot;);		
+			} 
+			else if (ativAtual == &quot;55&quot;){
+				hAPI.setCardValue(&quot;hiddenFiscalAlterouValor&quot;,&quot;Sim&quot;);
+			}
+			else if (ativAtual == &quot;142&quot;){
+				hAPI.setCardValue(&quot;hiddenContasPagarAlterouValor&quot;,&quot;Sim&quot;);				
+			}
+			else if (ativAtual == &quot;5&quot;){
+				hAPI.setCardValue(&quot;hiddenCPGeraTituloAlterouValor&quot;,&quot;Sim&quot;);
+			}
+		}
+		
+		log.info (&quot;SOLICPAGTOCRIS - AFTER TASK COMPLETE - INICIO OBSERVACOES &quot;);
+		
+		observacoes = &quot;&quot;;
+		
+		if (ativAtual == &quot;155&quot;){
+			var numAprovacDavez = form.get(&quot;hiddenNumeroDaVez&quot;);
+			observacoes = &quot;Observacoes Aprovacao Gestor - responsavel : &quot; + form.get(&quot;idNomeAprovador___&quot; + numAprovacDavez) + 
+						  &quot; -- &quot; + form.get(&quot;idObsAprov___&quot; + numAprovacDavez);
+		}
+		else if (ativAtual == &quot;55&quot;){
+			observacoes = &quot;Observacoes Aprovacao Area Fiscal - responsavel : &quot; + form.get(&quot;nmFiscal&quot;) + &quot; -- &quot; + form.get(&quot;observacoesFiscalAprovacao&quot;);
+		}
+		else if (ativAtual == &quot;142&quot;){
+			observacoes = &quot;Observacoes Aprovacao Gestor Contas a Pagar - responsavel : &quot; + form.get(&quot;nmContasPagar&quot;) + &quot; -- &quot; + form.get(&quot;observacoesContasPagarAprovac&quot;);
+		}
+		else if(ativAtual == &quot;5&quot;){
+			observacoes = &quot;Observacoes Aprovacao Area Contas a Pagar  - responsavel : &quot; + form.get(&quot;nmCPGeraTitulo&quot;) + &quot; -- &quot; + form.get(&quot;observacoesCPGeraTituloAprovac&quot;);
+		}
+
+		if (observacoes != &quot;&quot;){
+			comentario = observacoes + &quot;&lt;br&gt;&lt;br&gt;&quot; + comentario;
+		}
+		
+		log.info (&quot;SOLICPAGTO - comentario: &quot; + comentario);
+		
+		if(comentario != &quot;&quot;)
+			hAPI.setTaskComments(usuario,processo,0,comentario);
+		
+	} // if (ativAtual == &quot;155&quot; || ativAtual == &quot;55&quot; || ativAtual == &quot;142&quot; || ativAtual == &quot;5&quot; || ativAtual == &quot;6&quot;){
+	
+	
+	// PROCESSO APRVACOES GESTORES GRAVACAO DO PROXIMO
+	if (ativAtual == &quot;155&quot; ){
+		
+		log.info (&quot;SOLICPAGTO - AFTER TASK COMPLETE - atividade &quot; + ativAtual);
+		
+		log.info (&quot;ANTES: hAPI.getCardValue(hiddenAprovadorDaVez): &quot; + hAPI.getCardValue(&quot;hiddenAprovadorDaVez&quot;) +
+				  &quot;hAPI.getCardValue(hiddenNumTotAprovac): &quot; + hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) +
+				  &quot;hAPI.getCardValue(hiddenNumeroDaVez): &quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)
+				  );
+		
+		var numAprovacDavez = hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;);
+		
+		/* PATRICIA SOLICITOU RETIRADA DA EXPIRACAO DE TAREFAS QUANDO CHEGASSE NA DATA DE PAGAMENTO - DE TODAS AS ATIVIDADES*/
+		/* POREM ESTA LOGICA ? QUANDO ? DIF DE 222, ENTAO MELHOR NAO RETIRAR*/
+		//Se diferente n?o soma hiddenNumeroDaVez
+		if(nextSequenceId == &quot;2&quot;) {
+
+			log.info(&quot;SOLICPAGTO - AFTER TASK COMPLETE - nextSequenceId diferente 222&quot;);
+			
+			if (parseInt(numAprovacDavez) &lt;= parseInt(hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;))) { 
+			
+				hAPI.setCardValue(&quot;hiddenNumeroDaVez&quot;, (parseInt(numAprovacDavez) + 1).toString());
+				
+				if (parseInt(numAprovacDavez) &lt; parseInt(hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;))) {
+					hAPI.setCardValue(&quot;hiddenAprovadorDaVez&quot;, &quot;USUAR:&quot; + hAPI.getCardValue(&quot;idMatrAprovador___&quot; + (parseInt(numAprovacDavez) + 1).toString()));
+				}
+			}
+		
+		}
+		
+		log.info (&quot;DEPOIS: hAPI.getCardValue(hiddenAprovadorDaVez): &quot; + hAPI.getCardValue(&quot;hiddenAprovadorDaVez&quot;) +
+				  &quot;hAPI.getCardValue(hiddenNumTotAprovac): &quot; + hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) +
+				  &quot;hAPI.getCardValue(hiddenNumeroDaVez): &quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)
+				  );
+		
+	}
+	
+	if (ativAtual != &quot;5&quot; ){
+		// nao retirar - algumas solicitacoes colocaram este hidden como &quot;sim&quot; na ativ 155 de forma incorreta.
+		hAPI.setCardValue(&quot;hiddenCriouFichaPasta&quot;,&quot;&quot;);
+		log.info (&quot;SOLICPAGTO - AFTER TASK COMPLETE - atividade # 5 - zera hiddenficha- ativ atual:&quot; + ativAtual);
+	}
+
+	if (ativAtual == &quot;5&quot; ){
+		//se for aprovado (1) entao gera o doc espelho e encerra a solicitacao.
+		// se for revisar e reprovado nao gera a ficha - validacao do status tambem no validate-forms
+		
+		var form = hAPI.getCardData(processo); // pega todos os campos do formulario de uma vez so
+
+		log.info (&quot;SOLICPAGTO - AFTER TASK COMPLETE - atividade igual a  5 - statusCPGeraTitulo:&quot; + form.get(&quot;statusCPGeraTitulo&quot;));
+		if (form.get(&quot;statusCPGeraTitulo&quot;) == &quot;1&quot;) {
+			hAPI.setCardValue(&quot;hiddenCriouFichaPasta&quot;,&quot;Sim&quot;);
+			log.info (&quot;SOLICPAGTO - AFTER TASK COMPLETE - atividade igual a  5 - hiddenCriouFichaPasta:&quot; + form.get(&quot;hiddenCriouFichaPasta&quot;));
+		}
+	}
+
+	log.info (&quot;SOLICPAGTO - AFTER TASK COMPLETE - FIM &quot;);
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>geraLogCondSPagtoPA</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function geraLogCondSPagtoPA(){
+	
+	//FAZ LOG DE QUAL CONDICAO ENTRARA - NAO HA REGRA DE NEGOCIO!!	
+	log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - INICIO&quot;);
+
+	
+
+	log.info (&quot; %% DADOS: &quot; +
+			&quot; - hiddenVaiParaAprovPA: &quot; + hAPI.getCardValue(&apos;hiddenVaiParaAprovPA&apos;) +
+			&quot; - descricaoItem : &quot; + hAPI.getCardValue(&quot;descricaoItem&quot;)+
+			&quot; - statusFiscal : &quot; + hAPI.getCardValue(&quot;statusFiscal&quot;) +
+			&quot; - statusContasPagar : &quot; + hAPI.getCardValue(&quot;statusContasPagar&quot;) +
+			&quot; %% &quot;
+			);
+	
+	
+	if ( hAPI.getCardValue(&quot;hiddenVaiParaAprovPA&quot;) == &quot;Nao&quot; || hAPI.getCardValue(&quot;descricaoItem&quot;) != &quot;00&quot;){
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 2 - VAI PARA ATIV 133 - DECISAO CTAS A PAGAR&quot;);
+	}
+	if (hAPI.getCardValue(&quot;descricaoItem&quot;) == &quot;00&quot;  &amp;&amp; hAPI.getCardValue(&quot;statusFiscal&quot;) == &quot;1&quot; &amp;&amp; 
+		hAPI.getCardValue(&quot;statusContasPagar&quot;) == &quot;1&quot;){
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 3 - VAI PARA ATIV 133 - DECISAO CTAS A PAGAR&quot;);
+	}
+	if (hAPI.getCardValue(&quot;statusContasPagar&quot;) == &quot;2&quot;){
+			log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 4 - REPROVADO&quot;);
+	}
+	if (hAPI.getCardValue(&quot;statusContasPagar&quot;) == &quot;3&quot;){
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 5 - REVISAR&quot;);
+	}
+	if (hAPI.getCardValue(&quot;statusFiscal&quot;) == &quot;2&quot;){
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 6 - REPROVADO&quot;);
+	}
+	if (hAPI.getCardValue(&quot;statusFiscal&quot;) == &quot;3&quot;){
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 7- REVISAR&quot;);
+	}
+	if (hAPI.getCardValue(&quot;descricaoItem&quot;) == &quot;00&quot;  &amp;&amp; 
+		(hAPI.getCardValue(&quot;statusFiscal&quot;) == &quot;x&quot; || hAPI.getCardValue(&quot;statusFiscal&quot;) == null)){
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 8- 55 APROVAC FISCAL PA&quot;);
+	}
+	if (hAPI.getCardValue(&quot;descricaoItem&quot;) == &quot;00&quot;  &amp;&amp; 
+		hAPI.getCardValue(&quot;statusFiscal&quot;) != &quot;x&quot; &amp;&amp; hAPI.getCardValue(&quot;statusFiscal&quot;) != null &amp;&amp; hAPI.getCardValue(&quot;statusFiscal&quot;) != &quot;&quot; &amp;&amp;
+		(hAPI.getCardValue(&quot;statusContasPagar&quot;) == &quot;x&quot; || hAPI.getCardValue(&quot;statusContasPagar&quot;) == null || hAPI.getCardValue(&quot;statusContasPagar&quot;) == &quot;&quot;)) {
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 9 - 142 CONTAS A PAGAR PA&quot;);
+	}
+	if (true){		
+		log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - CONDICAO 10 - 142 CONTAS A PAGAR PA&quot;);
+	}
+
+	
+	log.info(&quot;SOLICPAGAMENTO - geraLogCondSPagtoPA - FIM&quot;);
+	
+	return false; // sempre retornara false
+
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>validaGestor</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function validaGestor(){
+	
+	if (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) == hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;) &amp;&amp; 
+	    (hAPI.getCardValue(&quot;idStatusAprov___&quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)) ==&quot;x&quot; || 
+	     hAPI.getCardValue(&quot;idStatusAprov___&quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)) == null)){
+		return true;
+	}
+	else{
+		return false;		
+	}
+
+	//return false;
+
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>validateAvailableStates</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function validateAvailableStates(iCurrentState,stateList){
+	var ativAtual   = getValue(&quot;WKNumState&quot;);	
+	var processo    = getValue(&quot;WKNumProces&quot;);    
+    var numcompany  = new java.lang.Integer(getValue(&quot;WKCompany&quot;)); 
+	var senha       = getValue(&quot;WKUserPassword&quot;);
+    var usuario     = getValue(&quot;WKUser&quot;);
+
+	log.info(&quot;SOLICPAGAMENTO - FUNCAO validateAvailableStates - INICIO : &quot; +
+			 &quot;PROCESSO: &quot; + processo + 
+			 &quot;ativ atual: &quot; + ativAtual + 
+			 &quot; processo: &quot; + processo +
+			 &quot; usuario: &quot; + usuario +
+			 &quot;statusCPGeraTitulo: &quot; + hAPI.getCardValue(&quot;statusCPGeraTitulo&quot;) +
+			 &quot;hiddenValidaTitulo: &quot; + hAPI.getCardValue(&quot;hiddenValidaTitulo&quot;) 
+			 );
+	
+	// foi criada uma condicao nova na atividade 133
+	//if(ativAtual == &quot;5&quot;){
+	//	 if (hAPI.getCardValue(&quot;hiddenValidaTitulo&quot;) != &quot;NOK&quot;){
+	//		 hAPI.setCardValue(&quot;hiddenValidaTitulo&quot;,&quot;OK&quot;); 
+	//	 } 
+	//}
+	
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>validaStatusFiscalPA</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function validaStatusFiscalPA(){
+	if (hAPI.getCardValue(&quot;descricaoItem&quot;) == &quot;00&quot;  &amp;&amp; 
+	    hAPI.getCardValue(&quot;hiddenFiscalPassou&quot;) == &quot;&quot;) {
+		return true;
+	}
+	else{
+		return false;
+	}
+
+	//return false;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>validaStatusCPagarPA</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function validaStatusCPagarPA(){
+	log.info (&quot; %%%%%%%%%%%  SOLICPAGTO -validaStatusCPagarPA - INICIO&quot;);
+	
+	if (hAPI.getCardValue(&quot;descricaoItem&quot;) == &quot;00&quot;  &amp;&amp; 
+		hAPI.getCardValue(&quot;hiddenFiscalPassou&quot;) != &quot;&quot; &amp;&amp; 
+		hAPI.getCardValue(&quot;hiddenContasPagarPassou&quot;) == &quot;&quot;) {
+
+		log.info (&quot; %%%%%%%%%%% cris 1602 SOLICPAGTO -validaStatusCPagarPA - POSICAO PARA ENVIAR PARA O 142 - AVALIAR SE GESTOR JA APROVOU - INICIO + hiddenNumTotAprovac: &quot; + hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;));
+		
+		//13/02 - VALIDAR SE O RESPONSAVEL JA APROVOU NA ATVIIDADE 155 - ESPECIFICO PARA A VIVIAN NAO PRECISAR APROVAR 2 VEZES
+		var lEncontrouCPPA = false;
+		for ( var i = 1; i &lt;= parseInt(hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;)); i++) {
+			log.info (&quot; %%%%%%%%%%%  SOLICPAGTO -validaStatusCPagarPA - gestor:&quot; + i);
+			if (hAPI.getCardValue(&quot;idMatrAprovador___&quot; + i.toString())){
+				log.info (&quot; %%%%%%%%%%%  SOLICPAGTO -validaStatusCPagarPA - gestor:&quot; + hAPI.getCardValue(&quot;idMatrAprovador___&quot; + i.toString()));
+				
+				croleId = &quot;SOLIC_PAGAMENTO_CONTAS_PAGAR_PA&quot;;
+				log.info (&quot; %%%%%%%%%%%  SOLICPAGTO -validaStatusCPagarPA - croleId: &quot; + croleId);
+				c1 = DatasetFactory.createConstraint(&quot;workflowColleagueRolePK.roleId&quot;, croleId,croleId,ConstraintType.MUST);
+	            constraints = new Array(); 
+	            constraints.push(c1);
+	            dataset = DatasetFactory.getDataset(&quot;workflowColleagueRole&quot;, null, constraints, null);
+				
+	            log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - validaStatusCPagarPA - dataset.values.length: &quot; + dataset.values.length);
+
+	            if(dataset){
+	                for(var z=0 ; z&lt;dataset.values.length;z++){
+	                	log.info(&quot;colab dentro do papel: &quot; +  z + &quot; - &quot; + dataset.getValue(z,&quot;workflowColleagueRolePK.colleagueId&quot;));
+	                	if (hAPI.getCardValue(&quot;idMatrAprovador___&quot; + i) == dataset.getValue(z,&quot;workflowColleagueRolePK.colleagueId&quot;)){
+		                	log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - validaStatusCPagarPA - encontrou!!! &quot;);
+		    	            lEncontrouCPPA = true;
+		    	            break;
+	                	}
+	                }
+	         	}
+ 			}		
+		}
+		// se o aprovador nao aprovou na atividade 155, tem que passar pela ativ 142
+		if (lEncontrouCPPA == false){
+			log.info (&quot; %%%%%%%%%%%  SOLICPAGTO -validaStatusCPagarPA - POSICAO PARA ENVIAR PARA O 142 - AVALIAR SE GESTOR JA APROVOU - FIM - NAO APROVOU AINDA&quot;);
+			return true;
+		}
+		else{
+			log.info (&quot; %%%%%%%%%%%  SOLICPAGTO -validaStatusCPagarPA - POSICAO PARA ENVIAR PARA O 142 - AVALIAR SE GESTOR JA APROVOU - FIM - JA APROVOU NA ATIV 155 - PULANDO...&quot;);
+			return false;
+		}
+			
+	}
+	else{
+		return false;
+	}
+
+	//return false;
+
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>geraLogCondSPagtoGest</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function geraLogCondSPagtoGest(){
+	//FAZ LOG DE QUAL CONDICAO ENTRARA - NAO HA REGRA DE NEGOCIO!!	
+
+	log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - INICIO&quot;);
+	
+	log.info (&quot;DADOS: &quot; +
+			&quot; - hiddenRetornouRevisao&quot; + hAPI.getCardValue(&apos;hiddenRetornouRevisao&apos;) +
+			&quot; - hiddenNumTotAprovac&quot; + hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;)+
+			&quot; - hiddenNumeroDaVez&quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;) +
+			&quot; - idStatusAprov___&quot; + hAPI.getCardValue(&quot;idStatusAprov___&quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)) 
+			);
+	
+	
+	if (hAPI.getCardValue(&apos;hiddenRetornouRevisao&apos;) != &quot;&quot;){
+		log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - CONDICAO 2 - corrigir&quot;);
+	}
+	else if (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) &gt;= hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;) &amp;&amp;  
+			 hAPI.getCardValue(&quot;idStatusAprov___&quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)) ==&quot;3&quot;){
+		log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - CONDICAO 3 - corrigir&quot;);
+	}
+	else if (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) &gt;= hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;) &amp;&amp;  
+			 hAPI.getCardValue(&quot;idStatusAprov___&quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)) ==&quot;2&quot;){
+		log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - CONDICAO 4 - reprovado&quot;);
+	}
+	else if (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) == hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;) &amp;&amp;  
+			 hAPI.getCardValue(&quot;idStatusAprov___&quot; + hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)) ==&quot;1&quot;){
+		log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - CONDICAO 5 - ativ autom 43 - item eh pa?&quot;);
+	}
+	else if (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) &lt; hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)){
+		log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - CONDICAO 6 - ativ autom - item eh pa?&quot;);
+	}
+	// condicao 7 - funcao valida gestor
+	
+	else if (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) != hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)){
+		log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - CONDICAO 8 - gestor&quot;);
+	}
+	
+	log.info (&quot;SOLICPAGAMENTO - FUNCAO geraLogCondSPagtoGest - FIM&quot;);
+
+	return false; // sempre retornara false
+
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeStateEntry</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeStateEntry(sequenceId){
+	var ativAtual   = getValue(&quot;WKNumState&quot;);	
+	var processo    = getValue(&quot;WKNumProces&quot;);    
+    var numcompany  = new java.lang.Integer(getValue(&quot;WKCompany&quot;)); 
+	var senha       = getValue(&quot;WKUserPassword&quot;);
+    var usuario     = getValue(&quot;WKUser&quot;);
+    var isMobile = getValue(&quot;WKMobile&quot;);
+    log.info(&quot;#isMobile: &quot;+isMobile);
+	var formAtual = getValue(&quot;WKFormId&quot;);
+	
+    var userList    = new java.util.ArrayList();
+
+	log.info(&quot;SOLICPAGAMENTO - FUNCAO BEFORESTATEENTRY - INICIO : PROCESSO: &quot; + processo + 
+			 &quot;ativ atual: &quot; + ativAtual + 
+			 &quot;sequenceId: &quot; + sequenceId +
+			 &quot; processo: &quot; + processo +
+			 &quot; usuario: &quot; + usuario );
+
+	log.info (&quot;fomulario do processo numero:&quot; + formAtual);
+		
+	
+	if (sequenceId != 1){
+		hAPI.setCardValue(&quot;cdSolicitacao&quot;, processo);
+		log.info(&quot;CRIS123 - NUMERO SOLICITACAO: &quot; + hAPI.getCardValue(&quot;cdSolicitacao&quot;));
+
+		// PARA GRAVAR DADOS NO CAMPO IDENTIFICADOR - CENTRAL DE TAREFAS
+		var cIdent = &quot;&quot;;
+		cIdent = &quot;Unidade: &quot; + hAPI.getCardValue(&quot;hiddenNmFilial&quot;) + &quot;-Dt.Pagto: &quot; + hAPI.getCardValue(&quot;dataPagamento&quot;) + 
+				 &quot;-Solic:&quot; + processo + &quot;-TituloNr: &quot; + hAPI.getCardValue(&quot;numTitulo&quot;);
+		hAPI.setCardValue(&quot;hiddenIdentificador&quot;, cIdent);
+		log.info (&quot;SOLICPAGAMENTO - BEFORE STATE ENTRY - GRAVOU IDENTIFICADOR&quot;);
+	}
+	
+	
+	try{
+    	if (globalVars.get(&quot;LOGININTEGRADOR&quot;) == null ||
+			globalVars.get(&quot;PASSWORDINTEGRADOR&quot;) == null ||
+			globalVars.get(&quot;pastaOrigem&quot;) == null ||
+			globalVars.get(&quot;pastaDestino&quot;) == null) {
+			//SETA AMBIENTE
+	    	var res = setaAmbiente();
+	    	var LOGININTEGRADOR = res.getValue(0,&quot;login&quot;);
+	    	var PASSWORDINTEGRADOR = res.getValue(0,&quot;password&quot;);
+	    	var pastaOrigem = res.getValue(0,&quot;pastaOrigem&quot;);
+	    	var pastaDestino = res.getValue(0,&quot;pastaDestino&quot;);
+	    	
+	    	globalVars.put(&quot;LOGININTEGRADOR&quot;,LOGININTEGRADOR);
+	    	globalVars.put(&quot;PASSWORDINTEGRADOR&quot;,PASSWORDINTEGRADOR);
+	    	globalVars.put(&quot;pastaOrigem&quot;,pastaOrigem);
+	    	globalVars.put(&quot;pastaDestino&quot;,pastaDestino);
+	
+	    	log.info(&quot;SOLICPAGAMENTO -  FUNCAO BEFORESTATEENTRY - SETA AMBIENTE ativ 63!!! - &quot;+
+	    			&quot;LOGININTEGRADOR: &quot; + LOGININTEGRADOR +
+	    			&quot;PASSWORDINTEGRADOR;&quot; + PASSWORDINTEGRADOR +
+	    			&quot;pastaOrigem: &quot; + pastaOrigem +
+	    			&quot;pastaDestino: &quot; + pastaDestino );
+		}
+	}
+	catch (e) {
+    	log.info(&quot;SOLICPAGAMENTO - FUNCAO BEFORESTATEENTRY - ERRO AO SETAR VARIAVEIS DE INTEGRACAO: &quot;  + e);
+    	throw(&quot;SOLICPAGAMENTO - FUNCAO BEFORESTATEENTRY - ERRO AO SETAR VARIAVEIS DE INTEGRACAO: &quot; + e);
+	}
+	
+	if (sequenceId == 155){
+		hAPI.setCardValue(&quot;hiddenGestorAprovou&quot;,&quot;&quot;);	
+	} 
+	else if (sequenceId == 55){
+		hAPI.setCardValue(&quot;hiddenFiscalAprovou&quot;,&quot;&quot;);	
+	}
+	else if (sequenceId == 142){
+		hAPI.setCardValue(&quot;hiddenContasPagarAprovou&quot;,&quot;&quot;);	
+	}
+	else if (sequenceId == 5){
+		hAPI.setCardValue(&quot;hiddenCPGeraTituloAprovou&quot;,&quot;&quot;);	
+	}
+
+	if (sequenceId == 2){
+	log.info(&quot;@@@PAGAMENTO Entrou na atividade 2&quot;)	
+	if (parseInt(hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;),10) &gt;= parseInt(hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;),10)){log.info(&quot;@@@PAGAMENTO Cond 1&quot;)}	
+	if (hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;) &gt;= hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;)){log.info(&quot;@@@PAGAMENTO Cond 2&quot;)}	
+		var form = hAPI.getCardData(processo); // pega todos os campos do formulario de uma vez so
+		
+		log.info (&quot;CRIZZ1 - SOLICPAGAMENTO - BEFORE STATE ENTRY - ATIVIDADE 2 - DADOS: &quot; +
+				  &quot;form.get(hiddenNumTotAprovac): &quot; + form.get(&quot;hiddenNumTotAprovac&quot;) +
+				  &quot;form.get(hiddenNumeroDaVez): &quot; + form.get(&quot;hiddenNumeroDaVez&quot;) );
+	}
+	
+	
+	
+	if (sequenceId == 7){
+		hAPI.setCardValue(&quot;hiddenFim&quot;, &quot;Sim&quot;);
+		log.info(&quot;SOLIC PAGTO FIM: &quot; + hAPI.getCardValue(&quot;hiddenFim&quot;));
+	}
+	
+	
+	
+	// VERIFICAR SE POSSUI ANEXO, CASO ESCOLHIDA OPCAO BOLETO BANCARIO
+    if (sequenceId == 173){
+		
+		log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ATIVIDADE 173 - forma pagamento: &quot; + hAPI.getCardValue(&quot;formaPagto&quot;));
+		
+		// SE FOR BOLETO BANCARIO
+		if (hAPI.getCardValue(&quot;formaPagto&quot;) == &quot;1&quot;) { 
+		
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - toolkit - forma pagto = 1&quot;);
+			// Buscar os anexos
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - toolkit - pto 0&quot;);
+			
+			/*var toolkitServiceProvider ;
+			var toolkitServiceLocator ;
+			var toolkitService ;*/
+			var listDocuments ;
+			var lErro = false;
+			
+			try {
+				/*toolkitServiceProvider = ServiceManager.getServiceInstance(&quot;toolkit&quot;);
+				toolkitServiceLocator = toolkitServiceProvider.instantiate(&quot;com.datasul.ecm.webservices.ToolKitServiceServiceLocator&quot;);
+				toolkitService = toolkitServiceLocator.getToolKitServicePort();*/
+				//listDocuments = toolkitService.getDocumentFromProcess(numcompany, processo);
+				listDocuments = hAPI.listAttachments();
+				log.info (&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - servico toolkit ok&quot;);
+			} //try         
+			catch(error) 
+			{ 
+				lErro = true;
+				log.info (&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - servico toolkit NOK&quot;);
+				throw &quot;Erro ao utilizar o servico toolkit!! Favor contatar o atendimento!&quot;;
+			}
+			
+			if (lErro == false){
+				if (listDocuments.size() == 0) {                  // || listDocuments.length == 0) {
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ENTROU NO listDocumentos == null&quot;);
+					throw &quot;BEFORESTATEENTRY - Para enviar o processo o Boleto deve ser anexado a partir da Aba ANEXOS!&quot;;
+				}
+				else{
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - listDocumentos NAO ? null&quot;);
+					//quando for de uma autom customiz 
+					//para uma automatica - losango - tem que ser para usuario System:Auto
+					// senao vai para o usuario que quiser
+					userList.clear();
+					userList.add(&quot;System:Auto&quot;);
+					hAPI.setAutomaticDecision(244, userList, &quot;Observa??o&quot;);
+					userList.add(&quot;&quot;);
+				}
+			}
+			
+		}
+		else{
+			//quando for de uma autom customiz 
+			//para uma automatica - losango - tem que ser para usuario System:Auto
+			// senao vai para o usuario que quiser
+			log.info(&quot;crizzz SOLICPAGAMENTO - BEFORESTATEENTRY - forma pagamento # 1 &quot;);
+			userList.clear();
+			userList.add(&quot;System:Auto&quot;);
+			hAPI.setAutomaticDecision(244, userList, &quot;Observa??o&quot;);
+			userList.add(&quot;&quot;);
+		}
+
+		log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ATIV 173 - FIM&quot;);
+			
+    } // FIM ATIV 173
+   
+	if (sequenceId == 177){ 
+		
+		log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ATIVIDADE 177&quot;);
+		
+		var form = hAPI.getCardData(processo); // pega todos os campos do formulario de uma vez so
+		
+		var cHidden;
+		var aprovadorDaVez = &quot;&quot;;
+		log.info (&quot;form.get(hiddenAprovadorDaVez): &quot; + form.get(&quot;hiddenAprovadorDaVez&quot;) +
+				  &quot;form.get(hiddenNumTotAprovac): &quot; + form.get(&quot;hiddenNumTotAprovac&quot;) +
+				  &quot;form.get(hiddenNumeroDaVez): &quot; + form.get(&quot;hiddenNumeroDaVez&quot;) );
+		
+		if (parseInt(form.get(&quot;hiddenNumTotAprovac&quot;)) &gt;= parseInt(form.get(&quot;hiddenNumeroDaVez&quot;))){
+
+			// a primeira vez sempre tem usuar ou papel junto do conteudo 
+			cHidden = form.get(&quot;hiddenAprovadorDaVez&quot;); 
+			log.info(&quot;hiddenAprovadorDaVez:&quot; + cHidden.substring(0,5) + &quot; - &quot; + cHidden.substring(6,cHidden.length()) );
+			
+			userList.clear();
+			if (cHidden.substring(0,5) == &quot;USUAR&quot;){
+				
+				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ? USUAR&quot;); 
+						
+				if (form.get(&quot;hiddengestorAprovadorPri&quot;) == &quot;&quot;){
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - hiddengestorAprovadorPri == branco &quot;);
+					// Se  eh o primeiro (1==1, 5=5 - o index do grid nao significa o numero de linhas)
+					aprovadorDaVez = cHidden.substring(6,cHidden.length()); 
+					userList.add(aprovadorDaVez);
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - aprovadorDaVez: &quot; + aprovadorDaVez);
+					hAPI.setCardValue(&quot;hiddengestorAprovadorPri&quot;,&quot;Nao&quot;);
+					hAPI.setAutomaticDecision(155, userList, &quot;DIRECIONADO PARA O GESTOR DO DESTINATARIO DA DESPESA&quot;);
+				}
+				else{
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - hiddengestorAprovadorPri # de branco &quot;);
+					
+					// procura se o proximo gestor eh ativo. caso nao seja ativo, vai p proximo.
+					var lFirst = false;
+					var ret = 0;
+					var record;
+					var matr;
+					var nom;
+					var mail;
+					var ativo;
+					var fields;
+					var c1 ;
+					var constraints1 ;
+					var colaborador ;
+					var row;
+					var index;
+					aprovadorDaVez = &quot;&quot;;
+					
+					for (var i = parseInt(form.get(&quot;hiddenNumeroDaVez&quot;)); i &lt;= parseInt(form.get(&quot;hiddenNumTotAprovac&quot;)); i++) {
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - CENTRO DO FOR: &quot; + i);
+						
+						cHidden = form.get(&quot;idMatrAprovador___&quot; + i.toString());
+						aprovadorDaVez = cHidden.substring(0,cHidden.length());
+
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - CENTRO DO FOR: aprovadorDaVez:&quot;  + i + &quot; - &quot; + aprovadorDaVez);
+						
+						fields = new Array(&quot;colleaguePK.colleagueId&quot;,&quot;colleagueName&quot;,&quot;mail&quot;,&quot;active&quot;);
+						c1 = DatasetFactory.createConstraint(&quot;colleaguePK.colleagueId&quot;,aprovadorDaVez,aprovadorDaVez, ConstraintType.MUST);
+						constraints1 = new Array(c1);
+						colaborador = DatasetFactory.getDataset(&quot;colleague&quot;, fields, constraints1, null);
+						
+						if (colaborador != null) {
+				    				
+							log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - retorno colaborador ok&quot;);
+						
+							matr = colaborador.getValue(0,&quot;colleaguePK.colleagueId&quot;);
+							nom  = colaborador.getValue(0,&quot;colleagueName&quot;);
+							mail = colaborador.getValue(0,&quot;mail&quot;);
+							ativo = colaborador.getValue(0,&quot;active&quot;);
+								
+							log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ativo: &quot; + ativo);
+							
+							if (ativo == &quot;true&quot;) {
+								log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - COLABORADOR ATIVO: &quot; + i + &quot; - &quot; + matr);
+								
+								lFirst = true;
+
+								hAPI.setCardValue(&quot;idMatrAprovador___&quot; + i.toString(),matr);
+								hAPI.setCardValue(&quot;idNomeAprovador___&quot; + i.toString(),nom);
+								hAPI.setCardValue(&quot;idEmailAprovador___&quot; + i.toString(),mail);
+								
+								hAPI.setCardValue(&quot;hiddenNumeroDaVez&quot;,i.toString());									
+								break; // sai quando encontrar o primeiro
+							} // if
+						} //if
+					} // for
+
+					if (lFirst == true){
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - lFirst == true &gt;&gt; hiddengestorAprovadorPri = Nao - vai para 155&quot;);
+						userList.add(matr);
+						hAPI.setCardValue(&quot;hiddenAprovadorDaVez&quot;,&quot;USUAR:&quot; + matr);
+						hAPI.setCardValue(&quot;hiddengestorAprovadorPri&quot;,&quot;Nao&quot;);
+						hAPI.setAutomaticDecision(155, userList, &quot;DIRECIONADO PARA O GESTOR DO DESTINATARIO DA DESPESA&quot;);
+					}
+					// SE DEPOIS DO PRIMEIRO, NAO ENCONTRAR UM GESTOR ATIVO, VAI PARA 
+					// A ATIVIDADE AUTOMATICA DAS OUTRAS APROVACOES - PA E CTAS PAGAR
+					else{
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - else lFirst != true &gt;&gt; hiddengestorAprovadorPri = Nao - vai para 43&quot;);
+						userList.add(usuario);
+						hAPI.setCardValue(&quot;hiddenAprovadorDaVez&quot;,&quot;&quot;);
+						hAPI.setCardValue(&quot;hiddengestorAprovadorPri&quot;,&quot;Nao&quot;);
+						hAPI.setAutomaticDecision(43, userList, &quot;DIRECIONADO PARA ATIVIDADE AUTOMATICA - APROVACOES PA E VALIDACAO CTAS A PAGAR&quot;);
+					}
+				} // else
+			}
+			//SE FOR POOL DE USUARIO
+			else{
+				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - else - Pool:Role:&quot; + cHidden.substring(6,cHidden.length()));
+				
+				userList.add(&quot;Pool:Role:&quot; + cHidden.substring(6,cHidden.length()));
+				//userList.add(&quot;13849989&quot;);
+				//hAPI.setCardValue(&quot;hiddenAprovadorDaVez&quot;,&quot;&quot;);
+				hAPI.setAutomaticDecision(155, userList, &quot;DIRECIONADO PARA O PAPEL DO GESTOR DO SOLICITANTE&quot;);				
+			}
+		} // if O NUMERO TOT FOR MENOR QUE O APROVADOR DA VEZ
+		else{
+			/*
+			// 16/10 - MUDANCA AQUI - ESTAVA hAPI.setAutomaticDecision(2, usuario, &quot;Decisao tomada automaticamente pelo Fluig.&quot;);
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - else numero tot menor que aprovador da vez === ativ 2, para direcionar para as outras aprovac&quot;);
+			userList.clear();
+			userList.add(usuario);
+			hAPI.setAutomaticDecision(43, userList, &quot;Decisao tomada automaticamente pelo Fluig.&quot;);
+			*/
+			
+			//quando for de uma autom customiz 
+			//para uma automatica - losango - tem que ser para usuario System:Auto
+			// senao vai para o usuario que quiser
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - else numero tot menor que aprovador da vez === ativ 2, para direcionar para as outras aprovac&quot;);
+			userList.clear();
+			userList.add(&quot;System:Auto&quot;);
+			hAPI.setAutomaticDecision(2, userList, &quot;Decisao tomada automaticamente pelo Fluig.&quot;);
+			userList.add(&quot;&quot;);
+
+		}
+		
+	
+    } // fim if sequenceId 177
+	
+	if((ativAtual == 155 &amp;&amp; sequenceId == 96) || 
+			(ativAtual == 55 &amp;&amp; sequenceId == 96) || 
+			(ativAtual == 142 &amp;&amp; sequenceId != 43)){
+		if (getValue(&quot;WKUserComment&quot;) == null ||getValue(&quot;WKUserComment&quot;) == &quot;&quot; ) {			
+			//throw &quot;É necessário informar a justificativa da movimentação na aba Complementos!&quot;;
+		}
+	}
+
+	if (ativAtual == 5){
+	 
+	    log.info(&quot;cris a --&gt; usuario: &quot; + usuario);
+
+	//if (sequenceId == 96 || sequenceId == 7 ) {
+	
+		var dataPagto;
+	    var dataDem;
+
+		log.info(&quot; SOLICPAGTO - CRIACAO PASTAS E DOCS INICIO  - solic: &quot; + processo + &quot;ativ:&quot; + ativAtual);
+
+		// PROCESSO CRIACAO PASTAS E DOC ANEXO E DOC ESPELHO
+		
+		
+		//para pegar nos outros scripts de evento
+		
+		
+		var LOGININTEGRADOR = globalVars.get(&quot;LOGININTEGRADOR&quot;);
+    	var PASSWORDINTEGRADOR = globalVars.get(&quot;PASSWORDINTEGRADOR&quot;);
+    	var pastaOrigem = globalVars.get(&quot;pastaOrigem&quot;);
+    	var pastaDestino = globalVars.get(&quot;pastaDestino&quot;);
+
+    	log.info(&quot; SOLICPAGTO - CRIACAO PASTAS E DOCS INICIO  - solic: &quot; + processo + &quot;ativ:&quot; + ativAtual+
+    			&quot;DADOS INTEGRACAO :&quot; +
+    			&quot;LOGININTEGRADOR&quot; + LOGININTEGRADOR +
+    			&quot;PASSWORDINTEGRADOR&quot; + PASSWORDINTEGRADOR +
+    			&quot;pastaOrigem&quot; + pastaOrigem +
+    			&quot;pastaDestino&quot; + pastaDestino
+    			);
+    	
+		// TRATAMENTO PARA CRIAR A ESTRUTURA DE PASTAS POR ANO/MES/FORNECEDOR - e doc anexo process
+		// TEM QUE SER A ULTIMA ATIVIDADE PARA PEGAR TODOS OS DADOS ATUALIZADOS.
+		// NAO PODE ENCERRAR O FLUXO SE NAO ESTIVER OK AS PASTAS E DOC ESPELHO
+		
+		var calendar    = java.util.Calendar.getInstance();
+		
+		var doc =  docAPI.newDocumentDto();
+		var temp;
+		var expires = false;
+		var notify = false;
+		var topic;
+		var attach;
+		var attachArray;
+		var security;
+		var version;
+		var listAttach = new Array( );
+		
+		
+		// verifica se ja existe pasta para ano competÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªncia
+		log.info(&quot; SOLICPAGTO - PASTA ANO COMPETENCIA - INICIO&quot;);
+		
+		
+		dataPagto 			=  hAPI.getCardValue(&quot;dataPagamento&quot;); // pega data de inicio da solic - formulario
+	    dataDem 			= dataPagto.split(&quot;/&quot;); // faz separacao
+	    var mesPagto        = dataDem[1]; // recebe mes da dtRegistro
+	    var AnoPagto        = dataDem[2]; // recebe ano da dtRegistro
+	    if (mesPagto.length == 1) { 
+	    	mesPagto = &quot;0&quot; + mesPagto;
+		} 
+	  
+	    
+	    var c6 = DatasetFactory.createConstraint(&quot;parentDocumentId&quot;,pastaDestino,pastaDestino,ConstraintType.MUST);
+		var c7 = DatasetFactory.createConstraint(&quot;documentDescription&quot;,AnoPagto,AnoPagto,ConstraintType.MUST);
+		var c8 = DatasetFactory.createConstraint(&quot;activeVersion&quot;, &quot;true&quot;,&quot;true&quot;,ConstraintType.MUST);
+		var constraintsA = new Array(); 
+		constraintsA.push(c6);
+		constraintsA.push(c7);
+		constraintsA.push(c8);
+		
+		log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ANTES EXECUTAR DATASET DOCUMENTO PARA ANO&quot;);
+	
+		var pastaAno = DatasetFactory.getDataset(&quot;document&quot;, null, constraintsA, null);
+	
+		log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS EXECUTAR DATASET DOCUMENTO - PASTA ANO.value..:&quot; + pastaAno.values.length);
+		 
+		//se tem a pasta ano
+		if (pastaAno){
+			
+			if (pastaAno.values.length &gt; 0){
+				var anoParentId  = pastaAno.getValue(0,&quot;documentPK.documentId&quot;);
+				var anoNomePasta = pastaAno.getValue(0,&quot;documentDescription&quot;);
+				pastaDestino     = anoParentId;
+				
+				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ENCONTROU PASTA ANO - Valor do pastaDestino/anoParentId/descricao...:&quot; + 
+						   pastaDestino + &quot; - &quot; + anoParentId + &quot; - &quot; + anoNomePasta);
+			}
+			else{
+				
+				try{
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - NAO ENCONTROU PASTA ANO - CRIANDO&quot;);
+					
+					var doc = docAPI.newDocumentDto();
+					
+					doc.setParentDocumentId(parseInt(pastaDestino)); // FIXO
+					doc.setDocumentDescription(AnoPagto);
+					doc.setAdditionalComments(&quot;Processo Solicitacao de Pagamento&quot; );
+					doc.setDocumentKeyWord(&quot;SOLICPAGTO-Ano Competencia&quot;);
+					doc.setVersionDescription(&quot;\nProcesso:&quot; + processo);
+					doc.setDocumentTypeId(&quot;SOLICPAGTO-Ano Competencia&quot;);
+					doc.setIconId(23);
+					doc.setCompanyId(numcompany);
+					doc.setDocumentType(&quot;1&quot;);
+					doc.setDocumentTypeId(&quot;1&quot;);
+					doc.setInheritSecurity(true);
+					doc.setTopicId(1);
+					doc.setVersionOption(&quot;0&quot;);
+					
+					// Cria a pasta ANO 
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ANTES CRIAR ANO&quot;);
+					
+					var createDoc = docAPI.createFolder(doc, null, null);
+					
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA ANO - createDoc:&quot; + createDoc);
+					
+					pastaDestino = createDoc.getDocumentId();
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA ANO - pastaDestino:&quot; + pastaDestino);
+
+				} // try 
+				catch(error) {
+					throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Erro ao criar Pasta Ano!&quot; + error.message;
+				}
+			
+			} // else pasta ano nao criada
+		
+	    } // if pasta ano
+	    
+	
+		// Verifica se ja existe a pasta mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªs competÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªncia
+		log.info(&quot;SOLICPAGTO - PASTA MES COMPETENCIA - INICIO&quot;);
+		
+		// se tem a pasta ano, verifica se tem a pasta mes
+		if (pastaAno){
+	
+		   
+
+			var c9 = DatasetFactory.createConstraint(&quot;parentDocumentId&quot;, pastaDestino,pastaDestino,ConstraintType.MUST);
+			var c10 = DatasetFactory.createConstraint(&quot;documentDescription&quot;, mesPagto,mesPagto,ConstraintType.MUST);
+			var c11 = DatasetFactory.createConstraint(&quot;activeVersion&quot;, &quot;true&quot;,&quot;true&quot;,ConstraintType.MUST);
+			var constraintsB = new Array(); 
+			constraintsB.push(c9);
+			constraintsB.push(c10);
+			constraintsB.push(c11);
+			
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ANTES DE EXECUTAR DATASET DOCUMENTO - PARA MES&quot;);
+			
+			var pastaMes = DatasetFactory.getDataset(&quot;document&quot;, null, constraintsB, null);
+	
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS DE EXECUTAR DATASET DOCUMENTO - PASTA MES.value..:&quot; + pastaMes.values.length);
+	
+	        if (pastaMes){
+				if (pastaMes.values.length &gt; 0){
+					var mesParentId  = pastaMes.getValue(0,&quot;documentPK.documentId&quot;);
+					var mesNomePasta = pastaMes.getValue(0,&quot;documentDescription&quot;);
+					pastaDestino     = mesParentId;
+					
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ENCONTROU PASTA MES Valor do pastaDestino/mesParentId/descricao...:&quot; + 
+							pastaDestino + &quot; - &quot; + mesParentId + &quot; - &quot; + mesNomePasta);	
+				}
+				else{
+					try{
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - NAO ENCONTROU PASTA MES - CRIANDO&quot;);
+						
+						//varÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â docÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â =ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â docAPI.newDocumentDto();
+						var doc = docAPI.newDocumentDto();
+						
+						// Cria a pasta com mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªs de competÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªncia 
+						doc.setParentDocumentId(pastaDestino); // FIXO
+						doc.setDocumentDescription(mesPagto);
+						doc.setAdditionalComments(&quot;Processo Solicitacao de Pagamento&quot; );
+						doc.setDocumentKeyWord(&quot;SOLICPAGTO-Mes Competencia&quot;);
+						doc.setVersionDescription(&quot;\nProcesso:&quot; + processo);
+						doc.setDocumentTypeId(&quot;SOLICPAGTO-mes Competencia&quot;);
+						doc.setIconId(23);
+						doc.setCompanyId(numcompany);
+						doc.setDocumentType(&quot;1&quot;);
+						doc.setDocumentTypeId(&quot;1&quot;);
+						doc.setInheritSecurity(true);
+						doc.setTopicId(1);
+						doc.setVersionOption(&quot;0&quot;);
+						
+						// Cria a pasta MES 
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ANTES CRIAR PASTA MES&quot;);
+						
+						var createDoc = docAPI.createFolder(doc, null, null);
+						
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA MES createDoc: &quot; + createDoc);
+						
+						pastaDestino = createDoc.getDocumentId();
+						
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA MES pastaDestino: &quot; + pastaDestino);
+						
+	        		} // try 
+					catch(error) {
+						throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Erro ao criar Pasta Mes !&quot; + error.message;
+					}
+						
+				} // else pasta mes nao criada	
+			} // if pasta mes
+		} // IF PASTA ANO
+	    
+		
+		if (pastaMes){
+			// verifica se ja existe pasta para A EMPRESA PAGADORA
+	        log.info(&quot;SOLICPAGTO - PASTA EMPRESA PAGADORA - UNIDADE - INICIO&quot;);
+	        
+	        //var empPag      = hAPI.getCardValue(&quot;hiddenNmFilial&quot;) ; // definicao Bianca
+			
+			 // VALIDATE FORMS
+			 // var empPag      = form.getValue(&quot;hiddenNmFilial&quot;) + &apos; - &apos; + form.getValue(&quot;cnpjEmpresa&quot;).replaceAll(/[^a-z0-9\s]/gi, &apos;&apos;).replaceAll(/[_\s]/g, &apos;-&apos;); // definicao Bianca
+			 
+			 log.info(&quot;SOLICPAGTO - PASTA EMPRESA PAGADORA - vreificacao cnpj&quot;);
+			 
+			var cnpjempresa = hAPI.getCardValue(&quot;cnpjEmpresa&quot;).replaceAll(/[^a-z0-9\s]/gi, &apos;&apos;).replaceAll(/[_\s]/g, &apos;-&apos;);
+			log.info(&quot;SOLICPAGTO - PASTA EMPRESA PAGADORA - resultado  cnpjempresa: &quot; + cnpjempresa);
+			
+			var empPag      = hAPI.getCardValue(&quot;hiddenNmFilial&quot;) + &apos; - &apos; + cnpjempresa;
+			
+			log.info(&quot;SOLICPAGTO - PASTA EMPRESA PAGADORA - resultado  empPag: &quot; + empPag);
+			
+			var c15 = DatasetFactory.createConstraint(&quot;parentDocumentId&quot;,pastaDestino,pastaDestino,ConstraintType.MUST);
+			var c16 = DatasetFactory.createConstraint(&quot;documentDescription&quot;,empPag,empPag,ConstraintType.MUST);
+			var c17 = DatasetFactory.createConstraint(&quot;activeVersion&quot;,&quot;true&quot;,&quot;true&quot;,ConstraintType.MUST);
+			var constraintsE = new Array(); 
+			constraintsE.push(c15);
+			constraintsE.push(c16);
+			constraintsE.push(c17);
+			var pastaEmpPag = DatasetFactory.getDataset(&quot;document&quot;, null, constraintsE, null);
+			
+			if (pastaEmpPag){
+	        	if (pastaEmpPag.values.length &gt; 0){
+					var empPagParentId  = pastaEmpPag.getValue(0,&quot;documentPK.documentId&quot;);
+					var empPagNomePasta = pastaEmpPag.getValue(0,&quot;documentDescription&quot;);
+					pastaDestino     = empPagParentId;
+					log.info(&quot; SOLICPAGAMENTO - BEFORESTATEENTRY - ENCONTROU PASTA EMPRESA PAGADORA  Valor do pastaDestino/anoParentId/descricao...:&quot; + 
+							 pastaDestino + &quot; - &quot; + empPagParentId + &quot; - &quot; + empPagNomePasta);	
+				}
+				else{
+					try{
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - NAO ENCONTROU PASTA EMPRESA PAGADORA - CRIANDO&quot;);
+
+						
+						//doc = docAPI.newDocumentDto();
+						var doc = docAPI.newDocumentDto();
+
+						// Cria a pasta para A EMP PAG 
+						doc.setParentDocumentId(pastaDestino); // FIXO
+						doc.setDocumentDescription(empPag);
+						doc.setAdditionalComments(&quot;Processo Solicitacao de Pagamento&quot; );
+						doc.setDocumentKeyWord(&quot;SOLICPAGTO- empresa pagadora&quot;);
+						doc.setVersionDescription(&quot;\nProcesso:&quot; + processo);
+						doc.setDocumentTypeId(&quot;SOLICPAGTO- empresa pagadora&quot;);
+						doc.setIconId(23);
+						doc.setCompanyId(numcompany);
+						doc.setDocumentType(&quot;1&quot;);
+						doc.setDocumentTypeId(&quot;1&quot;);
+						doc.setInheritSecurity(true);
+						doc.setTopicId(1);
+						doc.setVersionOption(&quot;0&quot;);
+		
+						// Cria a pasta do FORNECEDOR 
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ANTES CRIAR PASTA EMPRESA PAGADORA&quot;);
+						
+						var createDoc = docAPI.createFolder(doc, null, null);
+						
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA EMPRESA PAGADORA createDoc: &quot; + createDoc);
+						
+						pastaDestino = createDoc.getDocumentId();
+						
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA EMPRESA PAGADORA pastaDestino: &quot; + pastaDestino);
+						
+	        		} // try 
+					catch(error) {
+						throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Erro ao criar Pasta Empresa Pagadora!&quot; + error.message;
+					}
+					
+				} // else
+			} //if (pastaEmpPag)
+		} // if (pastaMes)
+		
+		
+		if (pastaEmpPag){
+	    
+			// verifica se ja existe pasta para o FORNECEDOR
+	        log.info(&quot;SOLICPAGTO - PASTA FORNECEDOR - INICIO&quot;);
+
+	        var fornec      = hAPI.getCardValue(&quot;nomeEmpresa&quot;);
+
+	        
+			var c12 = DatasetFactory.createConstraint(&quot;parentDocumentId&quot;,pastaDestino,pastaDestino,ConstraintType.MUST);
+			var c13 = DatasetFactory.createConstraint(&quot;documentDescription&quot;,fornec,fornec,ConstraintType.MUST);
+			var c14 = DatasetFactory.createConstraint(&quot;activeVersion&quot;,&quot;true&quot;,&quot;true&quot;,ConstraintType.MUST);
+			var constraintsC = new Array(); 
+			constraintsC.push(c12);
+			constraintsC.push(c13);
+			constraintsC.push(c14);
+			var pastaFornec = DatasetFactory.getDataset(&quot;document&quot;, null, constraintsC, null);
+	
+			if (pastaFornec){
+	        	if (pastaFornec.values.length &gt; 0){
+					var fornecParentId  = pastaFornec.getValue(0,&quot;documentPK.documentId&quot;);
+					var fornecNomePasta = pastaFornec.getValue(0,&quot;documentDescription&quot;);
+					pastaDestino     = fornecParentId;
+					log.info(&quot; SOLICPAGAMENTO - BEFORESTATEENTRY - ENCONTROU PASTA FORNECEDOR Valor do pastaDestino/anoParentId/descricao...:&quot; + 
+							 pastaDestino + &quot; - &quot; + fornecParentId + &quot; - &quot; + fornecNomePasta);	
+				}
+				else{
+					try{
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - NAO ENCONTROU PASTA FORNECEDOR - CRIANDO&quot;);
+						
+						//doc = docAPI.newDocumentDto();
+						var doc = docAPI.newDocumentDto();
+						
+						// Cria a pasta para o fornecedor 
+						doc.setParentDocumentId(pastaDestino); // FIXO
+						doc.setDocumentDescription(fornec);
+						doc.setAdditionalComments(&quot;Processo Solicitacao de Pagamento&quot; );
+						doc.setDocumentKeyWord(&quot;SOLICPAGTO- Fornecedor&quot;);
+						doc.setVersionDescription(&quot;\nProcesso:&quot; + processo);
+						doc.setDocumentTypeId(&quot;SOLICPAGTO- Fornecedor&quot;);
+						doc.setIconId(23);
+						doc.setCompanyId(numcompany);
+						doc.setDocumentType(&quot;1&quot;);
+						doc.setDocumentTypeId(&quot;1&quot;);
+						doc.setInheritSecurity(true);
+						doc.setTopicId(1);
+						doc.setVersionOption(&quot;0&quot;);
+						
+						// Cria a pasta do FORNECEDOR 
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - ANTES CRIAR PASTA FORNECEDOR&quot;);
+						
+						var createDoc = docAPI.createFolder(doc, null, null);
+						
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA FORNECEDOR createDoc: &quot; + createDoc);
+						
+						pastaDestino = createDoc.getDocumentId();
+						
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DEPOIS CRIAR PASTA FORNECEDOR pastaDestino: &quot; + pastaDestino);
+						
+	        		} // try 
+					catch(error) {
+						throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Erro ao criar Pasta do Fornecedor!&quot; + error.message;
+					}
+				} // else pasta fornec nao criada
+			} // if pasta fornec
+		} // IF PASTA MES
+		
+		
+		if (pastaFornec){
+			
+			// CRIANDO O DOCUMENTO ANEXO!! - LOGICA NOVA
+			
+			var calendar    = java.util.Calendar.getInstance().getTime();
+	    	
+			documentServiceProviderFolder = ServiceManager.getServiceInstance(&quot;FolderService&quot;);
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - getServiceInstance FolderService OK&quot;);
+			
+	        var doc =  documentServiceProviderFolder.instantiate(&quot;com.totvs.technology.ecm.dm.ws.DocumentDto&quot;);
+	        log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - instantiate com.totvs.technology.ecm.dm.ws.DocumentDto OK&quot;);
+	        
+			try{
+				var docs = hAPI.listAttachments();
+				
+				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - antes verific documento anexo --listDocuments : &quot; + docs);
+				
+				for (var i = 0; i &lt; docs.size(); i++) {
+
+	    			if (docs.get(i).getDocumentType() == &quot;7&quot;){ 
+
+	    				var doc = docs.get(i);
+					
+	    				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - pastaDestino&quot; + pastaDestino);
+	    				
+	    				//nomeDoc = &quot;Solic:&quot; + numSolicitacao + &quot; - Anexo: &quot; + listDocuments[i].getPhisicalFile();
+	    				
+	    				var nomeDoc = &quot;Solic:&quot; + processo + &quot; - Anexo: &quot; + docs.get(i).getPhisicalFile();
+	    				
+	    				doc.setParentDocumentId(parseInt(pastaDestino));
+	    				doc.setDocumentDescription(nomeDoc);
+	    				doc.setVersionDescription(&quot;Processo: &quot; + processo);
+	    				doc.setExpires(false);
+	    				doc.setCreateDate(calendar);
+	    				doc.setInheritSecurity(true);
+	    				doc.setTopicId(1);
+	    				doc.setUserNotify(false);
+	    				doc.setValidationStartDate(calendar);
+	    				doc.setVersionOption(&quot;0&quot;);
+	    				doc.setUpdateIsoProperties(true);
+	    				
+	    				//doc.setPublisherId(&quot;34302534&quot;);  // cristina.poffo - adm ao deu
+	    				//*doc.setColleagueId(&quot;34302534&quot;); // cristina.poffo
+
+	    				doc.setPublisherId(&quot;adm&quot;);  
+	    				doc.setColleagueId(&quot;adm&quot;); 
+
+	    				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - PROCESSO: &quot; + processo + &quot; - ativAtual: &quot; + ativAtual +  
+	    						 &quot; - ANTES publishWorkflowAttachment - USUARIO: 34302534 SETADO&quot;);
+
+	    				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - PROCESSO: &quot; + processo + &quot; - ativAtual: &quot; + ativAtual +  
+	    						 &quot; - criaDocumento -  antes do publishWorkflowAttachment() - docs.get(i).getDocumentType():&quot; + docs.get(i).getDocumentDescription());
+
+	    				hAPI.publishWorkflowAttachment(doc);
+
+	    				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - PROCESSO: &quot; + processo + &quot; - ativAtual: &quot; + ativAtual +  
+						 &quot; - criaDocumento -  depois do publishWorkflowAttachment()&quot;);
+	    				
+	    			}
+				}
+			}
+			catch(error) 
+			{ 
+				lErro = true;
+				log.info (&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - PROCESSO: &quot; + processo + &quot; - ativAtual: &quot; + ativAtual +  
+						  &quot; - ERRO AO PUBLICAR DOCUMENTOS DO PROCESSO - error.message:&quot; + error.message);
+				throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - PROCESSO: &quot; + processo + &quot; - ativAtual: &quot; + ativAtual +  
+				      &quot; - ERRO AO PUBLICAR DOCUMENTOS DO PROCESSO - error.message:&quot; + error.message;
+			}			
+		} // IF PASTA FORNEC
+	
+		
+		if (pastaFornec){
+			
+			log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - DOCUMENTO ESPELHO!!&quot;);
+			
+				var nrDocFornec = pastaDestino;
+				
+				//CRIANDO A FICHA - DOC ESPELHO
+				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - VERIFICANDO ANEXOS DO PROCESSO - INICIO&quot;);
+		
+				var codDocFicha = getValue(&quot;WKCardId&quot;);	
+				var codFormFicha = getValue(&quot;WKFormId&quot;);
+				
+				log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - INICIO FICHA - codDocFicha: &quot; + codDocFicha );
+				
+				try{
+					var cx1 = DatasetFactory.createConstraint(&quot;documentPK.documentId&quot;,codDocFicha,codDocFicha,ConstraintType.MUST);
+					//var cx2 = DatasetFactory.createConstraint(&quot;activeVersion&quot;, &quot;1&quot;,&quot;1&quot;,ConstraintType.MUST);
+					//testes 1.5 pedem true
+					var cx2 = DatasetFactory.createConstraint(&quot;activeVersion&quot;, true,true,ConstraintType.MUST);
+					var constraintsX = new Array(); 
+					constraintsX.push(cx1);
+					constraintsX.push(cx2);
+					
+					var fichaDoc = DatasetFactory.getDataset(&quot;document&quot;, null, constraintsX, null);
+					
+					log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - FICHA - LENGTH: &quot; + fichaDoc.values.length);
+				}
+				catch (e) {
+					throw &quot;Erro ao localizar ficha: &quot; + e; 
+				}
+			
+				var lErroSelect = false;
+				var lTemFichaEspelho = false;
+				var retornonext = &quot;&quot;; 
+			    if (fichaDoc) {
+			    	
+					if (fichaDoc.values.length &gt; 0){
+			    		
+						log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - length &gt; que zero&quot;);
+						
+						//desenv
+			    		//var dataSource = &quot;java:/jdbc/TOTVSTechRO&quot;;
+						
+						//prod
+						var dataSource = &quot;java:/jdbc/FluigDSRO&quot;;
+			        	
+						var ic = new javax.naming.InitialContext();
+			        	var ds = ic.lookup(dataSource);
+			            
+			        	try {
+			            	var conn1 = ds.getConnection();
+			            	var stmt1 = conn1.createStatement();
+			            	//ResultSet rs = null;
+			            	
+			            	lErroSelect = false;
+			            	try {
+			            		
+			            		log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - SELECT : &quot; +
+				            			&quot;SELECT Count(*) AS RecordCount from link_docto_virtual where &quot; + 
+        								&quot; cod_empresa = &apos;&quot; + numcompany + &quot;&apos; and &quot; +
+        								&quot; nr_docto_pai_corren = &quot; + nrDocFornec + &quot; and &quot; +
+        								&quot; nr_documento = &quot; + codDocFicha + &quot; and &quot; +
+        								&quot; log_delete = 0 and &quot; +
+        								&quot; nr_docto_pai_orig = &quot; + pastaOrigem + &quot;;&quot; 
+        								);
+			            		
+			            		// deixar estes comandos colados - nao colocar nem log.info antes
+			            		var rs = stmt1.executeQuery(&quot;SELECT Count(*) AS RecordCount from link_docto_virtual where &quot; +
+			            				&quot; cod_empresa = &apos;&quot; + numcompany + &quot;&apos; and &quot; +
+        								&quot; nr_docto_pai_corren = &quot; + nrDocFornec + &quot; and &quot; +
+        								&quot; nr_documento = &quot; + codDocFicha + &quot; and &quot; +
+        								&quot; log_delete = 0 and &quot; +
+        								&quot; nr_docto_pai_orig = &quot; + pastaOrigem + &quot;;&quot; );
+			            		 retornonext = (rs.next()).toString(); 
+			            		 // deixar estes comandos colados - nao colocar nem log.info antes
+			            		 
+			            	} 
+				            catch(error) {
+				            	lErroSelect = true;
+				            	log.error(&quot;DS_SQL select  ==============&gt; &quot; + error.message);
+				        		throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Erro LER a ficha - SELECT - na pasta particular da Area!!&quot; + error.message;
+				        	} 
+
+				            log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY -lErroSelect: &quot; + lErroSelect + &quot; -retornonext:  &quot; + retornonext  + &quot; - processo: &quot; + processo);
+				            		
+				            if (lErroSelect == true){
+				            	log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - nao conseguiu dar select!! - processo: &quot; + processo);
+				            }
+				            else if (lErroSelect == false &amp;&amp; retornonext == &quot;true&quot;){
+				            	log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - pto 2 - rs.next()&quot;);
+			            		log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - rs.getInt(RecordCount): &quot; + rs.getInt(&quot;RecordCount&quot;));
+			            		// nao retirar este comando abaixo - ele define se em ou nao registros
+				            	 if (rs.getInt(&quot;RecordCount&quot;) &gt; 0){  
+				            		 log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - JA TEM FICHA!! - processo: &quot; + processo);
+				            		 lTemFichaEspelho = true;
+				            	 }
+				            	 else{
+				            		 lTemFichaEspelho = false;
+				            	 }
+				            }
+				             
+				            log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - lErroSelect: &quot; + lErroSelect + &quot; - lTemFichaEspelho:&quot; + lTemFichaEspelho);
+
+				            // se nao tem ficha espelho, da insert
+				            if (lErroSelect == false &amp;&amp; lTemFichaEspelho == false){
+				            	var conn2 = ds.getConnection();
+				            	var stmt2 = conn2.createStatement();
+				            	
+				            	log.info(&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - insertttt: &quot; +
+				            			&quot; insert into link_docto_virtual (cod_empresa, nr_docto_pai_corren, nr_documento, log_delete, nr_docto_pai_orig)&quot; + 
+									    &quot; values (&apos;&quot; + numcompany + &quot;&apos;,&quot; + nrDocFornec + &quot;,&quot; + codDocFicha + &quot;,0,&quot; + pastaOrigem  + &quot;);&quot;
+									    );
+				            										            	
+				            	var rs = stmt2.executeUpdate(&quot; insert into link_docto_virtual (cod_empresa, nr_docto_pai_corren, nr_documento, log_delete, nr_docto_pai_orig)&quot; + 
+				            							    &quot; values (&apos;&quot; + numcompany + &quot;&apos;,&quot; + nrDocFornec + &quot;,&quot; + codDocFicha + &quot;,0,&quot; + pastaOrigem  + &quot;);&quot; );
+				            	
+				            	
+				            	log.info (&quot;SOLICPAGAMENTO - BEFORESTATEENTRY - CRIOU ESPELHOOOOOOOO: &quot; + codDocFicha + &quot; - PASTA:&quot; + pastaFornec);	
+				            }
+			            	
+		            	} 
+			            catch(error) {
+			            	log.error(&quot;DS_SQL INSERT ==============&gt; &quot; + error.message);
+			        		throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Erro ao CRIAR Atalho da Ficha na pasta particular da Area!! Tente novamente!&quot; + error.message;
+			        	} 
+			            finally {
+			            	if(stmt1 != null) stmt1.close();
+			            	if(conn1 != null) conn1.close();
+			            	if(stmt2 != null) stmt2.close();
+			            	if(conn2 != null) conn2.close();
+			            }
+					} // IF VALUES.LENGHT FICHA
+					else{
+						throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Sistema nao encontrou ficha!! Tente novamente!&quot;;
+					}
+			
+			    } // if fichadOC
+				else{
+					throw &quot;SOLICPAGAMENTO - BEFORESTATEENTRY - Sistema nao encontrou ficha!! Tente novamente!&quot;;
+				}
+	    	
+		} // if pastaFornec
+	
+	} /*seq 96 u */
+
+	log.info(&quot;SOLICPAGAMENTO - FUNCAO BEFORESTATEENTRY - FIM &quot;);
+
+	
+	function setaAmbiente(){
+		log.info(&quot;funcao setaAmbiente - inicio&quot;);
+		try{
+			var c1 = DatasetFactory.createConstraint(&quot;ambiente&quot;, &quot;DESENV&quot;, &quot;DESENV&quot;, ConstraintType.MUST);
+			var c2 = DatasetFactory.createConstraint(&quot;cod_def_proces&quot;, &quot;SolicitarPagamento&quot;, &quot;SolicitarPagamento&quot;, ConstraintType.MUST);
+			var c3 = DatasetFactory.createConstraint(&quot;formAtual&quot;, formAtual, formAtual, ConstraintType.MUST);
+			constraints = new Array(c1,c2,c3);
+			var res = DatasetFactory.getDataset(&quot;dsParamAmbFormWkf&quot;, null, constraints, null);
+			log.info(&quot;funcao setaAmbiente - getDataset dsParamAmbFormWkf - res: &quot; + res);
+			
+			if (res){
+				if (res.values.length &gt; 0){return res;}
+				else return &quot;erro ao retornar dados de ambiente - nao retorou registro&quot;;
+			}
+			else return &quot;erro ao retornar dados de ambiente - retornou nulo&quot;;
+		}
+		catch (e) {
+			return &quot;erro ao retornar dados de ambiente - NOK&quot;;
+			log.info(&quot;funcao setaAmbiente - getDataset dsParamAmbFormWkf - ERRO: &quot; + e);
+		}	
+	}	
+	
+} // fim function</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterTaskCreate</eventId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterTaskCreate(colleagueId) {
+	log.info(&quot;#afterTaskCreate - CST: SOLICITACAO PAGAMENTO&quot;);
+	var sequenceId   = parseInt(getValue(&quot;WKNumState&quot;));
+	var ativAtual   = getValue(&quot;WKCurrentState&quot;); /* **** */
+	log.info(&quot;#ativAtual: &quot;+ativAtual);
+	var processo    = getValue(&quot;WKNumProces&quot;);    
+    var numcompany  = new java.lang.Integer(getValue(&quot;WKCompany&quot;)); 
+	var senha       = getValue(&quot;WKUserPassword&quot;);
+    var usuario     = getValue(&quot;WKUser&quot;);
+
+    //var linkFicha =  getValue(&quot;WDKTaskLink&quot;) ;
+    
+    var linkFicha  = hAPI.getUserTaskLink(ativAtual);
+    
+	var linkFichaMobileIOS = &quot;fluig://&quot; + hAPI.getUserTaskLink(ativAtual) ;
+	var linkFichaMobileAndroid = hAPI.getUserTaskLink(ativAtual) ;
+	
+    var form = hAPI.getCardData(processo); // pega todos os campos do formulario de uma vez so
+
+	var cHidden;
+	var aprovadorDaVez = &quot;&quot;;
+	var croleId;
+	var destinatarios       = new java.util.ArrayList();
+	var parametros          = new java.util.HashMap();
+	var cmatriculaAprov ; 
+	var cnomeAprovador  ;
+	var cmailAprov    	;
+
+	var c1 ;
+    var constraints; 
+    var dataset;
+    var colaborador;
+    
+	if (ativAtual == 155){
+		hAPI.setCardValue(&quot;hiddenGestorPassou&quot;,&quot;sim&quot;);	
+		
+		if(hAPI.getCardValue(&quot;areaSolic&quot;) == &quot;4&quot; || 
+		   hAPI.getCardValue(&quot;areaSolic&quot;) == &quot;5&quot; ||
+		   hAPI.getCardValue(&quot;areaSolic&quot;) == &quot;6&quot; ||
+		   hAPI.getCardValue(&quot;areaSolic&quot;) == &quot;7&quot;){
+			if(parseInt(hAPI.getCardValue(&quot;hiddenNumeroDaVez&quot;),10) &gt;= parseInt(hAPI.getCardValue(&quot;hiddenNumTotAprovac&quot;),10)){
+				var numeroDaSolicitacao = getValue(&apos;WKNumProces&apos;);
+				var threadDaSolicitacao = 0; 
+				var responsavelPelaTarefa = colleagueId;      
+				
+				var dataDoPrazo = new Date();
+				dataDoPrazo.setFullYear(dataDoPrazo.getFullYear()+1);
+				
+				hAPI.setDueDate(numeroDaSolicitacao, threadDaSolicitacao, responsavelPelaTarefa, dataDoPrazo, 50000);
+			}else{
+				var numeroDaSolicitacao = getValue(&apos;WKNumProces&apos;);
+				var threadDaSolicitacao = 0; 
+				var responsavelPelaTarefa = colleagueId;     
+				
+				var dataDoPrazo = new Date();
+				
+				var h = parseInt(dataDoPrazo.getHours(),10);
+				var m = parseInt(dataDoPrazo.getMinutes(),10);
+				var s = parseInt(dataDoPrazo.getSeconds(),10);
+				
+				var t = (h*60*60)+(m*60)+s;
+				horaDoPrazo = t;
+				
+			    var obj = hAPI.calculateDeadLineHours(dataDoPrazo, horaDoPrazo, 4, &quot;Default&quot;);
+		        var dt = obj[0];
+		        var segundos = obj[1];
+		        
+		        log.info(&quot;#dt: &quot;+dt);
+		        log.info(&quot;#segundos: &quot;+segundos);
+				
+				hAPI.setDueDate(numeroDaSolicitacao, threadDaSolicitacao, responsavelPelaTarefa, dt, segundos);
+			}
+		}
+	} 
+	else if (ativAtual == 55){
+		hAPI.setCardValue(&quot;hiddenFiscalPassou&quot;,&quot;sim&quot;);
+	}
+	else if (ativAtual == 142){
+		hAPI.setCardValue(&quot;hiddenContasPagarPassou&quot;,&quot;sim&quot;);		
+	}
+	else if (ativAtual == 5){
+		hAPI.setCardValue(&quot;hiddenCPGeraTituloPassou&quot;,&quot;sim&quot;);	
+	}
+    
+	log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - ativAtual: &quot; + ativAtual + 
+			  &quot; - colleagueId:&quot; + colleagueId);
+	
+	// ao enviar email para a ativ 155 - aprovac gestor
+	if (ativAtual == 155){
+		
+		// ENVIO DE EMAIL!!!!!
+		log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual);
+
+		// a primeira vez sempre tem usuar ou papel junto do conteudo 
+		cHidden = form.get(&quot;hiddenAprovadorDaVez&quot;); 
+		log.info(&quot;hiddenAprovadorDaVez:&quot; + cHidden.substring(0,5) + &quot; - &quot; + cHidden.substring(6,cHidden.length()) );
+				
+		// teste
+		//cHidden = &quot;PAPEL:SOLIC_PAGAMENTO_ADM_GENTE&quot;;
+		
+		log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - ativAtual: &quot; + ativAtual + 
+				  &quot; - cHidden: &quot; + cHidden);
+		
+		
+		if (cHidden.substring(0,5) == &quot;USUAR&quot;){
+		
+			
+			log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - ativAtual: &quot; + ativAtual + 
+					  &quot; - EH USUARIO&quot;);
+			
+			
+			log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - ativAtual: &quot; + ativAtual + 
+					  &quot; - EH USUARIO&quot;);
+			
+			log.info (&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual +
+					  &quot;form.get(hiddenAprovadorDaVez): &quot; + form.get(&quot;hiddenAprovadorDaVez&quot;) +
+					  &quot;form.get(hiddenNumTotAprovac): &quot; + form.get(&quot;hiddenNumTotAprovac&quot;) +
+					  &quot;form.get(hiddenNumeroDaVez): &quot; + form.get(&quot;hiddenNumeroDaVez&quot;) );
+
+			if (parseInt(form.get(&quot;hiddenNumTotAprovac&quot;)) &gt;= parseInt(form.get(&quot;hiddenNumeroDaVez&quot;))){
+				
+				var aprovadorDaVez = cHidden.substring(6); 
+				
+				cmatriculaAprov   	= aprovadorDaVez; 
+				cnomeAprovador      = form.get(&quot;idNomeAprovador___&quot; + form.get(&quot;hiddenNumeroDaVez&quot;));
+				cmailAprov    		= form.get(&quot;idEmailAprovador___&quot; + form.get(&quot;hiddenNumeroDaVez&quot;));
+				
+				log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual + &quot; - WDKTaskLink: &quot; + linkFicha );
+				log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual + &quot; - matricula: &quot; + cmatriculaAprov);
+				log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual + &quot; - email: &quot; + cmailAprov);
+				
+				destinatarios.add(cmatriculaAprov);
+				
+				//Monta mapa com par?metros do template 
+			    parametros.put(&quot;MAILAPROVADOR&quot;,cmailAprov);
+			    parametros.put(&quot;NOMEAPROVADOR&quot;,cnomeAprovador);
+			    
+			}
+		
+		} // usuar
+		else{
+			
+			log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - ativAtual: &quot; + ativAtual + 
+			  &quot; - EH PAPEL!! - cHidden: &quot; + cHidden);
+	
+			croleId = cHidden.substring(6);
+			
+			log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - croleId: &quot; + croleId);
+			
+            c1 = DatasetFactory.createConstraint(&quot;workflowColleagueRolePK.roleId&quot;, croleId,croleId,ConstraintType.MUST);
+            constraints = new Array(); 
+            constraints.push(c1);
+            dataset = DatasetFactory.getDataset(&quot;workflowColleagueRole&quot;, null, constraints, null);
+			
+            log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - dataset.values.length: &quot; + dataset.values.length);
+
+            if(dataset){
+                for(var i=0 ; i&lt;dataset.values.length;i++){
+                       destinatarios.add(dataset.getValue(i,&quot;workflowColleagueRolePK.colleagueId&quot;));
+                }
+         	}
+         	
+            log.info (&quot; %%%%%%%%%%%  SOLICPAGTO - AFTER TASK CREATE %%%%%%%%%%%%%  - depois for dataset.values.length&quot;);
+
+            //Monta mapa com par?metros do template 
+    	    parametros.put(&quot;MAILAPROVADOR&quot;,&quot;&quot;);
+    	    parametros.put(&quot;NOMEAPROVADOR&quot;,&quot;ADM GENTE&quot;);
+    	    
+		} // else
+		
+		parametros.put(&quot;WDK_CompanyId&quot;, getValue(&quot;WKCompany&quot;));
+	    parametros.put(&quot;SOLIC&quot;, processo);
+	    parametros.put(&quot;LinkFicha&quot;, linkFicha);
+	    parametros.put(&quot;linkFichaMobileIOS&quot;, linkFichaMobileIOS);
+	    parametros.put(&quot;linkFichaMobileAndroid&quot;, linkFichaMobileAndroid);
+	    
+	   
+	    //Este par?metro ? obrigat?rio e representa o assunto do e-mail 
+	    parametros.put(&quot;subject&quot;, &quot;Solicitacao: &quot; + processo +  &quot;=&gt; Solicitacao Pagamentos:&quot;);
+	    
+	    log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ativAtual:&quot; + ativAtual + &quot; - ENVIO EMAIL - antes notifier&quot;);
+	    
+		 //Envia e-mail
+	     notifier.notify(&quot;adm&quot;, &quot;tplCSTSolicPagamento&quot;, parametros, destinatarios, &quot;text/html&quot;);
+
+	    log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ativAtual:&quot; + ativAtual + &quot; - ENVIO EMAIL - depois notifier&quot;);
+		
+		// FIM ENVIA EMAIL
+	
+	} // ativ 155
+	
+	
+	// ao enviar email para a ativ 142- aprovac contas a pagar - vivian
+	if (ativAtual == 142){
+		
+		// ENVIO DE EMAIL!!!!!
+		log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual);
+	
+		var form = hAPI.getCardData(processo); // pega todos os campos do formulario de uma vez so
+
+		log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - antes procurar colab - colleagueId: &quot; + colleagueId);
+
+		c1 = DatasetFactory.createConstraint(&quot;colleaguePK.colleagueId&quot;,colleagueId,colleagueId, ConstraintType.MUST);
+		constraints = new Array(c1);
+		colaborador = DatasetFactory.getDataset(&quot;colleague&quot;, null, constraints, null);
+				
+		 var nom ;
+		 var mail;
+		 
+		 log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - colaborador: &quot; + colaborador);
+		 
+		if (colaborador != null) {
+		    				
+			log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual + 
+					&quot; -retorno colaborador ok - pto 0 - nome: &quot; + colaborador.getValue(0,&quot;colleagueName&quot;) + 
+					&quot; - mai : &quot; + colaborador.getValue(0,&quot;mail&quot;));
+				
+			nom  = colaborador.getValue(0,&quot;colleagueName&quot;);
+			mail = colaborador.getValue(0,&quot;mail&quot;);
+
+			log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual + &quot; -retorno colaborador ok - pto 1&quot;);
+			
+			parametros.put(&quot;WDK_CompanyId&quot;, getValue(&quot;WKCompany&quot;));
+		    parametros.put(&quot;SOLIC&quot;, processo);
+		    parametros.put(&quot;LinkFicha&quot;, linkFicha);
+		    parametros.put(&quot;linkFichaMobileIOS&quot;, linkFichaMobileIOS);
+		    parametros.put(&quot;linkFichaMobileAndroid&quot;, linkFichaMobileAndroid);
+		    
+		    log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ENVIO EMAIL - ativAtual:&quot; + ativAtual + &quot; -retorno colaborador ok - pto 2&quot;);
+		    
+		    //Monta mapa com par?metros do template 
+		    parametros.put(&quot;MAILAPROVADOR&quot;,mail);
+		    parametros.put(&quot;NOMEAPROVADOR&quot;,nom);
+			
+		    //Este par?metro ? obrigat?rio e representa o assunto do e-mail 
+		    parametros.put(&quot;subject&quot;, &quot;Solicitacao: &quot; + processo +  &quot;=&gt; Solicitacao Pagamentos:&quot;);
+				
+			 destinatarios.add(colleagueId);
+			 
+			 log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ativAtual:&quot; + ativAtual + &quot; - ENVIO EMAIL - antes notifier&quot;);
+		    
+			 //Envia e-mail
+		     notifier.notify(&quot;adm&quot;, &quot;tplCSTSolicPagamento&quot;, parametros, destinatarios, &quot;text/html&quot;);
+	
+		    log.info(&quot;SOLICPAGAMENTO - AFTER TASK CREATE - ativAtual:&quot; + ativAtual + &quot; - ENVIO EMAIL - depois notifier&quot;);
+		}
+		// FIM ENVIA EMAIL
+	} // ativ 142	
+	
+}</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list>
+    <AdvancedProcessProperties>
+      <advancedProcessPropertiesPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <propertyId>AutomaticTasks</propertyId>
+        <version>71</version>
+      </advancedProcessPropertiesPK>
+      <propertieValue>173,177,222</propertieValue>
+    </AdvancedProcessProperties>
+  </list>
+  <list>
+    <SwimLane>
+      <color>E5E5E5</color>
+      <height>121</height>
+      <width>1041</width>
+      <positionX>0</positionX>
+      <positionY>221</positionY>
+      <stateName>HIERARQUIA GESTORES</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>DFDFDF</color>
+      <height>112</height>
+      <width>1041</width>
+      <positionX>0</positionX>
+      <positionY>450</positionY>
+      <stateName>Gestor Contas a Pagar</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>E4EEEF</color>
+      <height>110</height>
+      <width>1041</width>
+      <positionX>0</positionX>
+      <positionY>341</positionY>
+      <stateName>Fiscal</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>3</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>DDEEFF</color>
+      <height>203</height>
+      <width>1041</width>
+      <positionX>0</positionX>
+      <positionY>20</positionY>
+      <stateName>Solicitante</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>D8E2E2</color>
+      <height>121</height>
+      <width>1041</width>
+      <positionX>0</positionX>
+      <positionY>560</positionY>
+      <stateName>Área Contas a Pagar</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>5</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>DFDFDF</color>
+      <height>82</height>
+      <width>1041</width>
+      <positionX>0</positionX>
+      <positionY>679</positionY>
+      <stateName>Finalização</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <sequence>6</sequence>
+      </swimLanePK>
+    </SwimLane>
+  </list>
+  <list>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>430</positionX>
+      <positionY>693</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <componGrafSequence>20</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Fim</stateName>
+    </ProcessComponGraf>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>50</positionX>
+      <positionY>693</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <componGrafSequence>80</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Reprovado</stateName>
+    </ProcessComponGraf>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>10</positionX>
+      <positionY>10</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <componGrafSequence>118</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Iniciar Solicitacao Pagamento</stateName>
+    </ProcessComponGraf>
+  </list>
+  <list>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>21</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>20</initialStateSequence>
+      <finalStateSequence>7</finalStateSequence>
+    </ProcessLinkAssoc>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>101</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>80</initialStateSequence>
+      <finalStateSequence>96</finalStateSequence>
+    </ProcessLinkAssoc>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>1</version>
+        <linkSequence>119</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>118</initialStateSequence>
+      <finalStateSequence>1</finalStateSequence>
+    </ProcessLinkAssoc>
+  </list>
+  <list>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>138</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>666</positionX>
+      <positionY>688</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>138</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>969</positionX>
+      <positionY>688</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>138</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>969</positionX>
+      <positionY>124</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>201</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>738</positionX>
+      <positionY>292</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>201</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>738</positionX>
+      <positionY>124</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>202</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>306</positionX>
+      <positionY>123</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>237</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>529</positionX>
+      <positionY>463</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>241</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>763</positionX>
+      <positionY>124</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>242</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>558</positionX>
+      <positionY>544</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>243</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>833</positionX>
+      <positionY>124</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>250</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>108</positionX>
+      <positionY>204</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>250</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>108</positionX>
+      <positionY>45</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <linkSequence>250</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>584</positionX>
+      <positionY>45</positionY>
+    </ProcessLinkBend>
+  </list>
+  <list/>
+  <list>
+    <ExtendedPropertyField>
+      <extendedPropertyFieldPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <version>71</version>
+        <stateSequence>0</stateSequence>
+        <propertyName>AutomaticTasks</propertyName>
+      </extendedPropertyFieldPK>
+      <propertyType>0</propertyType>
+      <propertyDescription>AutomaticTasks</propertyDescription>
+      <propertyValue>173,177,222</propertyValue>
+      <isDefaultProperty>false</isDefaultProperty>
+    </ExtendedPropertyField>
+  </list>
+  <list>
+    <ProcessFormField>
+      <processFormFieldPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <fieldId>dataPagamento</fieldId>
+      </processFormFieldPK>
+      <fieldDescription>dataPagamento</fieldDescription>
+      <slotId>1</slotId>
+    </ProcessFormField>
+    <ProcessFormField>
+      <processFormFieldPK>
+        <companyId>1</companyId>
+        <processId>SolicitarPagamento</processId>
+        <fieldId>statusCPGeraTitulo</fieldId>
+      </processFormFieldPK>
+      <fieldDescription>statusCPGeraTitulo</fieldDescription>
+      <slotId>2</slotId>
+    </ProcessFormField>
+  </list>
+  <list/>
+  <list/>
+  <list>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>55</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description>Aprovar Pagamento</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>55</stateSequence>
+      <appKey>approval</appKey>
+      <appField>description</appField>
+      <description>Beneficiário: @[form:nomebeneficiario]&#xd;
+Empresa Pagadora: @[form:razaoSocial]&#xd;
+Dados Destinatário&#xd;
+Departamento: @[form:nomeCentroCusto]&#xd;
+Item Contábil: @[form:nomeItemContabil]&#xd;
+Classe: @[form:nomeClasse]&#xd;
+Justificativa: @[form:justificativaItem]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>55</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description>Valor: @[form:valorPagar]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>55</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description>43</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>55</stateSequence>
+      <appKey>approval</appKey>
+      <appField>reject</appField>
+      <description>96</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>142</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description>Aprovar Pagamento</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>142</stateSequence>
+      <appKey>approval</appKey>
+      <appField>description</appField>
+      <description>Beneficiário: @[form:nomebeneficiario]&#xd;
+Empresa Pagadora: @[form:razaoSocial]&#xd;
+Dados Destinatário&#xd;
+Departamento: @[form:nomeCentroCusto]&#xd;
+Item Contábil: @[form:nomeItemContabil]&#xd;
+Classe: @[form:nomeClasse]&#xd;
+Justificativa: @[form:justificativaItem]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>142</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description>Valor: @[form:valorPagar]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>142</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description>43</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>142</stateSequence>
+      <appKey>approval</appKey>
+      <appField>reject</appField>
+      <description>96</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>155</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description>Aprovar Pagamento</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>155</stateSequence>
+      <appKey>approval</appKey>
+      <appField>description</appField>
+      <description>Beneficiário: @[form:nomebeneficiario]&#xd;
+Empresa Pagadora: @[form:razaoSocial]&#xd;
+Dados Destinatário&#xd;
+Departamento: @[form:nomeCentroCusto]&#xd;
+Item Contábil: @[form:nomeItemContabil]&#xd;
+Classe: @[form:nomeClasse]&#xd;
+Justificativa: @[form:justificativaItem]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>155</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description>Valor: @[form:valorPagar]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>155</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description>2</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitarPagamento</processId>
+      <processVersion>71</processVersion>
+      <stateSequence>155</stateSequence>
+      <appKey>approval</appKey>
+      <appField>reject</appField>
+      <description>96</description>
+    </ProcessAppConfiguration>
+  </list>
+  <list/>
+  <list/>
+</list>

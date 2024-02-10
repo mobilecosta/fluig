@@ -1,0 +1,163 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<input type="hidden" name="publicacao" id="publicacao"/>
+	<h2>Informações da comunicação</h2>
+	<hr>
+	<div class="row">
+		<div class="col-md-10">
+			<label for="fonte">Fonte de Notícias</label>
+			<select class="form-control" id="fonte" name="fonte">
+				<option value="" selected disabled>Selecione</option>
+				<option value="CLOUD">CLOUD</option>
+				<option value="TOTVS">TOTVS</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="ativo" name="ativo"/> Ativo
+				</label>
+			</div>
+		</div>
+		<div class="col-md-10 form-group">
+			<label for="dataLiberacao">Data de liberação</label>
+			<input type="text" class="form-control" id="dataLiberacao" name="dataLiberacao"/>
+		</div>
+		<div class="col-md-10 form-group">
+			<label for="titulo">Título</label>
+			<input type="text" class="form-control" id="titulo" name="titulo"/>
+		</div>
+		<div class="col-md-10 form-group">
+			<label for="resumo">Resumo</label>
+			<input type="text" class="form-control" id="resumo" name="resumo"/>
+		</div>
+		<div class="col-md-10 form-group">
+			<label for="tags">Tags</label>
+			<input type="text" class="form-control" id="tags" name="tags"/>
+		</div>
+		<div class="col-md-10 form-group">
+			<label for="conteudo">Conteúdo</label>
+			<textarea class="form-control" id="conteudo" name="conteudo" rows="4"></textarea>
+		</div>
+		<div class="col-md-10 form-group">
+			<label for="tags">Cód. do Artigo</label>
+			<input type="text" class="form-control" id="nrDocumentoArtigo" name="nrDocumentoArtigo"/>
+		</div>
+	</div>
+	<h2>Slideshow - 1º nível</h2>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<img src="slideshow.png" />
+		</div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-md-3 form-group">
+			<label for="dataExpiracaoSlideshow">Sequencia de exibição</label>
+			<input type="text" class="form-control date" id="sequenciaExibicao" name="sequenciaExibicao"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 form-group">
+			<label for="dataExpiracaoSlideshow">Data de expiração</label>
+			<input type="text" class="form-control date" id="dataExpiracaoSlideshow" name="dataExpiracaoSlideshow"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="radio">
+			    <label>
+			    	<input type="radio" name="acaoSlideshow" value="na"> Nenhuma ação
+			    </label>
+			</div>
+			<div class="radio">
+			    <label>
+			    	<input type="radio" name="acaoSlideshow" value="conteudo"> Mostrar conteúdo completo
+			    </label>
+			</div>
+			<div class="radio">
+			    <label>
+			    	<input type="radio" name="acaoSlideshow" value="url"> Abrir URL
+			    </label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 form-group">
+			<label for="urlSlideshow">URL slideshow</label>
+			<input type="text" class="form-control" id="urlSlideshow" name="urlSlideshow"/>
+		</div>
+	</div>
+	
+	<h2>Thumbnail - 2º nível</h2>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<img src="thumbnail.png"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 form-group">
+			<label for="dataExpiracaoThumbnail">Data de expiração</label>
+			<input type="text" class="form-control date" id="dataExpiracaoThumbnail" name="dataExpiracaoThumbnail"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="radio">
+			    <label>
+			    	<input type="radio" name="acaoThumbnail" value="na"> Nenhuma ação
+			    </label>
+			</div>
+			<div class="radio">
+			    <label>
+			    	<input type="radio" name="acaoThumbnail" value="conteudo"> Mostrar conteúdo completo
+			    </label>
+			</div>
+			<div class="radio">
+			    <label>
+			    	<input type="radio" name="acaoThumbnail" value="url"> Abrir URL
+			    </label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 form-group">
+			<label for="urlThumbnail">URL thumbnail</label>
+			<input type="text" class="form-control" id="urlThumbnail" name="urlThumbnail"/>
+		</div>
+	</div>
+</form>
+</div>
+</body>
+</html>
+
+<script>
+$(document).ready(function(){
+	if($("#publicacao").val() == ""){
+		$("#publicacao").val(new Date().getTime());
+	}
+	
+	FLUIGC.calendar('.date', {
+		minDate : new Date(),
+		pickDate : true,
+		pickTime : true,
+		sideBySide : true
+	});
+	
+})
+
+</script>

@@ -1,0 +1,210 @@
+<html>
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script src="custom.js"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+			<div class="panel panel-primary">
+				<div class="panel-totvs panel-heading">Dados do Cliente</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<input type="hidden" id="IDsolicitante" class="form-control" name="IDsolicitante" />
+							<input type="hidden" id="IDresponsavel" class="form-control" name="IDresponsavel" />
+							<input type="hidden" id="processoPai" class="form-control" name="processoPai" />
+							<input type="hidden" id="anexosDoProcesso" class="form-control" name="anexosDoProcesso" />
+							<label for="solicitante" class="control-label">Solicitante</label>
+							<input type="text" id="solicitante" class="form-control" readonly name="solicitante" />
+						</div>
+						<div class="col-sm-4">
+							<label for="razao_social" class="control-label">Razão Social</label>
+							<input type="text" id="razao_social" class="form-control" readonly autocomplete="off"
+								name="razao_social" />
+						</div>
+						<div class="col-sm-2">
+							<label for="data_solicitacao" class="control-label">Data Solicitação</label>
+							<input type="text" id="data_solicitacao" class="form-control" name="data_solicitacao"
+								readonly />
+						</div>
+						<div class="col-sm-3">
+							<label for="telefone" class="control-label">Contato Solicitante (telefone)</label>
+							<input type="text" id="telefone" class="form-control" autocomplete="off"
+								placeholder="(__)____-____" name="telefone" readonly />
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-5">
+							<label for="porte" class="control-label">Classificação Porte</label>
+							<div class="panel-body" style=border:1px solid #c0c0c0;>
+								<input type="radio" name="porte" value='pequeno' disabled /> Micro/Pequeno Porte
+								<input type="radio" name="porte" value='medio' disabled /> M&eacute;dio Porte
+								<input type="radio" name="porte" value='grande' disabled /> Grande Porte
+							</div>
+						</div>
+
+						<div class="col-sm-5">
+							<label for="versao_release" class="control-label">Versão/Release </label>
+							<input type="text" id="versao_release" class="form-control" name="versao_release"
+								readonly />
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<label for="titulo_modulos" class="control-label">título dos módulos</label>
+							<textarea class="form-control" id="titulo_modulos" name="titulo_modulos"
+								readonly></textarea>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-totvs panel-heading">Documentação</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th colspan="2">Documenta&ccedil;&atilde;o</th>
+								<th colspan="2">Check</th>
+								<th>Observa&ccedil;&atilde;o</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1.1</td>
+								<td>Necessita de alguma certifica&ccedil;&atilde;o TOTVS?</td>
+								<td><input type="radio" name="item_1_1" value="sim" disabled>Sim</td>
+								<td><input type="radio" name="item_1_1" value="nao" disabled>N&atilde;o</td>
+								<td><textarea class="form-control" id="obs_1_1" name="obs_1_1" readonly></textarea></td>
+							</tr>
+							<tr>
+								<td>1.2</td>
+								<td>Ser&aacute; hospedado ou est&aacute; no Cloud TOTVS?</td>
+								<td><input type="radio" name="item_1_2" value="sim" disabled>Sim</td>
+								<td><input type="radio" name="item_1_2" value="nao" disabled>N&atilde;o</td>
+								<td><textarea class="form-control" id="obs_1_2" name="obs_1_2" readonly></textarea></td>
+							</tr>
+							<tr>
+								<td>1.3</td>
+								<td>Se n&atilde;o ser&aacute; hospedado no Cloud TOTVS, avaliou o documento de
+									Portabilidade da linha de Produto?</td>
+								<td><input type="radio" name="item_1_3" value="sim" disabled>Sim</td>
+								<td><input type="radio" name="item_1_3" value="nao" disabled>N&atilde;o</td>
+								<td><textarea class="form-control" id="obs_1_3" name="obs_1_3" readonly></textarea></td>
+							</tr>
+							<tr>
+								<td>1.4</td>
+								<td>Haver&aacute; profissionais alocados no cliente? Se sim, s&atilde;o TOTVS,
+									franquias, canais, etc?</td>
+								<td><input type="radio" name="item_1_4" value="sim" disabled>Sim</td>
+								<td><input type="radio" name="item_1_4" value="nao" disabled>N&atilde;o</td>
+								<td><textarea class="form-control" id="obs_1_4" name="obs_1_4" readonly></textarea></td>
+							</tr>
+							<tr readonly>
+								<td>1.5</td>
+								<td>Ter&aacute; dados pessoais sendo processados neste ambiente? Se sim, quais?</td>
+								<td ><input type="radio" name="item_1_5" value="sim" disabled >Sim</td>
+								<td><input type="radio" name="item_1_5" value="nao" disabled >N&atilde;o</td>
+								<td><textarea class="form-control" id="obs_1_5" name="obs_1_5" readonly></textarea></td>
+							</tr>
+							<tr>
+								<td>1.6</td>
+								<td>Qual o ambiente de Cloud ser&aacute; hospedado ?(Intera ou Tradicional)</td>
+								<td colspan="3"><textarea class="form-control" id="obs_1_6" name="obs_1_6"
+										readonly></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>1.7</td>
+								<td>Quem dar&aacute; suporte ao cliente? (TOTVS, Franquia, Canal, etc)</td>
+								<td colspan="3"><textarea class="form-control" id="obs_1_7" name="obs_1_7"
+										readonly></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>1.8</td>
+								<td>Quem far&aacute; a administra&ccedil;&atilde;o do ambiente (BU Cloud, times de AMS,
+									Consulting, TIS, Franquia, Canal, etc)</td>
+								<td colspan="3"><textarea class="form-control" id="obs_1_8" name="obs_1_8"
+										readonly></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-totvs panel-heading">Retorno Apoio RFP</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="nomeApoiador">Nome do Apoiador</label>
+							<input class="form-control" type="text" name="nomeApoiador" id="nomeApoiador" readonly>
+						</div>
+						<div class="col-sm-3">
+							<label for="grupoApoiador">Grupo Apoiador</label>
+							<input class="form-control" type="text" name="grupoApoiador" id="grupoApoiador" readonly>
+						</div>
+						<div class="col-sm-3">
+							<label for="produtoApoio">Produto</label>
+							<input class="form-control" type="text" name="produtoApoio" id="produtoApoio" readonly>
+						</div>
+						<div class="col-sm-3">
+							<label for="areaApoio">Área</label>
+							<input class="form-control" type="text" name="areaApoio" id="areaApoio"readonly>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="resposta">Resposta Apoiador</label>
+							<select class="form-control" name="resposta" id="resposta">
+								<option value=""></option>
+								<option value="Solucionar Apoio (Responder)">Solucionar Apoio (Responder)</option>
+								<option value="Mais Informações (Dúvida)">Mais Informações (Dúvida)</option>
+							</select>
+						</div>
+						<div class="col-sm-9">
+							<label for="retorno">Retorno</label>
+							<textarea class="form-control" name="retorno" id="retorno"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary" id="ESN" style="display: none;">
+				<div class="panel-totvs panel-heading">Aprovação ESN</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="aprovacaoESN">Aprovação ESN</label>
+							<select class="form-control" name="aprovacaoESN" id="aprovacaoESN">
+								<option value=""></option>
+								<option value="aprovado">Apoio Aceito (finaliza Solicitação de apoio)</option>
+								<option value="reprovado">Solicitar novo Apoio</option>
+							</select>
+						</div>
+						<div class="col-sm-9">
+							<label for="RepostaESN">Observação ESN:</label>
+							<textarea class="form-control" name="RepostaESN" id="RepostaESN"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+.wcm_login {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: auto;
+}
+
+.wcm_login .login-wrapper {
+	width: auto;
+	height: 32px;
+    margin-top: 0;
+	padding: 0;
+}
+
+.wcm_login .container-login-wrapper,
+.wcm_login .container-image-wrapper {
+	float: left;
+	position: relative;
+}
+
+.wcm_login .login-image-wrapper,
+.wcm_login .login-name-wrapper {
+	height: 32px;
+	float: left;
+	cursor: pointer;
+}
+
+.wcm_login .login-image-wrapper {
+	margin-right: 10px;
+	overflow: hidden;
+	width: 30px;
+}
+
+.wcm_login .login-name-wrapper {
+	padding: 3px 40px 3px 10px;
+	position: relative;
+	font-size: 0.8em;
+}
+
+.wcm_login .bg-menu-header {
+	border: 1px solid #7B7B7B;
+}
+
+.wcm_login .login-image-wrapper img {
+	border: none;
+	max-width: 28px;
+	margin: -3px 0;
+}
+
+.wcm_login .login-name-wrapper span {
+	color: #E8E8E8;
+	display: block;
+	overflow: hidden;
+	text-align: left;
+}
+
+.wcm_login #j_username {
+	padding: 5px 10px 5px 5px;
+	margin: 0px 5px 0px 5px;
+	color: #CCC;
+	height:14px;
+	border:none;
+	outline: none; /*Remove Chrome and Safari glows on focus*/
+}
+
+.wcm_login #j_password {
+	color: #CCC;
+	height:14px;
+	border:none;
+	outline: none; /*Remove Chrome and Safari glows on focus*/
+	margin: 0px 5px 0px 5px;
+	padding: 5px 10px 5px 5px;
+}
+
+/* Menu flutuante */
+.wcm_login .wcm-login-config {
+	display: none;
+	top: 42px;
+	white-space: nowrap;
+	width: auto;
+	z-index: 1;
+}
+
+.wcm_login .wcm-login-config {	
+	right: -1px;
+}
+
+.wcm_login .first {
+	margin-top: 0 !important;
+}
+
+.wcm_login .last {
+	margin-bottom: 0 !important;
+}
+
+.wcm_login .sub-list {
+	margin-left: 8px;
+}
+
+.wcm_login hr,
+.wcm_login .login-list-itens {
+	margin: 6px 0;
+}
+
+.wcm_login a {
+	color: #363636 !important;
+	text-decoration: none; 
+}
+
+.wcm_login .login-config-list-itens {
+	cursor: pointer;
+}
+
+.wcm_login a:hover,
+.wcm_login .login-config-list-itens:hover {
+	text-decoration: underline;
+}
+
+.menu-user-actions:before, .wcm-login-config:before {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 11px;
+	width: 100%;
+	left: 0px !important;
+	top: -12px;
+}
+
+.container-login-wrapper .container-login-arrow {
+	display: block;
+	position: absolute;
+	height: 0;
+	width: 0;
+	border-right: 7px solid #417693;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	left: -7px;
+	top: 2px;
+}
+
+.container-login-wrapper .container-login-config {
+	display: block;
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	background: url(../images/engrenagem_light.png) no-repeat;
+	right: 7px;
+	top: 8px;	
+}
+
+.external-login td {
+	color: white;
+}
+
+.external-login #j_username, .external-login #j_password {
+	color: black;
+	height:  18px;
+}
+
+/* css passo1.ftl */
+
+#passo1-ftl > div > div > div.modal-header{
+    margin-bottom: 15px;
+}
+
+#passo1-ftl > div > div > div.modal-header > h4{
+    font-size: 50px;
+    font-weight: bold !important;
+}
+
+#passo1-ftl > div > div > div.modal-body{
+    height: 80vh;
+}
+
+#passo1-ftl #area-nav-button{
+    display: none;
+}
+
+#passo1-ftl #respostas > table > thead > tr > th > h1{
+    font-weight: bold !important;
+}
+
+#passo1-ftl .table-datatable thead{
+    display: none;
+}

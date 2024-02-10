@@ -1,0 +1,134 @@
+<html>
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="custom.js"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide" id="ativ0">
+		<form name="form" role="form">
+			<input type="hidden" name="atividadeAtual" id="atividadeAtual">
+			<div class="panel panel-primary">
+				<div class="panel-totvs panel-heading">
+					Liberação de Acessos Internos Techfin !
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-4">
+							<label for="solicitante">Solicitante</label>
+							<input type="text" name="solicitante" id="solicitante" class="form-control" readonly>
+						</div>
+						<div class="col-md-4">
+							<label for="solicitante">Usuário que receberá o acesso</label>
+							<input type="zoom" id="nomeUsuario" name="nomeUsuario" class="form-control" data-zoom="{
+						'displayKey':'colleagueName',
+						'datasetId':'colleague',
+						'filterValues':'active,true',
+						'fields':[{
+							'field':'colleagueName',
+							'label':'Nome',
+							'standart':'true'
+						},{
+							'field':'mail',
+							'label':'email',
+							'visible':'false'
+						}]
+					}" />
+						</div>
+						<div class="col-md-4">
+							<label for="email">E-mail do usuário que receberá o acesso</label>
+							<input type="text" name="email" id="email" class="form-control" readonly>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-md-4">
+							<label for="motivo">Motivo</label>
+							<select name="motivo" id="motivo" class="form-control">
+								<option value="">Selecione</option>
+								<option value="inclusao">Inclusão</option>
+								<option value="exclusao">Exclusão</option>
+								<option value="alteracao">Alteração</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<label for="acesso">Opções de Acesso</label>
+							<select name="acesso" id="acesso" class="form-control">
+								<option value="">Selecione</option>
+							</select>
+							<input type="hidden" name="acessoSelected" id="acessoSelected">
+						</div>
+						<div class="col-md-4" id="outrosAcessos" style="display: none;">
+							<label for="outros">Informe o Acesso que deseja</label>
+							<input type="text" name="outros" id="outros" class="form-control">
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-md-12">
+							<label for="justificativa">Justifique ou complemente seu chamado</label>
+							<textarea name="justificativa" id="justificativa" cols="30" rows="5"
+								class="form-control"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary" id="ativ5">
+				<div class="panel-totvs panel-heading">
+					Análise/Aprovação do Gestor
+				</div>
+				<div class="panel-body">
+					<div class="row"><br></div>
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-3 radio-inline">
+							<label>
+								<input type="radio" name="aprovacao" id="aprovacaosim" value="aprovado">
+								Aprovado</label>
+						</div>
+						<div class="col-md-3 radio-inline">
+							<label>
+								<input type="radio" name="aprovacao" id="aprovacaonao" value="reprovado">
+								Não Aprovado
+							</label>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-md-12">
+							<label for="obs">Observação</label>
+							<textarea name="obs" id="obs" cols="30" rows="5" class="form-control"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary" id="ativ12">
+				<div class="panel-totvs panel-heading">
+					Efetuar Devidas Liberações
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-4">
+							<label for="usuarioResponsavel">Usuário responsável pela liberação</label>
+							<input type="text" name="usuarioResponsavel" id="usuarioResponsavel" class="form-control"
+								readonly>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-md-12">
+							<label for="obsExecucao">Descrição da Execução</label>
+							<textarea name="obsExecucao" id="obsExecucao" cols="30" rows="5"
+								class="form-control"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</body>
+
+</html>

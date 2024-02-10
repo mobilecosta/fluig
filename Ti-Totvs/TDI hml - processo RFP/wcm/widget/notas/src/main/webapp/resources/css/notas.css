@@ -1,0 +1,62 @@
+body {
+	overflow: hidden !important;
+}
+
+.wcm-all-content>#wcm-content {
+	background-color: #f0f0f0 !important;
+}
+
+.wcm-all-content .wcm_widget {
+	padding: 0px !important;
+	border-radius: 0px !important;
+	background-color: transparent !important;
+	margin: 0px !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	width: 100% !important;
+}
+
+[appcode=notas] .box-login-parent {
+	display: flex !important;
+	justify-content: center !important;
+}
+
+[appcode=notas] .box-login {
+	padding: 25px !important;
+	border-radius: 5px !important;
+	border: none !important;
+	-webkit-box-shadow: 2px 2px 2px 0px rgb(0 0 0/ 30%) !important;
+	box-shadow: 2px 2px 2x 0px rgb(0 0 0/ 30%) !important;
+	background-color: white !important;
+	width: 400px !important;
+}
+
+[appcode=notas] .login-logo {
+	margin-bottom: 20px !important;
+}
+
+[appcode=notas] img {
+	margin-top: -5px !important;
+}
+
+[appcode=notas] #listaPedidos {
+	overflow-x: auto !important;
+}
+
+[appcode=notas] #cabecalhoPedidos small {
+	color: #919191;
+}
+
+#modalNotas .label-anexo {
+	background-color: #1eaad9 !important;
+	color: white !important;
+	border-radius: 3px !important;
+}
+
+[appcode=notas] #listaPedidos th{
+	text-align: center !important;
+}
+
+[appcode=notas] #listaPedidos th:nth-child(13){
+	text-align: right !important;
+}
