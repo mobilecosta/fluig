@@ -1,0 +1,780 @@
+<html>
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/custom.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery.mask.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/activities.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/moment.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/zoom.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/utils.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/tables.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/approvers.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/custom.js" charset="utf-8"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h1>
+						<b>Pagamento sem PO - 1006 没有申请单的付款</b>
+					</h1>
+				</div>
+			</div>
+			<div class="panel panel-default" id="div-cabecalho">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Cabeçalho 标题</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="cd_solicitacao">Nº solicitação 申请单</label>
+							<input type="text" class="form-control" name="nr_solicitacao" id="nr_solicitacao"
+								readonly />
+						</div>
+						<div class="col-md-2">
+							<label for="dt_solicitacao">Data solicitação 申请日期</label>
+							<input type="text" class="form-control" name="dt_solicitacao" id="dt_solicitacao"
+								readonly />
+						</div>
+						<div class="col-md-4">
+							<label for="nm_requisitante">Requisitante 申请人</label>
+							<input type="text" class="form-control" name="nm_requisitante" id="nm_requisitante"
+								readonly />
+							<input type="hidden" id="cd_requisitante" name="cd_requisitante" />
+							<input type="hidden" name="lg_requisitante" id="lg_requisitante" />
+						</div>
+						<div class="col-md-4">
+							<label for="nm_filial" class="required">Filial 分公司</label>
+							<input type="zoom" class="form-control" id="nm_filial" name="nm_filial" data-zoom="{
+										'displayKey':'CodeAndDescription',
+										'datasetId':'protheus_filiais',
+										'maximumSelectionLength':'1',
+										'fields':[
+													{
+														'field':'Code',
+														'label':'ID',
+														'visible':'false'
+													},
+													{
+														'field':'CodeAndDescription',
+														'label':'Filial',
+														'standard':'true'
+													},
+													{
+														'field':'Description',
+														'label':'Filial',
+														'visible':'false'
+													},
+													{
+														'field':'CompanyCode',
+														'label':'Empresa',
+														'visible':'false'
+													}
+												 ]
+										}" />
+							<input type="hidden" id="cd_filial" name="cd_filial" />
+							<input type="hidden" id="cd_empresa" name="cd_empresa" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-4">
+							<label for="cd_centro_custo" class="required">Centro de custo 成本中心</label>
+							<input type="zoom" class="form-control" id="cd_centro_custo" name="cd_centro_custo"
+								data-zoom="{
+											'displayKey':'CodCC',
+											'datasetId':'protheus_amarracao_cc',
+											'maximumSelectionLength':'1',
+											'fields':[
+														{
+															'field':'CodCC',
+															'label':'C&oacute;digo',
+															'visible':'true'
+														},
+														{
+															'field':'NomeCC',
+															'label':'Centro de custo',
+															'standard':'true'
+														}
+													 ]
+											}" />
+						</div>
+						<div class="col-md-4">
+							<label for="nm_centro_custo">Nome centro de custo 成本中心名称</label>
+							<input type="text" class="form-control" name="nm_centro_custo" id="nm_centro_custo"
+								readonly />
+						</div>
+						<div class="col-md-4">
+							<div class="alert alert-warning" role="alert">
+								<strong>Atenção!</strong> Não esqueceça de adicionar os anexos. 注意 ！不要忘记添加附件
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<label for="ds_descricao" class="required">Descrição 描述</label>
+							<textarea class="form-control" name="ds_descricao" id="ds_descricao" rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="div-fornecedor">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Fornecedor 供应商</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-7">
+							<label for="fornecedor" class="required">Fornecedor 供应商</label>
+							<input type="zoom" class="form-control" id="fornecedor" name="fornecedor" data-zoom="{
+											'displayKey':'COD_CGC_NOM',
+											'datasetId':'protheus_fornecedores',
+											'maximumSelectionLength':'1',
+											'filterValues' : '',	
+											'fields':[
+														{
+															'field':'A2_COD',
+															'label':'C&oacute;digo',
+															'visible':'false'
+														},
+														{
+															'field':'COD_CGC_NOM',
+															'label':'Fornecedor',
+															'standard':'true'
+														},
+														{
+															'field':'A2_NREDUZ',
+															'label':'Nome reduzido',
+															'visible':'false'
+														},
+														{
+															'field':'A2_LOJA',
+															'label':'Loja',
+															'visible':'false'
+														},
+														{
+															'field':'A2_CGC',
+															'label':'CGC',
+															'visible':'false'
+														},
+														{
+															'field':'A2_BANCO',
+															'label':'Fornecedor',
+															'standard':'true'
+														},
+														{
+															'field':'A2_AGENCIA',
+															'label':'Fornecedor',
+															'standard':'true'
+														},
+														{
+															'field':'A2_DVAGE',
+															'label':'Fornecedor',
+															'standard':'true'
+														},
+														{
+															'field':'A2_NUMCON',
+															'label':'Fornecedor',
+															'standard':'true'
+														},
+														{
+															'field':'A2_DVCTA',
+															'label':'Fornecedor',
+															'standard':'true'
+														}
+													 ]
+											}" />
+							<input type="hidden" id="cd_fornecedor" name="cd_fornecedor" />
+							<input type="hidden" id="loja_fornecedor" name="loja_fornecedor" />
+							<input type="hidden" id="cgc_fornecedor" name="cgc_fornecedor" />
+						</div>
+						<div class="col-md-4" style="display:none">
+							<label for="nm_razao_social">Razão social 公司名称</label>
+							<input type="text" class="form-control" name="nm_razao_social" id="nm_razao_social"
+								readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="sl_forma_pagamento" class="required">Forma de pagamento 付款方式</label>
+							<select class="form-control" name="sl_forma_pagamento" id="sl_forma_pagamento">
+								<option value=""></option>
+								<option value="boleto">Boleto</option>
+								<option value="cartao_credito">Cartão de crédito</option>
+								<option value="compensar">Compensar</option>
+								<option value="dinheiro">Dinheiro</option>
+								<option value="ted">TED</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-2">
+									<label for="nm_banco">Banco 银行</label>
+									<input type="text" class="form-control" name="nm_banco" id="nm_banco" readonly />
+								</div>
+								<div class="col-md-2">
+									<label for="cd_agencia">Agência 银行支行</label>
+									<input type="text" class="form-control" name="cd_agencia" id="cd_agencia"
+										readonly />
+								</div>
+								<div class="col-md-3">
+									<label for="cd_conta">Conta 账号</label>
+									<input type="text" class="form-control" name="cd_conta" id="cd_conta" readonly />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<label for="ds_outras_informacoes">Outras informações 其它信息</label>
+							<textarea class="form-control" name="ds_outras_informacoes" id="ds_outras_informacoes"
+								rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="div-dados-operacao">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Dados da operação 运行数据</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-3">
+							<div class="custom-checkbox custom-checkbox-primary">
+								<input type="checkbox" id="ck_rateio" name="ck_rateio" />
+								<label for="ck_rateio">Rateio?</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table border="0" class="table table-striped table-condensed table-bordered"
+									tablename="tb_produtos" id="tb_produtos" nodeletebutton="true" noaddbutton="true">
+									<thead>
+										<tr>
+											<td class="col-xs-1 tb-col-1"></td>
+											<td class="col-xs-4 tb-col-4"><b>Produto 产品</b></td>
+											<td class="col-xs-3 tb-col-3"><b>Nome produto 产品名称</b></td>
+											<td class="col-xs-2 tb-col-2"><b>Conta contábil 会计账号</b></td>
+											<td class="col-xs-3 tb-col-3"><b>Descrição da conta 账号描述</b></td>
+											<td class="col-xs-2 tb-col-2"><b>Valor 金额</b></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<span class="fluig-style-guide fs-display-block fs-md-space">
+													<i class="fluigicon fluigicon-trash fluigicon-md no-view"
+														onclick="Javascript:TABLES.customDeleteProduct(this);TABLES.setTableOrderAndPaymentStatus('tb_produtos','nr_produto');MAIN.setTotalValue();"
+														style="cursor:pointer"></i>
+												</span>
+											</td>
+											<td>
+												<input type="zoom" class="form-control" id="cd_produto"
+													name="cd_produto" data-zoom="{
+								                                    'displayKey':'B1_COD_NOM',
+								                                    'datasetId':'protheus_produtos',
+								                                    'maximumSelectionLength':'1',
+								                                    'filterValues' : '',	
+								                                    'fields':[								                                    			
+											                                    {
+												                                    'field':'B1_COD',
+												                                    'label':'C&oacute;digo'
+											                                    },
+											                                    {
+												                                    'field':'B1_DESC',
+												                                    'label':'Descrição'
+											                                    },
+											                                    {
+												                                    'field':'B1_CONTA',
+												                                    'label':'Cta cont&aacute;bil'
+											                                    }
+							                                    			 ]
+								                                    }" />
+												<input type="hidden" id="nr_produto" name="nr_produto" />
+											</td>
+											<td>
+												<input type="text" class="form-control" name="nm_produto"
+													id="nm_produto" readonly />
+											</td>
+											<td>
+												<input type="zoom" class="form-control" id="cd_conta_contabil"
+													name="cd_conta_contabil" data-zoom="{
+															'displayKey':'CodCT',
+															'datasetId':'protheus_amarracao_cc_conta',
+															'maximumSelectionLength':'1',
+															'fields':[
+																		{
+																			'field':'CodCT',
+																			'label':'Conta'
+																		},
+																		{
+																			'field':'NomeCT',
+																			'label':'Descrição',
+																			'standard':'true'
+																		}
+																	 ]
+															}" />
+											</td>
+											<td>
+												<input type="text" class="form-control" name="nm_conta_contabil"
+													id="nm_conta_contabil" readonly />
+											</td>
+											<td>
+												<input type="text" class="form-control money number vl_produto"
+													name="vl_produto" id="vl_produto">
+												<input type="hidden" id="nm_situacao_budget_cc"
+													name="nm_situacao_budget_cc" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<button class="btn btn-primary no-view" id="btn_add_produto">Adicionar produto 添加产品</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<table border="0" class="table table-striped table-condensed table-bordered"
+								tablename="tb_parcelas" id="tb_parcelas" nodeletebutton="true" noaddbutton="true">
+								<thead>
+									<tr>
+										<td class="col-xs-1 tb-col-1"></td>
+										<td class="col-xs-2"><b>Parcela 分期付款</b></td>
+										<td class="col-xs-3"><b>Valor 金额</b></td>
+										<td class="col-xs-3"><b>Data de vencimento 到期日</b></td>
+										<td class="col-xs-3"><b>Pago? 支付了吗 ?</b></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<span class="fluig-style-guide fs-display-block fs-md-space">
+												<i class="fluigicon fluigicon-trash fluigicon-md no-view"
+													onclick="Javascript:fnWdkRemoveChild(this);TABLES.setTableOrderAndPaymentStatus('tb_parcelas','nr_parcela','sim');MAIN.validateInstallmentsDates();"
+													style="cursor:pointer"></i>
+											</span>
+										</td>
+										<td>
+											<input type="text" class="form-control number" name="nr_parcela"
+												id="nr_parcela" readonly />
+											<input type="hidden" id="nm_pago" name="nm_pago" />
+										</td>
+										<td>
+											<input type="text" class="form-control money number vl_parcela"
+												name="vl_parcela" id="vl_parcela" autocomplete="off" />
+										</td>
+										<td>
+											<input type="text" id="dt_parcela" name="dt_parcela"
+												class="form-control campo-data" mask="00/00/0000" maxlength="10"
+												autocomplete="off" />
+										</td>
+										<td>
+											<div class="radio">
+												<label>
+													<input name="rd_pago" id="rd_pago_sim" value="Sim" type="radio">
+													<span class="">Sim 是的</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input name="rd_pago" id="rd_pago_nao" value="Não" type="radio">
+													<span class="">Não 还没</span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-md-3">
+							<button class="btn btn-primary no-view" id="btn_add_parcela">Adicionar parcela 添加分期</button>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="Valortotal_137">Valor líquido 金额</label>
+							<input type="text" class="form-control number" name="vl_total" id="vl_total" readonly />
+							<input type="hidden" name="vl_total_anterior" id="vl_total_anterior" readonly />
+						</div>
+						<div class="col-md-4">
+							<label for="dt_pagamento">Data de pagamento 第一期付款日期</label>
+							<input type="text" class="form-control" name="dt_pagamento" id="dt_pagamento"
+								mask="00/00/0000" readonly />
+							<input type="hidden" id="dt_pagamento_iso" name="dt_pagamento_iso" />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_situacao_budget">Situação budget 预算状态</label>
+							<input type="text" class="form-control" name="nm_situacao_budget" id="nm_situacao_budget"
+								readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_politica_antecedencia">Política de antecedência 提前保单</label>
+							<input type="text" class="form-control" name="nm_politica_antecedencia"
+								id="nm_politica_antecedencia" readonly />
+						</div>
+					</div>
+
+					<div class="form-group row">
+
+						<div class="col-md-2">
+							<label for="vl_total_bruto" class="required">Valor bruto 总额</label>
+							<input type="text" class="form-control money" name="vl_total_bruto" id="vl_total_bruto" />
+						</div>
+
+					</div>
+
+
+
+
+					<div class="form-group row" id="div-politica-antecedencia" style="display:none">
+						<div class="col-md-12">
+							<label for="ds_justificativa_politica" class="required">Justificativa - política de
+								antecedência 理由 - 提前保单政策</label>
+							<textarea class="form-control" name="ds_justificativa_politica"
+								id="ds_justificativa_politica" rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="div-lancar-nota-fiscal">
+				<div class="panel-heading">
+					<h3 class="panel-title"><b>Lançar nota fiscal 输入发票</b></h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row row-default">
+						<div class="col-md-3">
+							<label for="dt_lancar_nota">Data 日期</label>
+							<input type="text" class="form-control" name="dt_lancar_nota" id="dt_lancar_nota"
+								mask="00/00/0000" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_executor_lancar_nota">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_executor_lancar_nota"
+								id="nm_executor_lancar_nota" readonly />
+							<input type="hidden" id="cd_executor_lancar_nota" name="cd_executor_lancar_nota" />
+						</div>
+						<div class="col-md-2">
+							<label class="required">Lançado? 输入了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input name="rd_lancado" id="rd_lancado_sim" value="Sim" type="radio">
+									<span class="">Sim 是的</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input name="rd_lancado" id="rd_lancado_nao" value="Não" type="radio">
+									<span class="">Não 还没</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_lancar_nota">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_lancar_nota" id="ds_obs_lancar_nota"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="div-aprovacoes">
+				<div class="panel-heading ">
+					<h3 class="panel-title"><b>Aprovações 批准</b></h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row row-default">
+						<div class="col-md-3 input-default">
+							<label for="nm_funcao_1">Função 职位</label>
+							<input type="text" class="form-control" name="nm_funcao_1" id="nm_funcao_1" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_gerente_area">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_gerente_area" id="nm_gerente_area"
+								readonly />
+							<input type="hidden" id="cd_gerente_area" name="cd_gerente_area" />
+						</div>
+						<div class="col-md-2">
+							<input type="hidden" id="aux_aprov_gerente_area" name="aux_aprov_gerente_area" />
+							<label class="required">Aprovado? 批准了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_gerente_area"
+										data-aux-id="aux_aprov_gerente_area" name="rd_aprov_gerente_area"
+										id="rd_aprov_gerente_area_sim" value="Aprovado" type="radio">
+									<span class="">Aprovado 批准了</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_gerente_area"
+										data-aux-id="aux_aprov_gerente_area" name="rd_aprov_gerente_area"
+										id="rd_aprov_gerente_area_nao" value="Reprovado" type="radio">
+									<span class="">Reprovado 未获批准</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_gerente_area">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_gerente_area"
+								id="ds_obs_gerente_area"></textarea>
+						</div>
+					</div>
+					<div class="form-group row row-default">
+						<div class="col-md-3 input-default">
+							<label for="nm_funcao_2">Função 职位</label>
+							<input type="text" class="form-control" name="nm_funcao_2" id="nm_funcao_2" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_diretor_area">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_diretor_area" id="nm_diretor_area"
+								readonly />
+							<input type="hidden" id="cd_diretor_area" name="cd_diretor_area" />
+						</div>
+						<div class="col-md-2">
+							<input type="hidden" id="aux_aprov_diretor_area" name="aux_aprov_diretor_area" />
+							<label class="required">Aprovado? 批准了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_diretor_area"
+										data-aux-id="aux_aprov_diretor_area" name="rd_aprov_diretor_area"
+										id="rd_aprov_diretor_area_sim" value="Aprovado" type="radio">
+									<span class="">Aprovado 批准了</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_diretor_area"
+										data-aux-id="aux_aprov_diretor_area" name="rd_aprov_diretor_area"
+										id="rd_aprov_diretor_area_nao" value="Reprovado" type="radio">
+									<span class="">Reprovado 未获批准</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_diretor_area">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_diretor_area"
+								id="ds_obs_diretor_area"></textarea>
+						</div>
+					</div>
+					<div class="form-group row row-default">
+						<div class="col-md-3 input-default">
+							<label for="nm_funcao_3">Função 职位</label>
+							<input type="text" class="form-control" name="nm_funcao_3" id="nm_funcao_3" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_controladoria">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_controladoria" id="nm_controladoria"
+								readonly />
+							<input type="hidden" id="cd_controladoria" name="cd_controladoria" />
+						</div>
+						<div class="col-md-2">
+							<input type="hidden" id="aux_aprov_controladoria" name="aux_aprov_controladoria" />
+							<label class="required">Aprovado? 批准了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_controladoria"
+										data-aux-id="aux_aprov_controladoria" name="rd_aprov_controladoria"
+										id="rd_aprov_controladoria_sim" value="Aprovado" type="radio">
+									<span class="">Aprovado 批准了</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_controladoria"
+										data-aux-id="aux_aprov_controladoria" name="rd_aprov_controladoria"
+										id="rd_aprov_controladoria_nao" value="Reprovado" type="radio">
+									<span class="">Reprovado 未获批准</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_controladoria">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_controladoria"
+								id="ds_obs_controladoria"></textarea>
+						</div>
+					</div>
+					<div class="form-group row row-default">
+						<div class="col-md-3 input-default">
+							<label for="nm_funcao_4">Função 职位</label>
+							<input type="text" class="form-control" name="nm_funcao_4" id="nm_funcao_4" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_diretor_geral">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_diretor_geral"
+								id="nm_diretor_geral" readonly />
+							<input type="hidden" id="cd_diretor_geral" name="cd_diretor_geral" />
+						</div>
+						<div class="col-md-2">
+							<input type="hidden" id="aux_aprov_diretor_geral"
+								name="aux_aprov_diretor_geral" />
+							<label class="required">Aprovado? 批准了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_diretor_geral"
+										data-aux-id="aux_aprov_diretor_geral" name="rd_aprov_diretor_geral"
+										id="rd_aprov_diretor_geral_sim" value="Aprovado" type="radio">
+									<span class="">Aprovado 批准了</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_diretor_geral"
+										data-aux-id="aux_aprov_diretor_geral" name="rd_aprov_diretor_geral"
+										id="rd_aprov_diretor_geral_nao" value="Reprovado" type="radio">
+									<span class="">Reprovado 未获批准</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_diretor_geral">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_diretor_geral"
+								id="ds_obs_diretor_geral"></textarea>
+						</div>
+					</div>
+					<!-- <div class="form-group row row-default">
+						<div class="col-md-3 input-default">
+							<label for="nm_funcao_5">Função 职位</label>
+							<input type="text" class="form-control" name="nm_funcao_5" id="nm_funcao_5" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_diretor_financeiro">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_diretor_financeiro"
+								id="nm_diretor_financeiro" readonly />
+							<input type="hidden" id="cd_diretor_financeiro" name="cd_diretor_financeiro" />
+						</div>
+						<div class="col-md-2">
+							<input type="hidden" id="aux_aprov_diretor_financeiro"
+								name="aux_aprov_diretor_financeiro" />
+							<label class="required">Aprovado? 批准了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_diretor_financeiro"
+										data-aux-id="aux_aprov_diretor_financeiro" name="rd_aprov_diretor_financeiro"
+										id="rd_aprov_diretor_financeiro_sim" value="Aprovado" type="radio">
+									<span class="">Aprovado 批准了</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_diretor_financeiro"
+										data-aux-id="aux_aprov_diretor_financeiro" name="rd_aprov_diretor_financeiro"
+										id="rd_aprov_diretor_financeiro_nao" value="Reprovado" type="radio">
+									<span class="">Reprovado 未获批准</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_diretor_financeiro">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_diretor_financeiro"
+								id="ds_obs_diretor_financeiro"></textarea>
+						</div>
+					</div> -->
+					<div class="form-group row row-default">
+						<div class="col-md-3 input-default">
+							<label for="nm_funcao_6">Função 职位</label>
+							<input type="text" class="form-control" name="nm_funcao_6" id="nm_funcao_6" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_presidencia">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_presidencia" id="nm_presidencia"
+								readonly />
+							<input type="hidden" id="cd_presidencia" name="cd_presidencia" />
+						</div>
+						<div class="col-md-2">
+							<input type="hidden" id="aux_aprov_presidencia" name="aux_aprov_presidencia" />
+							<label class="required">Aprovado? 批准了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_presidencia"
+										data-aux-id="aux_aprov_presidencia" name="rd_aprov_presidencia"
+										id="rd_aprov_presidencia_sim" value="Aprovado" type="radio">
+									<span class="">Aprovado 批准了</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_presidencia"
+										data-aux-id="aux_aprov_presidencia" name="rd_aprov_presidencia"
+										id="rd_aprov_presidencia_nao" value="Reprovado" type="radio">
+									<span class="">Reprovado 未获批准</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_presidencia">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_presidencia" id="ds_obs_presidencia"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="panel panel-default" id="div-conferencia-financeiro">
+				<div class="panel-heading">
+					<h3 class="panel-title"><b>Conferência Financeiro 财务确认</b></h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row row-default">
+						<div class="col-md-3">
+							<label for="dt_aprov_financeiro">Data 日期</label>
+							<input type="text" class="form-control" name="dt_aprov_financeiro" id="dt_aprov_financeiro"
+								mask="00/00/0000" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="nm_executor_conf_financ">Nome 名字</label>
+							<input type="text" class="form-control" name="nm_executor_conf_financ"
+								id="nm_executor_conf_financ" readonly />
+							<input type="hidden" id="cd_executor_conf_financ" name="cd_executor_conf_financ" />
+						</div>
+						<div class="col-md-2">
+							<label class="required">Aprovado? 批准了吗 ?</label>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_aprov_financeiro"
+										name="rd_aprov_financeiro" id="rd_aprov_financeiro_sim" value="Aprovado"
+										type="radio">
+									<span class="">Aprovado 批准了</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input class="aprovacao" data-obs-id="ds_obs_aprov_financeiro"
+										name="rd_aprov_financeiro" id="rd_aprov_financeiro_nao" value="Reprovado"
+										type="radio">
+									<span class="">Reprovado 未获批准</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label for="ds_obs_aprov_financeiro">Observações 备注</label>
+							<textarea class="form-control" name="ds_obs_aprov_financeiro"
+								id="ds_obs_aprov_financeiro"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+		</form>
+	</div>
+</body>
+
+</html>

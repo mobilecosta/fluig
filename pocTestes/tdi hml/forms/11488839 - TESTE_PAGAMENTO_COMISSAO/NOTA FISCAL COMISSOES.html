@@ -1,0 +1,203 @@
+<html>
+	<head>
+		<title>Envio de Notas fiscais para pagamento de Comissão</title>
+		
+		<link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide.min.css">
+		<script src="/portal/resources/js/jquery/jquery.js"></script>
+		<script src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+		<script src="/portal/resources/js/mustache/mustache-min.js"></script>
+		<script src="/portal/resources/style-guide/js/fluig-style-guide.min.js"></script>
+		
+		<script src="/totvs/js/totvs-tdi-3.0.js"></script>
+		
+		<script type="text/javascript" src="custom.js"></script>
+
+		<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+		<script type="text/javascript" src="activities.js"></script>
+		
+	</head>
+
+	<body class="fluig-style-guide"> 
+		<form class="form-horizontal" role="form">
+		
+		<input type="hidden" name="identificador"/>
+		<input type="hidden" name="acesso"/>
+		<input type="hidden" name="localizacao"/>
+		<input type="hidden" name="solicitacao"/>
+				
+			<div class="panel panel-default" id="panelDadosNotaFiscal" style="display: none;">
+				<div class="panel-totvs panel-heading">DADOS DA NOTA FISCAL</div>
+				<div class="panel-body">
+					<div class="form-group" id="groupIdCanal">
+						<label for="idCanal" class="col-sm-3 control-label">C&oacute;digo do Canal:</label>
+						<div class="col-sm-2">
+				            <input type="text" id="idCanal" name="idCanal" class="form-control" readonly />
+				        </div>
+					</div>
+					<div class="form-group">
+						<label for="idFornecedor_nome" class="col-sm-3 control-label">Nome do Canal:</label>
+						<div class="col-sm-5">
+					    	<input type="text"  id="idFornecedor_nome" name="idFornecedor_nome" class="form-control" readonly/>
+				        </div>
+					</div>					
+						<div class="form-group">
+						<label for="idAGN" class="col-sm-3 control-label">AGN:</label>
+						<div class="col-sm-2">
+					    	<input type="text" id="idAGN" name="idAGN" class="form-control" readonly/>
+				        </div>
+					</div>						
+					
+					<div class="form-group">
+						<label for="idRazao" class="col-sm-3 control-label">Raz&atilde;o Social:</label>
+						<div class="col-sm-5">
+				            <input type="text" id="idRazao" name="idRazao" class="form-control" readonly />
+				        </div>
+					</div>
+					<div class="form-group">
+						<label for="idCNPJ_canal" class="col-sm-3 control-label">CNPJ Canal:</label>
+						<div class="col-sm-2">
+				            <input type="text" id="idCNPJ_canal" name="idCNPJ_canal" class="form-control" data-type="cnpj" readonly />
+				        </div>
+					</div>
+
+
+
+									
+
+					<div class="form-group">
+						<label for="idFILIAL_TOTVS" class="col-sm-3 control-label">Filial TOTVS:</label>
+						<div class="col-sm-2">
+					    	<input type="text" id="idFILIAL_TOTVS" name="idFILIAL_TOTVS" class="form-control" readonly/>
+				        </div>
+					</div>						
+					
+					
+					<div class="form-group">
+						<label for="idNome_FILIAL_TOTVS" class="col-sm-3 control-label">Descric&atilde;o Filial TOTVS:</label>
+						<div class="col-sm-5">
+				     		<input type="text" id="idNome_FILIAL_TOTVS" name="idNome_FILIAL_TOTVS" class="form-control" readonly/>
+				        </div>
+					</div>	
+										
+					<div class="form-group">
+						<label for="idCNPJ_TOTVS" class="col-sm-3 control-label">CNPJ TOTVS:</label>
+						<div class="col-sm-2">
+					    	<input type="text" id="idCNPJ_TOTVS" name="idCNPJ_TOTVS" class="form-control" data-type="cnpj" readonly/>
+				        </div>
+					</div>		
+										
+					
+						
+					
+					<div class="form-group">
+						<label for="idCompetencia" class="col-sm-3 control-label">Competencia do fechamento:</label>
+						<div class="col-sm-2">
+					    	<input type="text" id="idCompetencia" name="idCompetencia" class="form-control" readonly/>
+					    	
+				        </div>
+					</div>							
+					
+					
+					<div class="form-group">
+						<label for="idCodigo_fornecedor" class="col-sm-3 control-label">Codigo Fornecedor:</label>
+						<div class="col-sm-2">
+				       		<input type="text" id="idCodigo_fornecedor" name="idCodigo_fornecedor" class="form-control" readonly/>
+				        </div>
+					</div>						
+					<div class="form-group">
+						<label for="idPedido" class="col-sm-3 control-label">Pedido:</label>
+						<div class="col-sm-2">
+					    	<input type="text" id="idPedido" name="idPedido" class="form-control" readonly/>
+				        </div>
+					</div>					
+					
+					<div class="form-group">
+						<label for="idValor" class="col-sm-3 control-label">Valor do pedido:</label>
+						<div class="col-sm-2">
+					    	<input type="text" id="idValor" name="idValor" class="form-control"  readonly/>
+				        </div>
+					</div>						
+
+
+					<div class="form-group">
+						<label for="idObs" class="col-sm-3 control-label">Observa&ccedil;&atilde;o:</label>
+						<div class="col-sm-5">
+					    	<textarea id="idObs" name="idObs" class="form-control" class="form-control" rows="3" readonly></textarea>
+				        </div>
+					</div>						
+					
+				</div>
+			</div>	
+
+			<div class="panel panel-default" id="panelAprovContasPagar" style="display: none;">
+				<div class="panel-totvs panel-heading">APROVA&Ccedil;&Atilde;O CONTAS A PAGAR</div>
+				<div class="panel-body">
+					<div class="form-group">
+					<label for="ObsContasPagar" class="col-sm-3 control-label">Observa&ccedil;&atilde;o Contas a Pagar:</label>
+						<div class="col-sm-5">
+					    	<textarea id="ObsContasPagar" name="ObsContasPagar" class="form-control" class="form-control" rows="3"></textarea>
+				        </div>
+					</div>
+					<div class="form-group">
+						<label for="idAprovado" class="col-sm-3 control-label">Aprovado?</label>
+						<div class="col-sm-2">
+				            <select class="form-control" name="idAprovado" id="idAprovado" >
+								<option value="Selecione!" selected="selected">Selecione!</option>
+								<option value="1">Aprovado</option>
+								<option value="2">Revisar</option>
+							</select>
+				        </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default" id="panelAprovFiscal" style="display: none;">
+				<div class="panel-totvs panel-heading">APROVA&Ccedil;&Atilde;O FISCAL</div>
+				<div class="panel-body">
+					<div class="form-group">
+					<label for="ObsFiscal" class="col-sm-3 control-label">Observa&ccedil;&atilde;o Fiscal:</label>
+						<div class="col-sm-5">
+					    	<textarea id="ObsFiscal" name="ObsFiscal" class="form-control" class="form-control" rows="3"></textarea>
+				        </div>
+					</div>
+					<div class="form-group">
+						<label for="idAprovadorFiscal" class="col-sm-3 control-label">Aprovado?</label>
+						<div class="col-sm-2">
+				            <select class="form-control" name="idAprovadorFiscal" id="idAprovadorFiscal" >
+								<option value="Selecione!" selected="selected">Selecione!</option>
+								<option value="1">Aprovado</option>
+								<option value="2">Revisar</option>
+							</select>
+				        </div>
+					</div>
+				</div>
+			</div>	
+			
+			<div class="panel panel-default" id="panelAprovPagamento" style="display: none;">
+				<div class="panel-totvs panel-heading">APROVA&Ccedil;&Atilde;O PAGAMENTO</div>
+				<div class="panel-body">
+					<div class="form-group">
+					<label for="DataPagamento" class="col-sm-3 control-label">Data Pagamento:</label>
+						<div class="col-sm-2">
+					    	<input type="date" id="DataPagamento" name="DataPagamento" class="form-control" />
+				        </div>
+					</div>
+					<div class="form-group">
+						<label for="idAprovadoPagamento" class="col-sm-3 control-label">Aprovado?</label>
+						<div class="col-sm-2">
+				            <select class="form-control" name="idAprovadoPagamento" id="idAprovadoPagamento">
+								<option value="Selecione!" selected="selected">Selecione!</option>
+								<option value="1">Aprovado</option>
+								<option value="2">Revisar</option>
+							</select>
+				        </div>
+					</div>
+				
+				
+				
+
+				</div>
+			</div>			
+		</form>
+	</body>
+</html>

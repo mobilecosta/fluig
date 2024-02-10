@@ -1,0 +1,117 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<link type="text/css" rel="stylesheet" href="custom.css"/>
+	<script type="text/javascript" src="custom.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<input type="hidden" name="descritor" id="descritor" />
+	
+	<div class="panel panel-default" id="pnl_cabecalho">
+		<div class="panel-body">
+			<h1>
+				<b>Temporalidade por assunto</b>
+			</h1>
+		</div>
+	</div>
+	<div class="panel panel-primary" id="pnl_dados">
+		<div class="panel-heading ">
+			<h3 class="panel-title">
+				<b>Configura&ccedil;&atilde;o</b>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="form-group row">
+				<div class="col-md-6">
+					<label for="assunto" class="required">Assunto</label>
+					<input type="hidden" name="cd_assunto" id="cd_assunto" />
+					<input type="zoom" id="nm_assunto" name="nm_assunto" data-zoom="{
+			        	'displayKey':'description',
+			        	'datasetId':'ds_consultaAssunto',
+			        	'placeholder':'Escolha o assunto',
+			       		'fields':[
+			       			{
+			        			'field':'topicId',
+			     				'label':'Código'
+							}, {
+			        			'field':'description',
+			     				'label':'Assunto'
+							}
+						]
+			    	}" />
+				</div>
+				<div class="col-md-4">		
+					<label class="required">H&aacute; centraliza&ccedil;&atilde;o na matriz da coligada?
+						<i class="flaticon flaticon-question icon-sm"
+							data-toggle="tooltip" data-placement="top" 
+							title="Em conjunto com o assunto do documento, determina se a publicação deve ocorrer apenas na matriz da coligada."></i>
+					</label>
+					<div class="radio">
+						<label>
+							<input name="centraliza_matriz" id="centraliza_sim" value="sim" type="radio" />
+							<span class="">Sim</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label>			
+							<input name="centraliza_matriz" id="centraliza_nao" value="nao" type="radio" checked/>
+							<span class="">N&atilde;o</span>
+						</label>
+					</div>
+				</div>
+				<div class="col-md-2 fs-no-padding-left fs-no-padding-right">
+					<label for="tamanho_minimo">Tamanho m&iacute;nimo (kb)
+						<i class="flaticon flaticon-question icon-sm"
+							data-toggle="tooltip" data-placement="top" 
+							title="O tamanho do arquivo que será publicado deverá ser igual ou superior a quantidade de kbytes informadas nesse campo"></i>
+					</label>
+					<input type="text" class="form-control" name="tamanho_minimo" id="tamanho_minimo" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-md-2">
+					<label for="validade" class="required">Validade (em anos)</label>
+					<input type="text" class="form-control" name="validade" id="validade" />
+				</div>
+				<div class="col-md-2">
+					<label for="validade" class="required">Expira&ccedil;&atilde;o (em dias)</label>
+					<input type="text" class="form-control" name="prazo_expiracao" id="prazo_expiracao" />
+				</div>
+				<div class="col-md-2">
+					<label for="periodicidade" class="required">Periodicidade</label>
+					<select class="form-control" name="periodicidade" id="periodicidade">
+						<option value=""></option>
+						<option value="sobdemanda">Sob demanda</option>
+						<option value="diario">Diário</option>
+						<option value="semanal">Semanal</option>
+						<option value="quinzenal">Quinzenal</option>
+						<option value="mensal">Mensal</option>
+						<option value="semestral">Semestral</option>
+						<option value="anual">Anual</option>
+						<option value="mensalAvulso">Mensal Avulso</option>
+					</select>
+				</div>
+				<div class="col-md-2">
+					<label for="quando">Quando
+						<i class="flaticon flaticon-question icon-sm"
+							data-toggle="tooltip" data-placement="top" 
+							title="O sistema observará os dias úteis, conforme expediente padrão e feriados globais, considerando sempre 1 dia a menos até encontrar o dia útil."></i>
+					</label>
+					<input type="text" class="form-control" name="quando" id="quando" readonly />
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>
+</div>
+</body>
+</html>

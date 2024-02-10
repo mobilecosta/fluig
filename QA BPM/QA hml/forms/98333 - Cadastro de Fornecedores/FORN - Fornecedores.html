@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornecedores</title>
+<!--<script type='text/javascript' src="/webdesk/vcXMLRPC.js"></script>-->
+<script type="text/javascript" src="/webdesk/vcXMLRPC.js" charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css" />
+<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="FORN - Fornecedores.js"></script>
+<script type="text/javascript" src="gd_lib.js"></script>
+<script type="text/javascript" src="jquery-csv.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<div class="fluig-style-guide">
+		<form method="Post" id="formFornecedores" name="formFornecedores" role="form">
+			<input type="hidden" class="form-control input-sm" id="nomeCadastro" name="nomeCadastro" value="Fornecedores" />
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2 col-sm-12 text-center">
+						<img src="logo.png" width="200px" style="margin-top: 20px;">
+					</div>
+					<div class="col-md-10 col-sm-12">
+						<h1 class="text-center">Cadastro de Fornecedores</h1>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="panel panel-default panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Fornecedores</h3>
+				</div>
+				<div class="row">
+					<div class="botaoCarregar">
+						<div class="fileUpload btn btn-primary">
+							<span>Carregar</span>
+							<input id="uploadBtn" name="uploadBtn" type="file" class="upload botaoCarregar" accept=".csv" />
+						</div>
+					</div>
+					<div class="col-md-2 hidden">
+						<input class="btn btn-info" type="button" value="Incluir" onclick="addRow()" />
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table tablename="Fornecedores" class="table Fornecedores" noaddbutton="false">
+							<!--
+						<colgroup>
+							<col style="width: 10%">
+							<col style="width: 15%">
+							<col style="width: 10%">
+							<col style="width: 15%">
+							<col style="width: 10%">								
+							<col style="width: 10%">								
+							<col style="width: 10%">								
+							<col style="width: 10%">								
+							<col style="width: 10%">
+						</colgroup> -->
+							<tr>
+								<th>Código</th>
+								<th>Razão Social</th>
+								<th>CNPJ</th>
+								<th>E-mail</th>
+								<th>Telefone</th>
+								<th>Endereço</th>
+								<th>Bairro</th>
+								<th>Municipio</th>
+								<th>UF</th>
+								<th>Observação</th>
+							</tr>
+							<tr>
+								<td>
+									<input type="text" class="form-control nm_codFornecedor obrigSolicitante" id="nm_codFornecedor" name="nm_codFornecedor">
+								</td>
+								<td>
+									<textarea class="form-control obrigSolicitante" id="nm_razaoSocial" name="nm_razaoSocial" rows="2"></textarea>
+								</td>
+								<td>
+									<input type="text" class="form-control nm_cnpj obrigSolicitante" id="nm_cnpj" name="nm_cnpj" onkeyup="formataCNPJ(this,event)">
+								</td>
+								<td>
+									<input type="text" class="form-control obrigSolicitante" id="nm_email" name="nm_email">
+								</td>
+								<td>
+									<input type="text" class="form-control obrigSolicitante" id="nm_telefone" name="nm_telefone">
+								</td>
+								<td>
+									<textarea class="form-control obrigSolicitante" id="nm_endereco" name="nm_endereco" rows="2"></textarea>
+								</td>
+								<td>
+									<textarea class="form-control obrigSolicitante" id="nm_bairro" name="nm_bairro" rows="2"></textarea>
+								</td>
+								<td>
+									<input type="text" class="form-control obrigSolicitante" id="nm_municipio" name="nm_municipio">
+								</td>
+								<td>
+									<select class="form-control obrigSolicitante" id="cb_uf" name="cb_uf">
+										<option selected value="">Selecione</option>
+										<option value="AC">AC</option>
+										<option value="AL">AL</option>
+										<option value="AP">AP</option>
+										<option value="AM">AM</option>
+										<option value="BA">BA</option>
+										<option value="CE">CE</option>
+										<option value="DF">DF</option>
+										<option value="ES">ES</option>
+										<option value="GO">GO</option>
+										<option value="MA">MA</option>
+										<option value="MT">MT</option>
+										<option value="MS">MS</option>
+										<option value="MG">MG</option>
+										<option value="PA">PA</option>
+										<option value="PB">PB</option>
+										<option value="PR">PR</option>
+										<option value="PE">PE</option>
+										<option value="PI">PI</option>
+										<option value="RJ">RJ</option>
+										<option value="RN">RN</option>
+										<option value="RS">RS</option>
+										<option value="RO">RO</option>
+										<option value="RR">RR</option>
+										<option value="SC">SC</option>
+										<option value="SP">SP</option>
+										<option value="SE">SE</option>
+										<option value="TO">TO</option>
+									</select>
+								</td>
+								<td>
+									<textarea class="form-control" id="nm_obs" name="nm_obs" rows="2"></textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

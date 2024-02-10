@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.7.0.v201706222054</property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[importPackage(Packages.com.datasul.technology.webdesk.dataset.service);
+importPackage(Packages.com.datasul.technology.webdesk.dataset);
+importPackage(Packages.com.datasul.technology.webdesk.search.controller);
+importPackage(Packages.java.util);
+var count = 0;
+var dataset = null;]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="Name" id="9">
+            <text-property name="promptText">Matrícula do Usuário ou "*" para mostrar todos</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="paramEnable" id="10">
+            <text-property name="promptText">Mostrar usuários</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">*</property>
+                    <property name="label">Todos</property>
+                </structure>
+                <structure>
+                    <property name="value">true</property>
+                    <property name="label">Ativos</property>
+                </structure>
+                <structure>
+                    <property name="value">false</property>
+                    <property name="label">Inativos</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="paramSort" id="11">
+            <text-property name="promptText">Ordenar por</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">c.colleaguePK.colleagueId</property>
+                    <property name="label">Matrícula</property>
+                </structure>
+                <structure>
+                    <property name="value">c.collegueName</property>
+                    <property name="label">Nome</property>
+                </structure>
+                <structure>
+                    <property name="value">c.login</property>
+                    <property name="label">Login</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <script-data-source name="dsColleague" id="7"/>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="colleagueDataSet" id="8">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">colleagueId</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Login</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">colleagueName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">mail</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">active</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">adminuser</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">colleagueId</property>
+                </structure>
+                <structure>
+                    <property name="columnName">Login</property>
+                </structure>
+                <structure>
+                    <property name="columnName">colleagueName</property>
+                </structure>
+                <structure>
+                    <property name="columnName">mail</property>
+                </structure>
+                <structure>
+                    <property name="columnName">active</property>
+                </structure>
+                <structure>
+                    <property name="columnName">adminuser</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">colleagueId</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Login</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">colleagueName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">mail</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">active</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">adminuser</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[try{
+    var factory = DatasetFactory.getInstance(${WKCompany});
+    var constraints = new Array(); 
+    var sortingFields = new Array();
+    var i = 0;     
+      
+    //Filtra somente pela matricula do colaborador informado
+    if(params["Name"].value != null &amp;&amp; params["Name"].value != "*") {    
+        constraints[i] = factory.createConstraint("colleaguePK.colleagueId", params["Matricula"].value, params["Matricula"].value, ConstraintType.MUST);
+        i++;
+    }
+     
+    //Filtra ativos caso selecionado
+    if(params["paramEnable"].value != null &amp;&amp; params["paramEnable"].value != "*"){
+        constraints[i] = factory.createConstraint("active", params["paramEnable"].value, params["paramEnable"].value, ConstraintType.MUST);
+        i++;
+    }
+     
+    //Ordena conforme seleção
+    if(params["paramSort"].value != null &amp;&amp; params["paramSort"].value != "*"){
+        sortingFields[0] = params["paramSort"].value;
+    }  
+     
+    //Dataset
+    dataset = factory.getDataset("colleague", null, constraints, sortingFields);
+     
+}catch (e) {
+}finally {
+}
+]]></method>
+            <property name="dataSource">dsColleague</property>
+            <method name="fetch"><![CDATA[if (dataset != null) {
+    if (count <  dataset.rowsCount){
+        //monta o objeto da linha
+        row["colleagueId"] = dataset.getValue(count, "colleaguePK.colleagueId");
+        row["login"] = dataset.getValue(count, "login");
+        row["colleagueName"] = dataset.getValue(count, "colleagueName");
+        row["mail"] = dataset.getValue(count, "mail");
+         
+        if(dataset.getValue(count, "active") == true){
+            row["active"] = "Sim";
+        }else{
+            row["active"] = "Não";
+        }
+         
+        //Atualiza o contador 
+        count++;
+        return true;
+    }
+}
+return false;]]></method>
+        </script-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="54">
+            <property name="backgroundColor">#C0C0C0</property>
+            <property name="fontSize">16pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">Relatório de Usuários</text-property>
+        </label>
+        <table id="14">
+            <property name="dataSet">colleagueDataSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">colleagueId</property>
+                    <text-property name="displayName">colleagueId</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["colleagueId"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Login</property>
+                    <text-property name="displayName">Login</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Login"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">colleagueName</property>
+                    <text-property name="displayName">colleagueName</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["colleagueName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">mail</property>
+                    <text-property name="displayName">mail</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["mail"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">active</property>
+                    <text-property name="displayName">active</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["active"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">adminuser</property>
+                    <text-property name="displayName">adminuser</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["adminuser"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="48"/>
+            <column id="49"/>
+            <column id="50"/>
+            <column id="51"/>
+            <column id="52"/>
+            <column id="53"/>
+            <header>
+                <row id="15">
+                    <cell id="16">
+                        <label id="17">
+                            <property name="backgroundColor">#808080</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Matricula</text-property>
+                        </label>
+                    </cell>
+                    <cell id="18">
+                        <label id="19">
+                            <property name="backgroundColor">#808080</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Nome</text-property>
+                        </label>
+                    </cell>
+                    <cell id="20">
+                        <label id="21">
+                            <property name="backgroundColor">#808080</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Login</text-property>
+                        </label>
+                    </cell>
+                    <cell id="22">
+                        <label id="23">
+                            <property name="backgroundColor">#808080</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">E-mail</text-property>
+                        </label>
+                    </cell>
+                    <cell id="24">
+                        <label id="25">
+                            <property name="backgroundColor">#808080</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Ativo</text-property>
+                        </label>
+                    </cell>
+                    <cell id="26">
+                        <label id="27">
+                            <property name="backgroundColor">#808080</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Administrador</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="28">
+                    <cell id="29">
+                        <data id="57">
+                            <property name="resultSetColumn">colleagueId</property>
+                        </data>
+                    </cell>
+                    <cell id="31">
+                        <data id="59">
+                            <property name="resultSetColumn">Login</property>
+                        </data>
+                    </cell>
+                    <cell id="33">
+                        <data id="58">
+                            <property name="resultSetColumn">colleagueName</property>
+                        </data>
+                    </cell>
+                    <cell id="35">
+                        <data id="60">
+                            <property name="resultSetColumn">mail</property>
+                        </data>
+                    </cell>
+                    <cell id="37">
+                        <data id="55">
+                            <property name="resultSetColumn">active</property>
+                        </data>
+                    </cell>
+                    <cell id="39">
+                        <data id="56">
+                            <property name="resultSetColumn">adminuser</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="41">
+                    <cell id="42"/>
+                    <cell id="43"/>
+                    <cell id="44"/>
+                    <cell id="45"/>
+                    <cell id="46"/>
+                    <cell id="47"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

@@ -1,0 +1,86 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<link type="text/css" rel="stylesheet" href="custom.css"/>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<input type="hidden" name="descritor" id="descritor" />
+	
+	<div class="panel panel-default" id="pnl_cabecalho">
+		<div class="panel-body">
+			<h1>
+				<b>Unidade TOTVS</b>
+			</h1>
+		</div>
+	</div>
+	<div class="panel panel-primary" id="pnl_dados">
+		<div class="panel-heading ">
+			<h3 class="panel-title">
+				<b>Dados da unidade</b>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="form-group row">
+				<div class="col-md-2">
+					<label for="cd_coligada" class="required">C&oacute;digo coligada</label>
+					<input type="text" class="form-control" name="cd_coligada" id="cd_coligada" />
+				</div>
+				<div class="col-md-2">
+					<label for="cd_filial" class="required">Filial</label>
+					<input type="text" class="form-control" name="cd_filial" id="cd_filial"/>
+				</div>
+				<div class="col-md-8">
+					<label for="nm_filial" class="required">Nome</label>
+					<input type="text" class="form-control" name="nm_filial" id="nm_filial"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-md-4">		
+					<label class="required">Possui diretoria?</label>
+					<div class="radio">
+						<label>
+							<input name="possui_diretoria" id="possui_diretoria_sim" value="sim" type="radio" />
+							<span class="">Sim</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label>			
+							<input name="possui_diretoria" id="possui_diretoria_nao" value="nao" type="radio" checked />
+							<span class="">N&atilde;o</span>
+						</label>
+					</div>
+				</div>
+				<div class="col-md-4">		
+					<label class="required">Permite concentrar a publica&ccedil;&atilde;o na matriz da coligada?
+						<i class="flaticon flaticon-question icon-sm"
+							data-toggle="tooltip" data-placement="top" 
+							title="Em conjunto com o cadastro do Assunto-Temporalidade, determina se a publicação deve ocorrer apenas na matriz da coligada."></i>
+					</label>
+					<div class="radio">
+						<label>
+							<input name="concentrar_matriz" id="concentrar_matriz_sim" value="sim" type="radio" />
+							<span class="">Sim</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label>			
+							<input name="concentrar_matriz" id="concentrar_matriz_nao" value="nao" type="radio" checked />
+							<span class="">N&atilde;o</span>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>
+</div>
+</body>
+</html>

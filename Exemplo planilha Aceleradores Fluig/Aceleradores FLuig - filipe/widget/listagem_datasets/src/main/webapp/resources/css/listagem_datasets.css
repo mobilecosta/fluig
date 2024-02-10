@@ -1,0 +1,37 @@
+.width_important{
+	width: 100% !important;
+}
+
+
+.height_full{
+	max-height: calc(100vh - 143px) !important;
+}
+
+.classe_modal{
+	overflow: hidden !important;
+}
+
+.classe_iframe{
+	overflow: auto !important;
+	height: 100%;
+}
+
+.no_overflow{
+	overflow: hidden !important;
+}
+
+.overflow_auto{
+	overflow: auto !important;
+}
+
+.no_padding_right{
+	padding-right: 0px !important;
+}
+
+.no_padding_left{
+	padding-left: 0px !important;
+}
+
+.active td{
+	background-color: #ccc !important;
+}

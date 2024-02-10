@@ -1,0 +1,33 @@
+.panel-heading{
+	background-color: #005eaf !important;	
+}
+
+.panel-heading h3{
+	color: white !important;
+}
+
+.required::after{ 
+	content: '*'; 
+	color: red; 
+}
+
+.number{
+	text-align:right;
+}
+
+.fluig-style-guide .form-control[readonly] {
+	color: #444 !important;
+}
+
+/*Para tamanho das td's*/
+.tb-col-1 { min-width: 80px; }
+.tb-col-2 { min-width: 160px; }
+.tb-col-3 { min-width: 240px; }
+.tb-col-4 { min-width: 320px; }
+
+#fs-viagem{
+	padding: 0px 0px 0px 10px;
+	border-left-width: 1px;
+	border-left-style: dashed;
+	border-left-color: #e5e5e5; 
+}

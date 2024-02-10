@@ -1,0 +1,640 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="/webdesk/vcXMLRPC.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="jquery.mask.js"></script>
+<script type="text/javascript" src="jquery.inputmask.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="utils.js" charset="utf-8"></script>
+<script type="text/javascript" src="activities.js" charset="utf-8"></script>
+<script type="text/javascript" src="zooms.js" charset="utf-8"></script>
+<script type="text/javascript" src="enableFields.js" charset="utf-8"></script>
+<script type="text/javascript" src="atividades.js" charset="utf-8"></script>
+<script type="text/javascript" src="datatable.js" charset="utf-8"></script>
+<script type="text/javascript" src="main.js" charset="utf-8"></script>
+
+<link type="text/css" rel="stylesheet" href="custom.css" />
+</head>
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+			<input type="hidden" name="descricaoFicha" id="descricaoFicha" />
+			<input type="hidden" name="usuarioIntegrador" id="usuarioIntegrador" />
+		
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h1>
+						<b>Solicitação de mudança</b>
+					</h1>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Dados da solicitação</b>
+					</h3>
+				</div>
+				<div class="panel-body" id="painel_cabecalho">
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="cnpjCliente" class="required">CNPJ</label>
+							<input type="zoom" class="form-control" id="cnpjCliente" name="cnpjCliente" 
+									data-zoom="{
+									'displayKey':'cnpj',
+									'datasetId':'cheasy_usuario_cliente',
+									'maximumSelectionLength':'1',						
+									'fields':[
+												{
+													'field':'cnpj',
+													'label':'CNPJ',
+													'standard':true
+												},
+												{
+													'field':'nomeFantasia',
+													'label':'Nome fantasia'
+												}
+											]
+									}"/>
+						</div>
+						<div class="col-md-6">
+							<label for="cliente">Cliente</label>
+							<input type="text" class="form-control" name="cliente" id="cliente"	readonly />				
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="solicitacao">Solicitação</label>
+							<input type="text" class="form-control" name="solicitacao" id="solicitacao"	readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="solicitante">Solicitante</label>
+							<input type="hidden" class="form-control" name="cdSolicitante" id="cdSolicitante" readonly />
+							<input type="text" class="form-control" name="solicitante" id="solicitante" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="dataAbertura">Data abertura</label>
+							<div class="input-group enable-calendar">
+								<input type="text" class="form-control" name="dataAbertura" id="dataAbertura" mask="00/00/0000" readonly />
+								<span class="input-group-addon fs-cursor-pointer"> 
+									<span class="fluigicon fluigicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<label for="horaAbertura">Hora abertura</label>
+							<input type="text" class="form-control" name="horaAbertura" id="horaAbertura" readonly />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label class="required">Tipo de mudança</label>
+							<div class="radio">
+								<label>
+									<input name="tipo_de_mudanca" id="tp_mudanca_programada" value="Programada" type="radio"/>
+									<span class="">Programada</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label> <input name="tipo_de_mudanca"  id="tp_mudanca_emergencial" 
+								    value="Emergencial" type="radio"> <span
+									class="">Emergencial</span>
+								</label>
+							</div>
+						</div>						
+						
+						<div class="col-md-3">
+							<button id="verDisponibilidade" class="btn btn-primary">Ver disponibilidade</button>
+						</div>
+						<div class="col-md-3">
+							<label for="dataAplicacao" class="required">Data aplicação</label>
+							<div class="input-group enable-calendar">
+								<input type="text" class="form-control calendar validade"
+									name="dataAplicacao" id="dataAplicacao" mask="00/00/0000" /> 
+								<span class="input-group-addon fs-cursor-pointer">
+									<span class="fluigicon fluigicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<label for="apartir_de_horario" class="required">A partir de (horário)</label> 
+							<input type="text" class="form-control time" name="apartir_de_horario" id="apartir_de_horario" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<label for="justificativa" class="required">Justificativa</label>
+							<textarea class="form-control" name="justificativa" id="justificativa"></textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="ticket_incidente" class="required">Ticket incidente</label>
+							<input type="text" class="form-control" name="ticket_incidente"
+								id="ticket_incidente" />
+						</div>
+						<div class="col-md-3">
+							<label for="status_homologacao" class="required">Status homologação</label>
+							<select	class="form-control" name="status_homologacao" id="status_homologacao">
+								<option value=""></option>
+								<option value="validado">Validado</option>
+								<option value="semEvidencia">Sem evidência</option>
+								<option value="sem_cenario_teste">Sem cenário para validação em teste</option>
+							</select>
+						</div>
+						<div class="col-md-5">
+							<label for="ambiente" class="required">Ambiente destino</label>
+							<input type="hidden" name="codigoAmbiente" id="codigoAmbiente" />
+							<input type="zoom" class="form-control" id="ambiente" name="ambiente" 
+									data-zoom="{
+									'displayKey':'descricao',
+									'datasetId':'cheasy_ambientes_cliente',
+									'maximumSelectionLength':'1',						
+									'fields':[
+												{
+													'field':'codigoAmbiente',
+													'label':'Código',
+													'visible':'false'
+												},
+												{
+													'field':'nomeAmbiente',
+													'label':'Nome',
+													'visible':'false'
+												},
+												{
+													'field':'descricao',
+													'label':'Ambiente',
+													'standard':true
+												}
+											]
+										}"/>								
+						</div>						
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<label for="descricao_mudanca" class="required">Descrição da mudança</label>
+							<textarea class="form-control" name="descricao_mudanca"	id="descricao_mudanca"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="panelPlanoTecnico" style="display:none">
+			<!-- div class="panel panel-default" id="panelPlanoTecnico" -->
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Plano técnico</b>
+					</h3>
+				</div>
+				<div class="panel-body"  id="painel_plano_tecnico">
+					<input type="hidden" class="form-control" name="cdElaborador" id="cdElaborador" readonly />
+					<input type="text" class="hidden" name="elaborador" id="elaborador" readonly />
+					<div class="form-group row">
+						<div class="col-xs-4">
+							<label for="zoom_plano_referencia">Plano de referência</label>	
+							<input type="hidden" class="form-control" name="idPlanoReferencia" id="idPlanoReferencia" readonly />					
+							<input type="zoom" class="form-control" id="zoom_plano_referencia" name="zoom_plano_referencia" 
+								data-zoom="{
+									'displayKey':'descricaoPlano',
+									'datasetId':'cheasy_consulta_planos_cliente',
+									'maximumSelectionLength':'1',						
+									'fields':[
+										{
+											'field':'descricaoPlano',
+											'label':'Descrição',
+											'standard':true
+										},{
+											'field':'identificacaoPlano',
+											'label':'Identificação',
+											'visible':'false'
+										}
+									]
+								}"/>
+						</div>
+						<div class="col-xs-2 fs-xl-padding-top">
+							<button class="btn btn-primary" id="btFiltroAtividades">Minhas atividades</button>
+						</div>
+						<div class="col-xs-3 fs-xl-padding-top">
+							<button class="btn btn-primary" id="adicionarAtividade" disabled>Adicionar Atividade</button>
+						</div>
+						<div class="col-xs-offset-1 col-xs-2 fs-xl-padding-top" style="display:none" >
+							<button class="btn btn-primary" id="aprovarReprovarTodas">Aprovar todas</button>
+						</div>
+					</div>
+					<div class="form-group row fs-display-none">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table border="0" class="table table-striped table-bordered"
+									tablename="tbAtividadesPlano" id="tbAtividadesPlano" nodeletebutton="false"
+									addbuttonclass="btn btn-primary">
+									<thead>
+										<tr>
+											<td>&nbsp;</td>
+										</tr>
+									</thead>
+									<tbody id="tbody_atividade">
+										<tr><td>
+											<input type="hidden" name="idPlanoOrigem" id="idPlanoOrigem" />
+											<div class="row">
+												<div class="col-md-2">
+													<label for="tipoAtividade">Tipo</label>
+													<select name="tipoAtividade" id="tipoAtividade" 
+													        dataset="cheasy_tipo_atividade" class="form-control"
+													        datasetkey="cdAtividade" datasetvalue="nmAtividade"></select>														
+												</div>
+												<div class="col-md-2">
+													<label for="atividade">Atividade</label>
+													<input type="text" class="form-control" name="atividade" id="atividade" />
+												</div>
+												<div class="col-md-2">
+													<label for="duracaoPrevista">Duração prevista</label>
+													<input type="text" class="form-control" name="duracaoPrevista" id="duracaoPrevista" />
+												</div>
+												<div class="col-md-2">
+													<label for="zoom_grupo_responsavel">Grupo responsável</label>
+														<input type="hidden" name="cd_grupo_responsavel" id="cd_grupo_responsavel" readonly />
+														<input type="zoom" class="form-control" 
+															name="zoom_grupo_responsavel" id="zoom_grupo_responsavel"
+															data-zoom="{
+																'displayKey':'groupDescription',
+																'datasetId':'group',
+																'maximumSelectionLength':'1',
+																'fields':[
+																			{
+																				'field':'groupId',
+																				'label':'Grupo',
+																				'standard':false,
+																				'visible':'true'
+																			},
+																			{
+																				'field':'groupDescription',
+																				'label':'Descrição',
+																				'standard':true,
+																				'search':'true'
+																			}
+																		]										
+															}"
+														/>													
+												</div>
+												<div class="col-md-2">
+													<label for="descricaoDetalhada">Descrição detalhada</label>
+													<textarea class="form-control" name="descricaoDetalhada"
+														id="descricaoDetalhada"></textarea>
+												</div>
+												<div class="col-md-2">
+													<label for="double_check_ok">Double check ok?</label>
+													<div class="radio">
+														<label>
+															<input name="double_check_ok" id="double_check_validado"
+																value="validado" type="radio"/>
+															<span class="">Validado</span>
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input name="double_check_ok" id="double_check_reprovado"
+																value="reprovado" type="radio" />
+															<span class="">Reprovado</span>
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2">
+													<label for="dt_inicio_real">Inicio real</label>
+													<div class="input-group enable-calendar">
+														<input type="text" class="form-control"
+															name="dt_inicio_real" id="dt_inicio_real"
+															mask="00/00/0000" />
+														<span class="input-group-addon fs-cursor-pointer">
+															<span class="fluigicon fluigicon-calendar"></span>
+														</span>
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label for="dt_fim_real">Fim real</label>
+													<div class="input-group enable-calendar">
+														<input type="text" class="form-control"
+															name="dt_fim_real" id="dt_fim_real"
+															mask="00/00/0000">
+														<span class="input-group-addon fs-cursor-pointer">
+															<span class="fluigicon fluigicon-calendar"></span>
+														</span>
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label for="ativ_observacoes">Observações</label>
+													<textarea class="form-control" name="ativ_observacoes"
+														id="ativ_observacoes"></textarea>
+												</div>
+												<div class="col-md-2">
+													<label for="status">Status</label> <select
+														class="form-control" name="status" id="status">
+														
+															<option value="" >Selecione um item</option>
+															<option value="finalizado_erro" >Finalizado com erro</option>
+															<option value="finalizado_sucesso" >Finalizado com sucesso</option>
+															<option value="nao_executada" >Não executada</option>
+														</select>
+												</div>
+												<div class="col-md-2">
+													<label for="Observaes_152">Validado executor</label>
+													<div class="radio">
+														<label>
+															<input name="validado_executor" id="valid_executor_validado"
+																value="validado" type="radio"/>
+															<span class="">Validado</span>
+														</label>
+													</div>
+													<div class="radio">
+														<label> 
+															<input name="validado_executor" id="valid_executor_reprovado"
+																value="reprovado" type="radio" />
+															<span class="">Reprovado</span>
+														</label>
+													</div>
+												</div>
+											</div>
+										</td></tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<div class="col-md-12">
+					
+							<div id="target"></div>
+
+                 			<div class="col-md-12" id="datatable_atividades"></div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="form-group row" style="display:none">
+						<div class="col-md-12">
+							<label for="observacoes">Observações double-check</label>
+							<textarea class="form-control" name="observacoes"
+								id="observacoes"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="panelAprovacaoCGM" style="display:none">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Aprovação CGM</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<input type="hidden" class="form-control"
+								name="apreciadaEmergencia" id="apreciadaEmergencia" readonly />
+						<div class="col-md-3">
+							<label for="representante">Representante</label>
+							<input type="hidden" class="form-control"
+								name="cdRepresentante" id="cdRepresentante" readonly />
+							<input type="text" class="form-control exibir"
+								name="representante" id="representante" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="dt_aprovacao_cgm">Data</label>
+							<div class="input-group enable-calendar">
+								<input type="text" class="form-control" mask="00/00/0000" 
+									name="dt_aprovacao_cgm" id="dt_aprovacao_cgm" readonly />
+								<span class="input-group-addon fs-cursor-pointer"> 
+									<span class="fluigicon fluigicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<label for="hora_aprovacao_cgm">Hora</label> 
+							<input type="text" class="form-control" 
+								name="hora_aprovacao_cgm" id="hora_aprovacao_cgm" readonly />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label class="required">Parecer</label>
+							<div class="radio">
+								<label>
+									<input name="parecer" id="parecer_aprovado" value="aprovado" type="radio" />
+									<span class="">Aprovado</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input name="parecer" id="parecer_reprovado" value="reprovado" type="radio" />
+									<span class="">Reprovado</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<label for="obs_aprovacao_cgm">Observações</label>
+							<textarea class="form-control" name="obs_aprovacao_cgm"
+								id="obs_aprovacao_cgm"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="panelValidacaoMudanca" style="display:none">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Validação da mudança</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="validador">Validador</label>
+							<input type="hidden" class="form-control"
+								name="cdValidador" id="cdValidador" readonly />
+							<input type="text" class="form-control exibir" name="validador" id="validador" readonly />
+						</div>
+						<div class="col-md-3">
+							<label for="dt_validacao_mudanca">Data</label>
+							<div class="input-group enable-calendar">
+								<input type="text" class="form-control" name="dt_validacao_mudanca"
+									id="dt_validacao_mudanca" mask="00/00/0000" readonly /> 
+								<span class="input-group-addon fs-cursor-pointer">
+									<span class="fluigicon fluigicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<label for="Hora_144">Hora</label>
+							<input type="text" class="form-control" 
+								name="hr_validacao_mudanca" id="hr_validacao_mudanca" readonly />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label class="required">Resultado</label>
+							<div class="radio">
+								<label>
+									<input name="resultado" id="resultado_sucesso"
+										value="sucesso" type="radio" />
+									<span class="">Sucesso</span>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input name="resultado" id="resultado_reprovada"
+										value="reprovada" type="radio" />
+									<span class="">Reprovada</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<label for="obs_validacao_mudanca">Observações</label>
+							<textarea class="form-control" name="obs_validacao_mudanca"
+								id="obs_validacao_mudanca"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+<!-- Atividades -->
+<script type="text/template" id="tpl_datatable_atividades">
+
+	<tr>
+		<td>{{tipoAtividade}}</td>
+		<td>{{atividade}}</td>
+		<td>{{responsavel}}</td>
+		<td>{{duracao}}</td>
+		<td>{{validada}}</td>
+		<td>{{status}}</td>
+		<td>
+			{{#modo}}
+			<i class="flaticon flaticon-edit icon-sm edita-atividade" index="{{index}}"></i>
+			
+				{{#permiteRemover}}
+				<i class="flaticon flaticon-trash icon-sm remove-atividade" index="{{index}}"></i>
+				{{/permiteRemover}}
+
+			{{/modo}}
+			{{^modo}}
+			<i class="flaticon flaticon-search icon-sm visualiza-atividade" index="{{index}}"></i>
+			{{/modo}}
+		</td>
+	</tr>
+</script>
+
+<script type="text/template" id="tpl_modal_atividades">
+
+<div class="row">
+	<div class="col-md-12">
+		<input type="hidden" name="indice_atividade_modal" id="indice_atividade_modal" value="" />
+			<div class="row">
+				<div class="col-md-3 form-group">
+					<label for="tipoAtividade">Tipo</label> 
+					<select name="tipoAtividade_modal" id="tipoAtividade_modal" class="form-control" onchange="selecionaTipoAtividadeModal(this)">
+						<option value="">Selecione</option>
+					</select>
+				</div>
+				<div class="col-md-3 form-group">
+					<label for="atividade">Atividade</label> 
+					<input type="text" class="form-control" name="atividade_modal" id="atividade_modal" />
+				</div>
+				<div class="col-md-3 form-group">
+					<label for="duracaoPrevista">Duração prevista</label> 
+					<input type="text" class="form-control" name="duracaoPrevista_modal" id="duracaoPrevista_modal" />
+				</div>
+				<div class="col-md-3 form-group">
+					<label for="zoom_grupo_responsavel">Grupo responsável</label>
+					<input type="hidden" name="cd_grupo_responsavel_modal" id="cd_grupo_responsavel_modal" readonly />
+					<input type="zoom" class="form-control"	name="zoom_grupo_responsavel_modal" id="zoom_grupo_responsave_modal"
+						data-zoom="{
+							'displayKey':'cdGrupo',
+							'datasetId':'fluig_consulta_gruposDoGrupo',
+							'maximumSelectionLength':'1',
+							'fields':[{
+								'field':'cdGrupo',
+								'label':'Grupo',
+								'standard':true,
+								'visible':'true'
+					}]}"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label for="descricaoDetalhada">Descrição detalhada</label>
+					<textarea class="form-control" name="descricaoDetalhada_modal" id="descricaoDetalhada_modal" rows="4"></textarea>
+				</div>
+				<div class="col-md-2 form-group" style="display:none">
+					<label for="double_check_ok">Double check ok?</label>
+					<div class="radio">
+						<label>
+							<input name="double_check_ok_modal" id="double_check_validado_modal" value="validado" type="radio">
+							<span class="">Validado</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="double_check_ok_modal" id="double_check_reprovado_modal" value="reprovado" type="radio"> 
+							<span class="">Reprovado</span>
+						</label>
+					</div>
+				</div>
+				<div class="col-md-2 form-group" style="display:none">
+					<label for="Observaes_152">Validado executor</label>
+					<div class="radio">
+						<label>
+							<input name="validado_executor_modal" id="valid_executor_validado_modal" value="validado" type="radio"/>
+							<span class="">Validado</span>
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="validado_executor_modal" id="valid_executor_reprovado_modal" value="reprovado" type="radio"/>
+							<span class="">Reprovado</span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 form-group" style="display:none">
+					<label for="dt_inicio_real">Inicio real</label>
+					<div class="input-group enable-calendar">
+						<input type="text" class="form-control"	name="dt_inicio_real_modal" id="dt_inicio_real_modal" mask="00/00/0000" readonly> 
+						<span class="input-group-addon fs-cursor-pointer">
+							<span class="fluigicon fluigicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+				<div class="col-md-2 form-group" style="display:none">
+					<label for="dt_fim_real">Fim real</label>
+					<div class="input-group enable-calendar">
+						<input type="text" class="form-control" name="dt_fim_real_modal" id="dt_fim_real_modal" mask="00/00/0000" readonly>
+						<span class="input-group-addon fs-cursor-pointer">
+							<span class="fluigicon fluigicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+				<div class="col-md-3 form-group" style="display:none">
+					<label for="status">Status</label> 
+					<select class="form-control" name="status_modal" id="status_modal">
+						<option value="" >Selecione um item</option>
+						<option value="finalizado_erro" >Finalizado com erro</option>
+						<option value="finalizado_sucesso" >Finalizado com sucesso</option>
+						<option value="nao_executada" >Não executada</option>
+					</select>
+				</div>
+				<div class="col-md-4 form-group" style="display:none">
+					<label for="ativ_observacoes">Observações</label>
+					<textarea class="form-control" name="ativ_observacoes_modal" id="ativ_observacoes_modal" rows="4"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<!-- Fim Atividades -->
+</html>

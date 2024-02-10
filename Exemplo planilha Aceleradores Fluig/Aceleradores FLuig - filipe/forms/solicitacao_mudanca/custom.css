@@ -1,0 +1,8 @@
+.required::after {
+	content: '*';
+	color: red;
+}
+
+.select2-container--open {
+	z-index: 99999 !important;
+}
