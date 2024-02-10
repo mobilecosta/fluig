@@ -1,0 +1,133 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="./frm_ef_par.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+
+	<input type="hidden" name="descricao" id="descricao" />
+	<input type="hidden" name="processName" id="processName" />
+
+	<div class="panel with-nav-tabs">
+		<div class="panel-heading">
+			<h2 class="panel-title">EasyFlow - Parâmetros</h2>
+		</div>
+	
+		<div class="panel-body">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<label for="processId">Processo</label>
+						<input type="zoom" id="processId" name="processId"
+							data-zoom="{
+								'displayKey':'id',
+								'datasetId':'ds_ef_processos',
+								'placeholder':'Escolha o Processo',
+								'fields':[{
+									'field':'id',
+									'label':'ID'
+								}, {
+									'field':'description',
+									'label':'Nome',
+									'standard':'true'
+								}]
+							}"
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-10">
+						<label for="groupId">Grupo</label>
+						<input type="zoom" id="groupId" name="groupId"
+							data-zoom="{
+								'displayKey':'groupId',
+								'datasetId':'group',
+								'placeholder':'Escolha o Grupo',
+								'fields':[{
+									'field':'groupId',
+									'label':'ID'
+								}, {
+									'field':'groupDescription',
+									'label':'Nome',
+									'standard':'true'
+								}]
+							}"
+						/>
+					</div>
+					<div class="col-md-2">
+						<label for="groupOrder">Ordem</label>
+						<input type="number" class="form-control" name="groupOrder" id="groupOrder" step="1" value="0">
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-default btnAddPaiFilho" id="addItem" name="addItem" onclick="childAdd();"><span class="info">Novo</span></button>
+					</div>
+					<div class="col-md-12">
+						<table class="table" tablename="table_parametros" nodeletebutton="true"
+							customFnDelete="fnCustomDelete(this)" noaddbutton="true"
+							addbuttonlabel="Novo" addbuttonclass="btnAddPaiFilho">
+							<thead>
+								<tr>
+									<th>Excluir</th>
+									<th>Nome da Tab</th>
+									<th>Permissão</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="rowParam">
+									<td class="col-md-1">
+										<div class="form-group delete-btn">
+											<button type="button" class="btn btn-danger" name="delete"
+												id="delete" onclick="fnCustomDelete(this)">
+												<b>X</b>
+											</button>
+										</div>
+									</td>
+									<td class="col-md-8">
+										<div class="form-group">
+											<input class="form-control" type="zoom" id="nomeTab" name="nomeTab"
+												data-zoom="{
+													'displayKey':'tabName',
+													'datasetId':'ds_ef_tabs',
+													'maximumSelectionLength':'1',
+													'fields':[{
+														'field':'tabName',
+														'label':'Tab'
+													}, {
+														'field':'process',
+														'label':'Processo',
+														'standard':'true'
+													}]
+												}"
+											/> 
+										</div>
+									</td>
+									<td class="col-md-3">
+										<div class="form-group">
+											<select class="form-control" name="permissao" id="permissao">
+												<option value="L">Leitura</option>
+												<option value="E">Edição</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+</body>
+</html>

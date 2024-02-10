@@ -1,0 +1,738 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="./requestDataset.js"></script>
+	<script type="text/javascript" src="./easyflow.js"></script>
+	<script type="text/javascript" src="./funcoes.js"></script>
+	<script type="text/javascript" src="./frm_ef_alteracao_cadastro_fornecedor.js"></script>
+
+	<!--cdn para máscaras de campos-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<style>
+		div.row > div {
+			margin: 4px 0;
+		}
+	</style>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+
+	<!-- Campos para parametrização do fluxo -->
+	<input type="hidden" name="nrProcesso" id="nrProcesso" />
+	<input type="hidden" name="grupoAtual" id="grupoAtual" />
+	<input type="hidden" name="proximoGrupo" id="proximoGrupo" />
+	<input type="hidden" name="gruposRestantes" id="gruposRestantes" />
+	<input type="hidden" name="existemMaisGrupos" id="existemMaisGrupos" />
+	<input type="hidden" name="usuarioInicio" id="usuarioInicio" />
+
+	<input type="hidden" name="erro" id="erro" value="" />
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-info alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+					Todos os campos com <strong>*</strong> são de preenchimento obrigatório.
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Empresa e Filial</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9">
+				<label for="zoom_branch">Filial<span class="text-danger">*</span></label>
+				<input
+					type="zoom"
+					id="zoom_branch"
+					name="zoom_branch"
+					data-zoom="{
+						'displayKey':'ALL',
+						'datasetId':'ds_consulta_filial',
+						'placeholder':'',
+						'fields':[{
+							'field':'ALL',
+							'label':'ID Filial | Descrição Filial | ID Empresa | Descrição Empresa'
+						}]
+					}"
+				/>
+				<input type="hidden" name="branch" id="branch" data-pkfield="ALL">
+			</div>
+			<div class="col-md-3">
+				<label for="company">ID da Empresa<span class="text-danger">*</span></label>
+				<input type="text" class="form-control" name="company" id="company" readonly>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label for="branch_desc">Descrição da Filial</label>
+				<input type="text" class="form-control" name="branch_desc" id="branch_desc" readonly>
+			</div>
+			<div class="col-md-6">
+				<label for="company_desc">Descrição da Empresa</label>
+				<input type="text" class="form-control" name="company_desc" id="company_desc" readonly>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="div_erro">
+		<div class="row">
+			<button class="btn btn-warning btn-lg" data-modal-errors id="btnErrors">
+				Exibir erros da última tentantiva de integração
+			</button>
+			<div class="panel panel-warning" style="display: none;" data-showing="0">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<i class="fluigicon fluigicon-exclamation-sign-on icon-lg"></i>
+						Erro ocorrido na última tentativa de integração
+					</h3>
+				</div>
+				<div class="panel-body">
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Consulta de Fornecedor</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<label for="consulta_Cliente">Fornecedor<span class="text-danger">*</span></label>
+				<input type="zoom" id="consulta_Cliente" name="consulta_Cliente"		 
+					data-zoom="{
+						'displayKey':'RESULT',
+						'datasetId':'ds_protheus_consulta_sa2_mirror_search',
+						'maximumSelectionLength':'1',
+						'fields':[{
+							'field':'RESULT',
+							'label':'COD | NOME | NREDUZ | CGC'
+						}]
+					}"
+				/>
+			</div>
+		</div>
+	</div>
+	<!-- INICIO DIV DYNAMICTABS -->
+	<div class="panel with-nav-tabs" id="dynamicTabs">
+		<div class="panel-heading">
+			<!-- Tabs -->
+			<ul class="nav nav-tabs clearfix" role="tablist">
+				<li style="display: none;"><a href="#tab_cadastrais" data-toggle="tab">Cadastrais</a></li>
+				<li style="display: none;"><a href="#tab_compras" data-toggle="tab">Compras</a></li>
+				<li style="display: none;"><a href="#tab_admfin" data-toggle="tab">Adm/Fin.</a></li>
+				<li style="display: none;"><a href="#tab_fiscais" data-toggle="tab">Fiscais</a></li>
+				<li style="display: none;"><a href="#tab_contabil" data-toggle="tab">Contábil</a></li>
+		</div>
+		<div class="panel-body" id="dynamicContents">
+
+			<div class="tab-content">
+				<!-- Tab 1 -->
+				<div class="tab-pane" id="tab_cadastrais">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-12" id="div_A2_COD">
+								<label for="A2_COD" class="popover-hover" data-toggle="popover" data-content="A2_COD - Código do fornecedor">
+									Cód. do Fornecedor<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control" name="A2_COD" id="A2_COD" maxlength="6" data-uneditable readonly />
+							</div>
+							<div class="col-xs-12" id="div_A2_LOJA">
+								<label for="A2_LOJA" class="popover-hover" data-toggle="popover" data-content="A2_LOJA - Código da loja do fornecedor">
+									Loja do Fornecedor<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control" name="A2_LOJA" id="A2_LOJA" maxlength="2" data-uneditable readonly />
+							</div>
+							<div class="col-xs-12" id="div_A2_CGC">
+								<label for="A2_CGC" class="popover-hover" data-toggle="popover" data-content="A2_CGC - CNPJ ou CPF do fornecedor">
+									CNPJ/CPF<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control cgc" name="A2_CGC" id="A2_CGC" maxlength="14" data-uneditable readonly />
+							</div>
+							<div class="col-xs-12" id="div_A2_TIPO">
+								<label for="A2_TIPO" class="popover-hover" data-toggle="popover" data-content="A2_TIPO - Tipo do fornecedor">
+									Tipo do Fornecedor<span class="text-danger">*</span>
+								</label>
+								<select name="A2_TIPO" id="A2_TIPO" class="form-control">
+									<option value="F">F - Físico</option>
+									<option value="J">J - Jurídico</option>
+									<option value="X">X - Outros</option>										
+								</select>
+							</div>		
+							<div class="col-xs-12" id="div_A2_NOME">
+								<label for="A2_NOME" class="popover-hover" data-toggle="popover" data-content="A2_NOME - Nome ou razão social do fornecedor">
+									Nome ou Razão Social<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control" name="A2_NOME" id="A2_NOME" maxlength="40" />
+							</div>
+							<div class="col-xs-12" id="div_A2_NREDUZ">
+								<label for="A2_NREDUZ" class="popover-hover" data-toggle="popover" data-content="A2_REDUZ - Nome fantasia do fornecedor">
+									Nome Fantasia<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control" name="A2_NREDUZ" id="A2_NREDUZ" maxlength="20" />
+							</div>
+							<div class="col-xs-12" id="div_A2_END">
+								<label for="A2_END" class="popover-hover" data-toggle="popover" data-content="A2_END - Endereço do fornecedor">
+									Endereço<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control" name="A2_END" id="A2_END" maxlength="40" />
+							</div>
+							<div class="col-xs-12" id="div_A2_COMPLEM">
+								<label for="A2_COMPLEM" class="popover-hover" data-toggle="popover" data-content="A2_COMPLEM - Complemento do endereço do fornecedor">
+									Complemento
+								</label>
+								<input type="text" class="form-control" name="A2_COMPLEM" id="A2_COMPLEM" maxlength="50" />
+							</div>
+							<div class="col-xs-12" id="div_A2_BAIRRO">
+								<label for="A2_BAIRRO" class="popover-hover" data-toggle="popover" data-content="A2_BAIRRO - Bairro do fornecedor">
+									Bairro
+								</label>
+								<input type="text" class="form-control" name="A2_BAIRRO" id="A2_BAIRRO" maxlength="20" />
+							</div>
+							<div class="col-xs-12" id="div_A2_EST">
+								<label for="A2_EST" class="popover-hover" data-toggle="popover" data-content="A2_EST - Estado do fornecedor">
+									Estado<span class="text-danger">*</span>
+								</label>
+								<select class="form-control" name="A2_EST" id="A2_EST">
+									<option value="">Selecione</option>
+									<option value="AC">AC - ACRE</option>
+									<option value="AL">AL - ALAGOAS</option>
+									<option value="AP">AP - AMAPA</option>
+									<option value="AM">AM - AMAZONAS</option>
+									<option value="BA">BA - BAHIA</option>
+									<option value="CE">CE - CEARA</option>
+									<option value="DF">DF - DISTRITO FEDERAL</option>
+									<option value="ES">ES - ESPIRITO SANTO</option>
+									<option value="GO">GO - GOIANIA</option>
+									<option value="MA">MA - MARANHAO</option>
+									<option value="MT">MT - MATO GROSSO</option>
+									<option value="MS">MS - MATO GOSSO DO SUL</option>
+									<option value="MG">MG - MINAS GERAIS</option>
+									<option value="PA">PA - PARA</option>
+									<option value="PB">PB - PARAIBA</option>
+									<option value="PR">PR - PARANA</option>
+									<option value="PE">PE - PERNAMBUCO</option>
+									<option value="PI">PI - PIAUI</option>
+									<option value="RJ">RJ - RIO DE JANEIRO</option>
+									<option value="RN">RN - RIO GRANDE DO NORTE</option>
+									<option value="RS">RS - RIO GRANDE DO SUL</option>
+									<option value="RO">RO - RONDONIA</option>
+									<option value="RR">RR - RORAIMA</option>
+									<option value="SC">SC - SANTA CATARINA</option>
+									<option value="SP">SP - SAO PAULO</option>
+									<option value="SE">SE - SERGIPE</option>
+									<option value="TO">TO - TOCANTINS</option>
+									<option value="EX">EX - ESTRANGEIRO</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_COD_MUN">
+								<label for="zoom_A2_COD_MUN" class="popover-hover" data-toggle="popover" data-content="A2_COD_MUN - Código do município do fornecedor">
+									Cód. do Município<span class="text-danger">*</span>
+								</label>
+								<input type="zoom" id="zoom_A2_COD_MUN" name="zoom_A2_COD_MUN" data-zoom="{		
+									'displayKey':'ALLS',
+									'datasetId':'ds_protheus_consulta_cc2_search',
+									'maximumSelectionLength':'1',
+									'placeholder':'',
+									'fields':[{
+										'field':'ALLS',
+										'label':'COD | Município | Estado'
+									}, {
+										'field':'CC2_CODMUN',
+										'label':'CC2_CODMUN'
+									}]
+								}" />
+								<input type="hidden" name="A2_COD_MUN" id="A2_COD_MUN" data-pkfield="CC2_CODMUN">
+							</div>
+							<div class="col-xs-12" id="div_A2_MUN">
+								<label for="A2_MUN" class="popover-hover" data-toggle="popover" data-content="A2_MUN - Município do fornecedor">
+									Município do Fornecedor<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control" name="A2_MUN" id="A2_MUN" maxlength="60" />
+							</div>
+							<div class="col-xs-12" id="div_A2_CEP">
+								<label for="A2_CEP" class="popover-hover" data-toggle="popover" data-content="A2_CEP - CEP do fornecedor">
+									CEP<span class="text-danger">*</span>
+								</label>
+								<input type="text" class="form-control cep" name="A2_CEP" id="A2_CEP" maxlength="8" placeholder="00000-000" />
+							</div>
+							<div class="col-xs-12" id="div_A2_DDD">
+								<label for="A2_DDD" class="popover-hover" data-toggle="popover" data-content="A2_DDD - DDD do fornecedor">
+									Cód. do DDD
+								</label>
+								<select class="form-control" name="A1_DDD" id="A2_DDD">
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="24">24</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="31">31</option>
+									<option value="32">32</option>
+									<option value="33">33</option>
+									<option value="34">34</option>
+									<option value="35">35</option>
+									<option value="37">37</option>
+									<option value="38">38</option>
+									<option value="41">41</option>
+									<option value="42">42</option>
+									<option value="43">43</option>
+									<option value="44">44</option>
+									<option value="45">45</option>
+									<option value="46">46</option>
+									<option value="47">47</option>
+									<option value="48">48</option>
+									<option value="49">49</option>
+									<option value="51">51</option>
+									<option value="53">53</option>
+									<option value="54">54</option>
+									<option value="55">55</option>
+									<option value="61">61</option>
+									<option value="62">62</option>
+									<option value="63">63</option>
+									<option value="64">64</option>
+									<option value="65">65</option>
+									<option value="66">66</option>
+									<option value="67">67</option>
+									<option value="68">68</option>
+									<option value="69">69</option>
+									<option value="71">71</option>
+									<option value="73">73</option>
+									<option value="74">74</option>
+									<option value="75">75</option>
+									<option value="77">77</option>
+									<option value="79">79</option>
+									<option value="81">81</option>
+									<option value="82">82</option>
+									<option value="83">83</option>
+									<option value="84">84</option>
+									<option value="85">85</option>
+									<option value="86">86</option>
+									<option value="87">87</option>
+									<option value="88">88</option>
+									<option value="89">89</option>
+									<option value="91">91</option>
+									<option value="92">92</option>
+									<option value="93">93</option>
+									<option value="94">94</option>
+									<option value="95">95</option>
+									<option value="96">96</option>
+									<option value="97">97</option>
+									<option value="98">98</option>
+									<option value="99">99</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_DDI">
+								<label for="A2_DDI" class="popover-hover" data-toggle="popover" data-content="A2_DDI - DDI do fornecedor">
+									Cód. do DDI
+								</label>
+								<input type="zoom" id="zoom_A2_DDI" name="zoom_A2_DDI" class="form-control"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_acj',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'DDI | País'
+										},{
+											'field': 'ACJ_DDI',
+											'label': 'DDI'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_DDI" id="A2_DDI" data-pkfield="ACJ_DDI">
+							</div>
+							<div class="col-xs-12" id="div_A2_TEL">
+								<label for="A2_TEL" class="popover-hover" data-toggle="popover" data-content="A2_TEL - Nº de telefone do fornecedor">
+									Nº do Telefone
+								</label>
+								<input type="text" class="form-control tel" name="A2_TEL" id="A2_TEL" placeholder="Ex: 1234-5678" />
+							</div>
+							<div class="col-xs-12" id="div_A2_INSCR">
+								<label for="A2_INSCR" class="popover-hover" data-toggle="popover" data-content="A2_INSCR - Inscrição Estadual do fornecedor">
+									Ins. Estadual
+								</label>
+								<input type="text" class="form-control" name="A2_INSCR" id="A2_INSCR" maxlength="18" />
+							</div>
+							<div class="col-xs-12" id="div_A2_INSCRM">
+								<label for="A2_INSCRM" class="popover-hover" data-toggle="popover" data-content="A2_INSCRM - Inscrição Municipal do fornecedor">
+									Ins. Municipal
+								</label>
+								<input type="text" class="form-control" name="A2_INSCRM" id="A2_INSCRM" maxlength="18" />
+							</div>
+							<div class="col-xs-12" id="div_A2_PAIS">
+								<label for="zoom_A2_PAIS" class="popover-hover" data-toggle="popover" data-content="A2_PAIS - País do fornecedor">
+									País do Fornecedor
+								</label>
+								<input type="zoom" id="zoom_A2_PAIS" name="zoom_A2_PAIS" class="form-control"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_sya',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'ID | País'
+										}, {
+											'field':'YA_CODGI',
+											'label':'YA_CODGI'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_PAIS" id="A2_PAIS" data-pkfield="YA_CODGI">
+							</div>
+							<div class="col-xs-12" id="div_A2_EMAIL">
+								<label for="A2_EMAIL" class="popover-hover" data-toggle="popover" data-content="A2_EMAIL - Email do fornecedor">
+									E-mail
+								</label>
+								<input type="text" class="form-control" name="A2_EMAIL" id="A2_EMAIL" maxlength="50" />
+							</div>
+							<div class="col-xs-12" id="div_A2_XATIVO">
+								<label for="A2_XATIVO" class="popover-hover" data-toggle="popover" data-content="A2_XATIVO - Fornecedor está ativo?">
+									Ativo
+								</label>
+								<select name="A2_XATIVO" id="A2_XATIVO" class="form-control">
+									<option value="">Selecione</option>
+									<option value="S">S - Sim</option>
+									<option value="N">N - Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_MSBLQL">
+								<label for="A2_MSBLQL" class="popover-hover" data-toggle="popover" data-content="A2_MSBLQL - Fornecedor está bloqueado?">
+									Bloqueia o Fornecedor
+								</label>
+								<select name="A2_MSBLQL" id="A2_MSBLQL" class="form-control">
+									<option value="2">2 - Não</option>
+									<option value="1">1 - Sim</option>
+									<option value="">Selecione</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<!-- Tab 2 -->
+				<div class="tab-pane" id="tab_admfin">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-12" id="div_A2_BANCO">
+								<label for="zoom_A2_BANCO">Cód. do Banco</label>
+								<input type="zoom" id="zoom_A2_BANCO" name="zoom_A2_BANCO" class="form-control"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_sa6_search',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'A6_COD | A6_AGENCIA | A6_DVAGE | A6_NOMEAGE | A6_NUMCON | A6_DVCTA'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_BANCO" id="A2_BANCO" data-pkfield="A6_COD">
+							</div>
+							<div class="col-xs-12" id="div_A2_NUMCON">
+								<label for="A2_NUMCON">Cta Corrente</label>
+								<input type="text" class="form-control" name="A2_NUMCON" id="A2_NUMCON" />
+							</div>
+							<div class="col-xs-12" id="div_A2_XDIGCTA">
+								<label for="A2_XDIGCTA">Díg. Cta. Cor.</label>
+								<input type="text" class="form-control" name="A2_XDIGCTA" id="A2_XDIGCTA"/>
+							</div>
+							<div class="col-xs-12" id="div_A2_AGENCIA">
+								<label for="A2_AGENCIA">Cód. da Agência</label>
+								<input type="text" class="form-control" name="A2_AGENCIA" id="A2_AGENCIA" />
+							</div>
+							<div class="col-xs-12" id="div_A2_DVAGE">
+								<label for="A2_DVAGE">Dígito Verific. Agência</label>
+								<input type="text" class="form-control" name="A2_DVAGE" id="A2_DVAGE" maxlength="2"/>
+							</div>
+							<div class="col-xs-12" id="div_A2_TIPCTA">
+								<label for="A2_TIPCTA">Tipo de Conta<span class="text-danger">*</span></label>
+								<select name="A2_TIPCTA" id="A2_TIPCTA" class="form-control">
+									<option value="">Selecione</option>
+									<option value="1">Conta Corrente</option>
+									<option value="2">Conta Poupança</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_XCLAFIN">
+								<label for="zoom_A2_XCLAFIN">Class. Fin.</label>
+								<input type="zoom" id="zoom_A2_XCLAFIN" name="zoom_A2_XCLAFIN"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_sx5_z7',
+										'maximumSelectionLength':'1',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'Descrição | ID'
+										}, {
+											'field':'X5_CHAVE',
+											'label':'X5_CHAVE'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_XCLAFIN" id="A2_XCLAFIN" data-pkfield="X5_CHAVE">
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<!-- Tab 3 -->
+				<div class="tab-pane" id="tab_fiscais">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-12" id="div_A2_NATUREZ">
+								<label for="zoom_A2_NATUREZ">Natureza<span class="text-danger">*</span></label>
+								<input type="zoom" id="zoom_A2_NATUREZ" name="zoom_A2_NATUREZ" class="form-control"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_sed',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'Descrição | ID'
+										}, {
+											'field':'ED_CODIGO',
+											'label':'ED_CODIGO'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_NATUREZ" id="A2_NATUREZ" data-pkfield="ED_CODIGO">
+							</div>
+							<div class="col-xs-12" id="div_A2_TIPORUR">
+								<label for="A2_TIPORUR">Tp. Contr. Soc</label>
+								<select name="A2_TIPORUR" id="A2_TIPORUR" class="form-control">
+									<option value="">Selecione</option>
+									<option value="J">J - Jurídico</option>
+									<option value="F">F - Pessoa Fìsica</option>
+									<option value="L">L - Familiar</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_RECISS">
+								<label for="A2_RECISS">Recolhe ISS?</label>
+								<select name="A2_RECISS" id="A2_RECISS" class="form-control">
+									<option value="">Selecione</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_CODMUN">
+								<label for="zoom_A2_CODMUN">Cód. Mun. ZF Manaus e ALC</label>
+								<input type="zoom" id="zoom_A2_CODMUN" name="zoom_A2_CODMUN"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_sx5_s1',
+										'maximumSelectionLength':'1',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'Descrição | ID'
+										}, {
+											'field':'X5_CHAVE',
+											'label':'X5_CHAVE'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_CODMUN" id="A2_CODMUN" data-pkfield="X5_CHAVE">
+							</div>
+							<div class="col-xs-12" id="div_A2_RECINSS">
+								<label for="A2_RECINSS">Calcula INSS?</label>
+								<select name="A2_RECINSS" id="A2_RECINSS" class="form-control">
+									<option value="">Selecione</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_CODPAIS">
+								<label for="zoom_A2_CODPAIS">Cód. País Banco Central<span class="text-danger">*</span></label>
+								<input type="zoom" id="zoom_A2_CODPAIS" name="zoom_A2_CODPAIS"		 
+									data-zoom="{		
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_cch',
+										'maximumSelectionLength':'1',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'País | ID'
+										}, {
+											'field':'CCH_CODIGO',
+											'label':'CCH_CODIGO'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_CODPAIS" id="A2_CODPAIS" data-pkfield="CCH_CODIGO">
+							</div>
+							<div class="col-xs-12" id="div_A2_RECPIS">
+								<label for="A2_RECPIS">Recolhimento de PIS</label>
+								<select name="A2_RECPIS" id="A2_RECPIS" class="form-control">
+									<option value="">Selecione</option>
+									<option value="1">Sim</option>
+									<option value="2">Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_RECCOFI">
+								<label for="A2_RECCOFI">Recolhe COFINS</label>
+								<select name="A2_RECCOFI" id="A2_RECCOFI" class="form-control">
+									<option value="">Selecione</option>
+									<option value="1">Sim</option>
+									<option value="2">Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_RECCSLL">
+								<label for="A2_RECCSLL">Recolhe CSLL</label>
+								<select name="A2_RECCSLL" id="A2_RECCSLL" class="form-control">
+									<option value="">Selecione</option>
+									<option value="1">Sim</option>
+									<option value="2">Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_CALCIRF">
+								<label for="A2_CALCIRF">Cálculodo do IRRF</label>
+								<select class="form-control" name="A2_CALCIRF" id="A2_CALCIRF">
+									<option value="1">Normal</option>
+									<option value="2">IRRF Baixa</option>
+									<option value="3">Simples</option>
+									<option value="4">Empresa Individual</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_MINIRF" style="display: none;">
+								<label for="A2_MINIRF">Vlr. Min. IR</label>
+								<select name="A2_MINIRF" id="A2_MINIRF" class="form-control">
+									<option value="">Selecione</option>
+									<option value="1">1 - Sim</option>
+									<option value="2">2 - Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_XXML">
+								<label for="A2_XXML">Obrigatória Guarda do XML</label>
+								<select name="A2_XXML" id="A2_XXML" class="form-control">
+									<option value="">Selecione</option>
+									<option value="S">Sim</option>
+									<option value="N">Não</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_REGESIM">
+								<label for="A2_REGESIM">Reg. Simplificado MT</label>
+								<select name="A2_REGESIM" id="A2_REGESIM" class="form-control">
+									<option value="">Selecione</option>
+									<option value="1">Sim</option>
+									<option value="2">Não</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tab 4 -->
+				<div class="tab-pane" id="tab_compras">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-12" id="div_A2_XOBPED">
+								<label for="A2_XOBPED">Pedido Obrigatório<span class="text-danger">*</span></label>
+								<select class="form-control" name="A2_XOBPED" id="A2_XOBPED">
+									<option value="N">Não</option>
+									<option value="S">Sim</option>
+									<option value="">Selecione</option>
+								</select>
+							</div>
+							<div class="col-xs-12" id="div_A2_COND">
+								<label for="zoom_A2_COND">Condição de Pagamento</label>
+								<input type="zoom" id="zoom_A2_COND" name="zoom_A2_COND" class="form-control"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_se4',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'Descrição | Condição | ID'
+										}, {
+											'field':'E4_CODIGO',
+											'label':'E4_CODIGO'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_COND" id="A2_COND" data-pkfield="E4_CODIGO">
+							</div>
+							<div class="col-xs-12" id="div_A2_CONTATO">
+								<label for="A2_CONTATO">Contato</label>
+								<input type="text" name="A2_CONTATO" id="A2_CONTATO" maxlength="20" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tab 5 -->
+				<div class="tab-pane" id="tab_contabil">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-12" id="div_A2_CONTA">
+								<label for="zoom_A2_CONTA">Conta Contábil<span class="text-danger">*</span></label>
+								<input type="zoom" id="zoom_A2_CONTA" name="zoom_A2_CONTA" class="form-control"
+									data-zoom="{
+										'displayKey':'ALLS',
+										'datasetId':'ds_protheus_consulta_ct1',
+										'placeholder':'',
+										'fields':[{
+											'field':'ALLS',
+											'label':'Descrição | ID'
+										}, {
+											'field':'CT1_CONTA',
+											'label':'CT1_CONTA'
+										}]
+									}"
+								/>
+								<input type="hidden" name="A2_CONTA" id="A2_CONTA" data-pkfield="CT1_CONTA">
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- FIM DIV DYNAMICTABS -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<p class="well" style="padding: 15px"><b>Grupo atual:</b> <span id="mostraGrupoAtual"></span></p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<p>Campos não preenchidos não serão enviados na atividade de integração.</p>
+			<p>
+				O tempo de execução da atividade de integração pode variar conforme a
+				velocidade de conexão entre o ambiente Fluig e o ERP.
+			</p>
+		</div>
+	</div>
+	
+</form>
+</div>
+</body>
+</html>

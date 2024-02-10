@@ -1,0 +1,1220 @@
+<html>
+
+	<head>
+		<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+		<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+		<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+		<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+		<script type="text/javascript" src="./easyflow.js"></script>
+		<script type="text/javascript" src="./funcoes.js"></script>
+		<script type="text/javascript" src="./frm_ef_alteracao_cadastro_cliente.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+		<script src="./requestDataset.js"></script>
+		<style>
+			div.row>div {
+				margin: 4px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="fluig-style-guide">
+			<form name="form" role="form">
+
+				<!-- Campos para parametrização do fluxo -->
+				<input type="hidden" name="nrProcesso" id="nrProcesso" />
+				<input type="hidden" name="grupoAtual" id="grupoAtual" />
+				<input type="hidden" name="proximoGrupo" id="proximoGrupo" />
+				<input type="hidden" name="gruposRestantes" id="gruposRestantes" />
+				<input type="hidden" name="existemMaisGrupos" id="existemMaisGrupos" />
+				<input type="hidden" name="usuarioInicio" id="usuarioInicio" />
+
+				<input type="hidden" name="erro" id="erro" value="" />
+
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="alert alert-info alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								Todos os campos com <strong>*</strong> são de preenchimento obrigatório.
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Empresa e Filial</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-9">
+							<label for="zoom_branch">ID da Filial<span class="text-danger">*</span></label>
+							<input type="zoom" id="zoom_branch" name="zoom_branch" class="form-control"
+								data-zoom="{
+									'displayKey':'ALL',
+									'datasetId':'ds_consulta_filial',
+									'placeholder':'',
+									'fields':[{
+										'field':'ALL',
+										'label':'ID Filial | Descrição Filial | ID Empresa | Descrição Empresa',
+										'standard': true
+									}]
+								}"
+							/>
+							<input type="hidden" name="branch" id="branch" data-pkfield="ALL">
+						</div>
+						<div class="col-md-3">
+							<label for="company">ID da Empresa<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" name="company" id="company"
+								readonly>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label for="branch_desc">Descrição da Filial</label>
+							<input type="text" class="form-control" name="branch_desc"
+								id="branch_desc" readonly>
+						</div>
+						<div class="col-md-6">
+							<label for="company_desc">Descrição da Empresa</label>
+							<input type="text" class="form-control" name="company_desc"
+								id="company_desc" readonly>
+						</div>
+					</div>
+				</div>
+
+				<div class="container" id="div_erro">
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-warning btn-lg" data-modal-errors id="btnErrors">
+								Exibir erros da última tentantiva de integração
+							</button>
+							<div class="panel panel-warning" style="display: none;" data-showing="0">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+										<i class="fluigicon fluigicon-exclamation-sign-on icon-lg"></i>
+										Erro ocorrido na última tentativa de integração
+									</h3>
+								</div>
+								<div class="panel-body">
+									<p></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="consulta_Cliente">Cliente</label>
+							<input type="zoom" id="consulta_Cliente" name="consulta_Cliente"
+								data-zoom="{
+									'displayKey':'RESULT',
+									'datasetId':'ds_protheus_consulta_sa1_mirror_search',
+									'maximumSelectionLength':'1',
+									'fields':[{
+										'field':'RESULT',
+										'label':'COD | NOME | NREDUZ | CGC'
+									}]
+								}"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- INICIO DIV DYNAMICTABS -->
+				<div class="panel with-nav-tabs" id="dynamicTabs">
+					<div class="panel-heading">
+						<!-- Tabs -->
+						<ul class="nav nav-tabs clearfix" role="tablist">
+							<li style="display: none;"><a href="#tab_cadastrais" data-toggle="tab">Cadastrais</a></li>
+							<li style="display: none;"><a href="#tab_adm_fin" data-toggle="tab">Adm/Fin.</a></li>
+							<li style="display: none;"><a href="#tab_fiscais" data-toggle="tab">Fiscais</a></li>
+							<li style="display: none;"><a href="#tab_logistica" data-toggle="tab">Logística</a></li>
+							<li style="display: none;"><a href="#tab_vendas" data-toggle="tab">Vendas</a></li>
+							<li style="display: none;"><a href="#tab_contabil" data-toggle="tab">Contábil</a></li>
+						</ul>
+					</div>
+					<div class="panel-body" id="dynamicContents">
+						<div class="tab-content">
+							<!-- Cadastrais -->
+							<div class="tab-pane" id="tab_cadastrais">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-12" id="div_A1_CADAST">
+											<label for="A1_CADAST" class="popover-hover" data-toggle="popover" data-content="A1_CADAST - Data de Cadastro">
+											Data Cadastro<span class="text-danger">*</span>
+											</label>
+											<input type="date" class="form-control" name="A1_CADAST" id="A1_CADAST" readonly />
+										</div>
+										<div class="col-xs-12" id="div_A1_COD">
+											<label for="A1_COD" class="popover-hover" data-toggle="popover" data-content="A1_COD - Código do cliente">
+											Cód. Cliente<span class="text-danger">*</span>
+										</label>
+											<input type="text" class="form-control" name="A1_COD" id="A1_COD" step=""
+												maxlength="6" data-uneditable readonly />
+										</div>
+										<div class="col-xs-12" id="div_A1_LOJA">
+											<label for="A1_LOJA" class="popover-hover" data-toggle="popover" data-content="A1_LOJA - Código da loja do cliente">
+											Loja<span class="text-danger">*</span>
+										</label>
+											<input type="text" class="form-control" name="A1_LOJA" id="A1_LOJA" step=""
+												maxlength="2" data-uneditable readonly />
+										</div>
+										<div class="col-xs-12" id="div_A1_PESSOA">
+											<label for="A1_PESSOA" class="popover-hover" data-toggle="popover" data-content="A1_PESSOA - Tipo de pessoa">
+											Pessoa Física/Jurídica
+										</label>
+											<select class="form-control" name="A1_PESSOA" id="A1_PESSOA">
+												<option value="J">Jurídica</option>
+												<option value="F">Física</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_NOME">
+											<label for="A1_NOME" class="popover-hover" data-toggle="popover" data-content="A1_NOME - Nome ou razão social do cliente">
+												Nome<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control" name="A1_NOME" id="A1_NOME" step=""
+												maxlength="40" />
+										</div>
+										<div class="col-xs-12" id="div_A1_NREDUZ">
+											<label for="A1_NREDUZ" class="popover-hover" data-toggle="popover" data-content="A1_NREDUZ - Nome fantasia">
+												Nome Reduzido<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control" name="A1_NREDUZ" id="A1_NREDUZ" step=""
+												maxlength="30" />
+										</div>
+										<div class="col-xs-12" id="div_A1_END">
+											<label for="A1_END" class="popover-hover" data-toggle="popover" data-content="A1_END - Endereço do cliente">
+												Endereço<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control" name="A1_END" id="A1_END" step=""
+												maxlength="40" />
+										</div>
+										<div class="col-xs-12" id="div_A1_EST">
+											<label for="A1_EST" class="popover-hover" data-toggle="popover" data-content="A1_EST - Estado do cliente">
+												Estado<span class="text-danger">*</span>
+											</label>
+											<select class="form-control" name="A1_EST" id="A1_EST">
+												<option value="">Selecione</option>
+												<option value="AC">AC - ACRE</option>
+												<option value="AL">AL - ALAGOAS</option>
+												<option value="AP">AP - AMAPA</option>
+												<option value="AM">AM - AMAZONAS</option>
+												<option value="BA">BA - BAHIA</option>
+												<option value="CE">CE - CEARA</option>
+												<option value="DF">DF - DISTRITO FEDERAL</option>
+												<option value="ES">ES - ESPIRITO SANTO</option>
+												<option value="GO">GO - GOIANIA</option>
+												<option value="MA">MA - MARANHAO</option>
+												<option value="MT">MT - MATO GROSSO</option>
+												<option value="MS">MS - MATO GOSSO DO SUL</option>
+												<option value="MG">MG - MINAS GERAIS</option>
+												<option value="PA">PA - PARA</option>
+												<option value="PB">PB - PARAIBA</option>
+												<option value="PR">PR - PARANA</option>
+												<option value="PE">PE - PERNAMBUCO</option>
+												<option value="PI">PI - PIAUI</option>
+												<option value="RJ">RJ - RIO DE JANEIRO</option>
+												<option value="RN">RN - RIO GRANDE DO NORTE</option>
+												<option value="RS">RS - RIO GRANDE DO SUL</option>
+												<option value="RO">RO - RONDONIA</option>
+												<option value="RR">RR - RORAIMA</option>
+												<option value="SC">SC - SANTA CATARINA</option>
+												<option value="SP">SP - SAO PAULO</option>
+												<option value="SE">SE - SERGIPE</option>
+												<option value="TO">TO - TOCANTINS</option>
+												<option value="EX">EX - ESTRANGEIRO</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_COD_MUN">
+											<label for="zoom_A1_COD_MUN" class="popover-hover" data-toggle="popover" data-content="A1_COD_MUN - Código do município do cliente">
+												Cód. do Município<span class="text-danger">*</span>
+											</label>
+											<input type="zoom" id="zoom_A1_COD_MUN" name="zoom_A1_COD_MUN"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_cc2_search',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'COD | Município | Estado',
+														'standard':'true'
+													}, {
+														'field':'CC2_CODMUN',
+														'label':'CC2_CODMUN'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_COD_MUN" id="A1_COD_MUN" data-pkfield="CC2_CODMUN">
+										</div>
+										<div class="col-xs-12" id="div_A1_MUN">
+											<label for="A1_MUN" class="popover-hover" data-toggle="popover" data-content="A1_MUN - Município do cliente">
+												Município<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control" name="A1_MUN" id="A1_MUN" step=""
+												maxlength="30" />
+										</div>
+										<div class="col-xs-12" id="div_A1_BAIRRO">
+											<label for="A1_BAIRRO" class="popover-hover" data-toggle="popover" data-content="A1_BAIRRO">
+												Bairro<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control" name="A1_BAIRRO" id="A1_BAIRRO" step=""
+												maxlength="30" />
+										</div>
+										<div class="col-xs-12" id="div_A1_CEP">
+											<label for="A1_CEP" class="popover-hover" data-toggle="popover" data-content="A1_CEP - CEP do cliente">
+												CEP<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control cep" name="A1_CEP" id="A1_CEP" maxlength="8" placeholder="00000-000" />
+										</div>
+										<div class="col-xs-12" id="div_A1_DDI">
+											<label for="zoom_A1_DDI" class="popover-hover" data-toggle="popover" data-content="A1_DDI - DDI do cliente">
+												Cód. do DDI
+											</label>
+											<input type="zoom" id="zoom_A1_DDI" name="zoom_A1_DDI" class="form-control"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_acj',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'País | DDI',
+														'standard':'true'
+													}, {
+														'field':'ACJ_DDI',
+														'label':'ACJ_DDI'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_DDI" id="A1_DDI" data-pkfield="ACJ_DDI">
+										</div>
+										<div class="col-xs-12" id="div_A1_DDD">
+											<label for="A1_DDD" class="popover-hover" data-toggle="popover" data-content="A1_DDD - DDD do cliente">
+												DDD
+											</label>
+											<select class="form-control" name="A1_DDD" id="A1_DDD">
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="24">24</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+												<option value="34">34</option>
+												<option value="35">35</option>
+												<option value="37">37</option>
+												<option value="38">38</option>
+												<option value="41">41</option>
+												<option value="42">42</option>
+												<option value="43">43</option>
+												<option value="44">44</option>
+												<option value="45">45</option>
+												<option value="46">46</option>
+												<option value="47">47</option>
+												<option value="48">48</option>
+												<option value="49">49</option>
+												<option value="51">51</option>
+												<option value="53">53</option>
+												<option value="54">54</option>
+												<option value="55">55</option>
+												<option value="61">61</option>
+												<option value="62">62</option>
+												<option value="63">63</option>
+												<option value="64">64</option>
+												<option value="65">65</option>
+												<option value="66">66</option>
+												<option value="67">67</option>
+												<option value="68">68</option>
+												<option value="69">69</option>
+												<option value="71">71</option>
+												<option value="73">73</option>
+												<option value="74">74</option>
+												<option value="75">75</option>
+												<option value="77">77</option>
+												<option value="79">79</option>
+												<option value="81">81</option>
+												<option value="82">82</option>
+												<option value="83">83</option>
+												<option value="84">84</option>
+												<option value="85">85</option>
+												<option value="86">86</option>
+												<option value="87">87</option>
+												<option value="88">88</option>
+												<option value="89">89</option>
+												<option value="91">91</option>
+												<option value="92">92</option>
+												<option value="93">93</option>
+												<option value="94">94</option>
+												<option value="95">95</option>
+												<option value="96">96</option>
+												<option value="97">97</option>
+												<option value="98">98</option>
+												<option value="99">99</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_TEL">
+											<label for="A1_TEL" class="popover-hover" data-toggle="popover" data-content="A1_TEL - Telefone do cliente">
+												Telefone<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control tel" name="A1_TEL" id="A1_TEL" step=""
+												maxlength="15" />
+										</div>
+										<div class="col-xs-12" id="div_A1_FAX">
+											<label for="A1_FAX" class="popover-hover" data-toggle="popover" data-content="A1_FAX - Fax do cliente">
+												FAX
+											</label>
+											<input type="text" name="A1_FAX" id="A1_FAX" class="form-control" maxlength="15" >
+										</div>
+										<div class="col-xs-12" id="div_A1_PAIS">
+											<label for="zoom_A1_PAIS" class="popover-hover" data-toggle="popover" data-content="A1_PAIS - País do cliente">
+												Cód. do País
+											</label>
+											<input type="zoom" id="zoom_A1_PAIS" name="zoom_A1_PAIS" class="form-control"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sya',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'País | COD',
+														'standard':'true'
+													}, {
+														'field':'YA_CODGI',
+														'label':'YA_CODGI'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_PAIS" id="A1_PAIS" data-pkfield="YA_CODGI">
+										</div>
+										<div class="col-xs-12" id="div_A1_CGC">
+											<label for="A1_CGC" class="popover-hover" data-toggle="popover" data-content="A1_CGC - CPF/CNPJ do cliente">
+												CPF/CNPJ<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control cgc" name="A1_CGC" id="A1_CGC" step=""
+												maxlength="14" data-uneditable readonly />
+										</div>
+										<div class="col-xs-12" id="div_A1_EMAIL">
+											<label for="A1_EMAIL" class="popover-hover" data-toggle="popover" data-content="A1_EMAIL - Email do cliente">
+												E-mail<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control" name="A1_EMAIL" id="A1_EMAIL" step=""
+												maxlength="70" />
+										</div>
+										<div class="col-xs-12" id="div_A1_INSCR">
+											<label for="A1_INSCR" class="popover-hover" data-toggle="popover" data-content="A1_INSCR - Inscrição estadual do cliente">
+												Inscrição Estadual<span class="text-danger">*</span>
+											</label>
+											<input type="text" class="form-control" name="A1_INSCR" id="A1_INSCR" step=""
+												maxlength="18" />
+										</div>
+										<div class="col-xs-12" id="div_A1_CNAE">
+											<label for="zoom_A1_CNAE" class="popover-hover" data-toggle="popover" data-content="A1_CNAE - Código CNAE do cliente">
+												Cód. CNAE
+											</label>
+											<input type="zoom" id="zoom_A1_CNAE" name="zoom_A1_CNAE"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_cc3',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'COD | DESCRIÇÃO'
+													}, {
+														'field':'CC3_COD',
+														'label':'CC3_COD'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_CNAE" id="A1_CNAE" data-pkfield="CC3_COD">
+										</div>
+										<div class="col-xs-12" id="div_A1_CEPC">
+											<label for="A1_CEPC" id="div_A1_CEPC" class="popover-hover" data-toggle="popover" data-content="A1_CEPC - CEP de cobrança do cliente">
+												CEP Cobrança
+											</label>
+											<input type="text" class="form-control cepc" name="A1_CEPC" id="A1_CEPC" step=""
+												maxlength="8" />
+										</div>
+										<div class="col-xs-12" id="div_A1_ENDCOB">
+											<label for="A1_ENDCOB" class="popover-hover" data-toggle="popover" data-content="A1_ENDCOB - Endereço de cobrança do cliente">
+												Endereço Cobrança
+											</label>
+											<input type="text" class="form-control" name="A1_ENDCOB" id="A1_ENDCOB" step=""
+												maxlength="40" />
+										</div>
+										<div class="col-xs-12" id="div_A1_ESTC">
+											<label for="A1_ESTC" class="popover-hover" data-toggle="popover" data-content="A1_ESTC - Estado de cobrança do cliente">
+												UF Cobrança
+											</label>
+											<select class="form-control" name="A1_ESTC" id="A1_ESTC">
+												<option value="">Selecione</option>
+												<option value="AC">AC</option>
+												<option value="AL">AL</option>
+												<option value="AP">AP</option>
+												<option value="AM">AM</option>
+												<option value="BA">BA</option>
+												<option value="CE">CE</option>
+												<option value="DF">DF</option>
+												<option value="ES">ES</option>
+												<option value="GO">GO</option>
+												<option value="MA">MA</option>
+												<option value="MT">MT</option>
+												<option value="MS">MS</option>
+												<option value="MG">MG</option>
+												<option value="PA">PA</option>
+												<option value="PB">PB</option>
+												<option value="PR">PR</option>
+												<option value="PE">PE</option>
+												<option value="PI">PI</option>
+												<option value="RJ">RJ</option>
+												<option value="RN">RN</option>
+												<option value="RS">RS</option>
+												<option value="RO">RO</option>
+												<option value="RR">RR</option>
+												<option value="SC">SC</option>
+												<option value="SP">SP</option>
+												<option value="SE">SE</option>
+												<option value="TO">TO</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_MUNC">
+											<label for="A1_MUNC" class="popover-hover" data-toggle="popover" data-content="A1_MUNC - Município de cobrança do cliente">
+											Município de cobrança
+										</label>
+											<input type="text" class="form-control" name="A1_MUNC" id="A1_MUNC" step=""
+												maxlength="15" />
+										</div>
+										<div class="col-xs-12" id="div_A1_X_SIM3G">
+											<label for="A1_X_SIM3G" class="popover-hover" data-toggle="popover" data-content="A1_X_SIM3G - Integração com SIM 3G?">
+											Integ. Sim3G
+										</label>
+											<select name="A1_X_SIM3G" id="A1_X_SIM3G" class="form-control">
+												<option value="S">Sim</option>
+												<option value="N">Não</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_ATIVO">
+											<label for="A1_ATIVO" class="popover-hover" data-toggle="popover" data-content="A1_ATIVO - Cliente está ativo?">
+												Ativo
+											</label>
+											<select class="form-control" name="A1_ATIVO" id="A1_ATIVO">
+												<option value="S">S - Sim</option>
+												<option value="N">N - Não</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_MSBLQL">
+											<label for="A1_MSBLQL" class="popover-hover" data-toggle="popover" data-content="A1_MSBLQL - Cliente está bloqueado?">
+											Bloqueio de Tela
+										</label>
+											<select class="form-control" name="A1_MSBLQL" id="A1_MSBLQL">
+												<option value="2">2 - Não</option>
+												<option value="1">1 - Sim</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_COMPLEM">
+											<label for="A1_COMPLEM" class="popover-hover" data-toggle="popover" data-content="A1_COMPLEM - Complemento do cliente">
+											Complemento
+										</label>
+											<input type="text" class="form-control" name="A1_COMPLEM" id="A1_COMPLEM"
+												step="" maxlength="50" />
+										</div>
+										<div class="col-xs-12" id="div_A1_REGIAO">
+											<label for="zoom_A1_REGIAO" class="popover-hover" data-toggle="popover" data-content="A1_REGIAO - Região geográfica do cliente">
+												Área Geográfica
+											</label>
+											<input type="zoom" id="zoom_A1_REGIAO" name="zoom_A1_REGIAO"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_a2',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_REGIAO" id="A1_REGIAO" data-pkfield="X5_CHAVE">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Adm/Fin -->
+							<div class="tab-pane" id="tab_adm_fin">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-12" id="div_A1_BCO1">
+											<label for="zoom_A1_BCO1">Banco 1<span class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_BCO1" name="zoom_A1_BCO1"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sa6',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'A6_COD | A6_AGENCIA | A6_DVAGE | A6_NOMEAGE | A6_NUMCON | A6_DVCTA'
+													}, {
+														'field':'A6_COD',
+														'label':'A6_COD'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_BCO1" id="A1_BCO1" data-pkfield="A6_COD">
+										</div>
+										<div class="col-xs-12" id="div_A1_CAPITAL">
+											<label for="A1_CAPITAL">Cap/Interior<span class="text-danger">*</span></label>
+											<select class="form-control" name="A1_CAPITAL" id="A1_CAPITAL">
+												<option value="C">Capital</option>
+												<option value="I">Interior</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_TPFRET">
+											<label for="A1_TPFRET">Tipo de Frete<span
+													class="text-danger">*</span></label>
+											<select class="form-control" name="A1_TPFRET" id="A1_TPFRET">
+												<option value="C">CIF</option>
+												<option value="F">FOB</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_ROMAN" style="display: none">
+											<label for="A1_ROMAN">Romaneio</label>
+											<input type="text" class="form-control" name="A1_ROMAN" id="A1_ROMAN" step=""
+												maxlength="3" />
+										</div>
+										<div class="col-xs-12" id="div_A1_ATEND" style="display: none">
+											<label for="A1_ATEND">Atendido por</label>
+											<input type="text" class="form-control" name="A1_ATEND" id="A1_ATEND" step=""
+												maxlength="2" />
+										</div>
+										<div class="col-xs-12" id="div_A1_COND">
+											<label for="zoom_A1_COND">Condição de Pagamento<span
+													class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_COND" name="zoom_A1_COND"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_se4',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'DESCRI | COD | COND'
+													}, {
+														'field':'E4_CODIGO',
+														'label':'E4_CODIGO'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_COND" id="A1_COND" data-pkfield="E4_CODIGO">
+										</div>
+										<div class="col-xs-12" id="div_A1_XRISCOC">
+											<label for="A1_XRISCOC">Risco Cred I</label>
+											<select name="A1_XRISCOC" id="A1_XRISCOC" class="form-control">
+												<option value="">Selecione</option>
+												<option value="A">A - Risco A</option>
+												<option value="B">B - Risco B</option>
+												<option value="C">C - Risco C</option>
+												<option value="D">D - Risco D</option>
+												<option value="E">E - Risco E</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_XVENPRZ">
+											<label for="A1_XVENPRZ">Alt Venc Tit<span
+												class="text-danger">*</span></label>
+											<select name="A1_XVENPRZ" id="A1_XVENPRZ" class="form-control">
+												<option value="1">1 - Normal</option>
+												<option value="2">2 - Expedicao+Prazo+Lead Time</option>
+												<option value="3">3 - Entrega+Prazo</option>
+												<option value="4">4 - Pelo Cliente</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_RISCO">
+											<label for="A1_RISCO">Risco</label>
+											<select class="form-control" name="A1_RISCO" id="A1_RISCO">
+												<option value="">Selecione</option>
+												<option value="A">A - RISCO A</option>
+												<option value="B">B - RISCO B</option>
+												<option value="C">C - RISCO C</option>
+												<option value="D">D - RISCO D</option>
+												<option value="E">E - RISCO E</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_LC">
+											<label for="A1_LC">Limite Crédito</label>
+											<div class="input-group">
+												<span class="input-group-addon">R$</span>
+												<input type="text" step="any" class="form-control" name="A1_LC" id="A1_LC" />
+											</div>
+										</div>
+										<div class="col-xs-12" id="div_A1_VENCLC">
+											<label for="A1_VENCLC">Vencimento do Lim. Créd.</label>
+											<input type="date" class="form-control" name="A1_VENCLC" id="A1_VENCLC" />
+										</div>
+										<div class="col-xs-12" id="div_A1_XRCISP">
+											<label for="A1_XRCISP">Risco CISP (BS/BNE)</label>
+											<input type="text" class="form-control" name="A1_XRCISP" id="A1_XRCISP" maxlength="1" />
+										</div>
+										<div class="col-xs-12" id="div_A1_XDTCISP">
+											<label for="A1_XDTCISP">Data Risco CISP (BS/BNE)</label>
+											<input type="date" class="form-control" name="A1_XDTCISP" id="A1_XDTCISP" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Fiscais -->
+							<div class="tab-pane" id="tab_fiscais">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-12" id="div_A1_TIPO">
+											<label for="A1_TIPO">Tipo<span class="text-danger">*</span></label>
+											<select class="form-control" name="A1_TIPO" id="A1_TIPO">
+												<option value="">Selecione</option>
+												<option value="F">Cons. Final</option>
+												<option value="L">Produtor Rural</option>
+												<option value="R">Revendedor</option>
+												<option value="S">Solidário</option>
+												<option value="X">Exportação</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_CODPAIS">
+											<label for="zoom_A1_CODPAIS">Cód. País Banco Central<span
+												class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_CODPAIS" name="zoom_A1_CODPAIS"
+												data-zoom="{		
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_cch',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'PAÍS | COD'
+													}, {
+														'field':'CCH_CODIGO',
+														'label':'CCH_CODIGO'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_CODPAIS" id="A1_CODPAIS" data-pkfield="CCH_CODIGO">
+										</div>
+										<div class="col-xs-12" id="div_A1_GRPTRIB">
+											<label for="zoom_A1_GRPTRIB">Grupo de Clientes<span class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_GRPTRIB" name="zoom_A1_GRPTRIB"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_2a',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_GRPTRIB" id="A1_GRPTRIB" data-pkfield="X5_CHAVE">
+										</div>
+										<div class="col-xs-12" id="div_A1_CODMUN">
+											<label for="zoom_A1_CODMUN">Cód. Mun. ZF Manaus e ALC</label>
+											<input type="zoom" id="zoom_A1_CODMUN" name="zoom_A1_CODMUN"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_s1',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_CODMUN" id="A1_CODMUN" data-pkfield="X5_CHAVE">
+										</div>
+										<div class="col-xs-12" id="div_A1_CONTRIB">
+											<label for="A1_CONTRIB">Contribuinte do ICMS</label>
+											<select class="form-control" name="A1_CONTRIB" id="A1_CONTRIB">
+												<option value="">Selecione</option>
+												<option value="1">Sim</option>
+												<option value="2">Não</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_LIMINAR">
+											<label for="A1_LIMINAR">Liminar</label>
+											<input type="text" class="form-control" name="A1_LIMINAR" id="A1_LIMINAR"
+												maxlength="20" />
+										</div>
+										<div class="col-xs-12" id="div_A1_SUFRAMA">
+											<label for="A1_SUFRAMA">Cód. na SUFRAMA</label>
+											<input type="text" class="form-control" name="A1_SUFRAMA" id="A1_SUFRAMA"
+												maxlength="12" />
+										</div>
+										<div class="col-xs-12" id="div_A1_XREDICM">
+											<label for="A1_XREDICM">Red. Base de ICMS?</label>
+												<select class="form-control" name="A1_XREDICM" id="A1_XREDICM">
+													<option value="">Selecione</option>
+													<option value="1">1 - Sim</option>
+													<option value="2">2 - Não</option>
+													<option value="3">3 - Simples</option>
+												</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_CALCSUF">
+											<label for="A1_CALCSUF">Desc P/Sufr</label>
+											<select class="form-control" name="A1_CALCSUF" id="A1_CALCSUF">
+												<option value="">Selecione</option>
+												<option value="S">Sim</option>
+												<option value="N">Não</option>
+												<option value="I">ICMS</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_PERCATM">
+											<label for="A1_PERCATM">P. Carga Med.</label>
+											<input type="number" name="A1_PERCATM" id="A1_PERCATM" class="form-control">
+										</div>
+										<div class="col-xs-12" id="div_A1_PERFECP">
+											<label for="A1_PERFECP">P. Carga Fecp.</label>
+											<input type="number" name="A1_PERFECP" id="A1_PERFECP" class="form-control">
+										</div>
+										<div class="col-xs-12" id="div_A1_IENCONT">
+											<label for="A1_IENCONT">Destaca IE</label>
+											<select class="form-control" name="A1_IENCONT" id="A1_IENCONT">
+												<option value="">Selecione</option>
+												<option value="1">Sim</option>
+												<option value="2">Não</option>												
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_REGESIM">
+											<label for="A1_REGESIM">Reg. Simplificado MT</label>
+											<select class="form-control" name="A1_REGESIM" id="A1_REGESIM">
+												<option value="">Selecione</option>
+												<option value="1">Sim</option>
+												<option value="2">Não</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_MENSAGE">
+											<label for="zoom_A1_MENSAGE">Mensagem do Cliente</label>
+											<input type="zoom" id="zoom_A1_MENSAGE" name="zoom_A1_MENSAGE" data-zoom="{		
+												'displayKey':'ALLS',
+												'datasetId':'ds_protheus_consulta_sm4',
+												'maximumSelectionLength':'1',
+												'placeholder':'',
+												'fields':[{
+													'field':'ALLS',
+													'label':'DESCR | CODIGO | FORMULA'
+												}, {
+													'field':'M4_CODIGO',
+													'label':'M4_CODIGO'
+												}]
+											}"/>
+											<input type="hidden" name="A1_MENSAGE" id="A1_MENSAGE" data-pkfield="M4_CODIGO">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Contábil -->
+							<div class="tab-pane" id="tab_contabil">
+								<div class="container-fluid">
+									<div class="row">
+										<!-- <div class="col-xs-12" id="div_A1_PORTE">
+											<label for="A1_PORTE">Porte<span class="text-danger">*</span></label>
+											<input type="text" class="form-control" name="A1_PORTE" id="A1_PORTE"
+												maxlength="" />
+										</div> -->
+										<div class="col-xs-12" id="div_A1_CONTA">
+											<label for="zoom_A1_CONTA">Conta Contábil do Cliente<span
+													class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_CONTA" name="zoom_A1_CONTA" class="form-control"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_ct1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'DESC01 | CONTA'
+													}, {
+														'field':'CT1_CONTA',
+														'label':'CT1_CONTA'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_CONTA" id="A1_CONTA" data-pkfield="CT1_CONTA">
+										</div>
+										<div class="col-xs-12" id="div_A1_XDISNEY">
+											<label for="zoom_A1_XDISNEY">Classificação ABC Disney</label>
+											<input type="zoom" id="zoom_A1_XDISNEY" name="zoom_A1_XDISNEY"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_z8',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_XDISNEY" id="A1_XDISNEY" data-pkfield="X5_CHAVE">
+										</div>
+										<div class="col-xs-12" id="div_A1_GRPVEN">
+											<label for="zoom_A1_GRPVEN">Grupo de Vendas</label>
+											<input type="zoom" id="zoom_A1_GRPVEN" name="zoom_A1_GRPVEN"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_acy',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'GRUPO | DESCRIÇÃO'
+													}, {
+														'field':'ACY_GRPVEN',
+														'label':'ACY_GRPVEN'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_GRPVEN" id="A1_GRPVEN" data-pkfield="ACY_GRPVEN">
+										</div>
+										<div class="col-xs-12" id="div_A1_NATUREZ">
+											<label for="zoom_A1_NATUREZ">Cód. Natureza Fin.</label>
+											<input type="zoom" id="zoom_A1_NATUREZ" name="zoom_A1_NATUREZ"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sed',
+													'maximumSelectionLength':'1',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CODIGO | DESCRIÇÃO'
+													}, {
+														'field':'ED_CODIGO',
+														'label':'ED_CODIGO'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_NATUREZ" id="A1_NATUREZ" data-pkfield="ED_CODIGO">
+										</div>
+										<div class="col-xs-12" id="div_A1_DESCFI">
+											<label for="A1_DESCFI">Desconto Financeiro</label>
+											<input type="number" step="any" class="form-control" name="A1_DESCFI" id="A1_DESCFI"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Logística -->
+							<div class="tab-pane" id="tab_logistica">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-12" id="div_A1_TRANSP">
+											<label for="zoom_A1_TRANSP">Cód. da Transportadora<span
+												class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_TRANSP" name="zoom_A1_TRANSP"
+												data-zoom="{		
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sa4',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'NOME | COD'
+													}, {
+														'field':'A4_COD',
+														'label':'A4_COD'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_TRANSP" id="A1_TRANSP" data-pkfield="A4_COD">
+										</div>
+										<div class="col-xs-12" id="div_A1_XPRZENT">
+											<label for="A1_XPRZENT">Prazo Entrega<span class="text-danger">*</span></label>
+											<input type="number" class="form-control" name="A1_XPRZENT" id="A1_XPRZENT"
+												step="1" min="1" max="999" />
+										</div>
+										<div class="col-xs-12" id="div_A1_XAGEND">
+											<label for="A1_XAGEND">Agenda<span class="text-danger">*</span></label>
+											<select name="A1_XAGEND" id="A1_XAGEND" class="form-control">
+												<option value="0">0 - Sem agendamento</option>
+												<option value="1">1 - Distribuidora pelo Pedido</option>
+												<option value="2">2 - Distribuidora pela Nota</option>
+												<option value="3">3 - Transportadora</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_XLEADSH">
+											<label for="A1_XLEADSH">Lead Shrink</label>
+											<input type="number" class="form-control" name="A1_XLEADSH" id="A1_XLEADSH"
+												step="1" min="1" max="999" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Vendas-->
+							<div class="tab-pane" id="tab_vendas">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-12" id="div_A1_TABELA">
+											<label for="zoom_A1_TABELA">Tabela de Preço Padrão</label>
+											<input type="zoom" id="zoom_A1_TABELA" name="zoom_A1_TABELA" 
+												data-zoom="{		
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_da0',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CODTAB | DESCRI'
+													}, {
+														'field':'DA0_CODTAB',
+														'label':'DA0_CODTAB'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_TABELA" id="A1_TABELA" data-pkfield="DA0_CODTAB">
+										</div>
+										<div class="col-xs-12" id="div_A1_XTOPCLI">
+											<label for="A1_XTOPCLI" class="popover-hover" data-toggle="popover" data-content="div_A1_XTOPCLI - Cliente Top?">
+												Tops Clientes
+											</label>
+											<select class="form-control" name="A1_XTOPCLI" id="A1_XTOPCLI">
+												<option value="2">2 - Não</option>
+												<option value="1">1 - Sim</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_XBANDE">
+											<label for="zoom_A1_XBANDE">Bandeira
+
+											</label>
+											<input type="zoom" id="zoom_A1_XBANDE" name="zoom_A1_XBANDE" class="form-control"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_SZ',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_XBANDE" id="A1_XBANDE" data-pkfield="X5_CHAVE">
+										</div>
+										<div class="col-xs-12" id="div_A1_XFURAFI">
+											<label for="A1_XFURAFI" class="popover-hover" data-toggle="popover" data-content="div_A1_XFURAFI - Fura Fila?">
+												Fura Fila
+											</label>
+											<select class="form-control" name="A1_XFURAFI" id="A1_XFURAFI">
+												<option value="2">2 - Não</option>
+												<option value="1">1 - Sim</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_XPEDMIN">
+											<label for="A1_XPEDMIN" class="popover-hover" data-toggle="popover" data-content="div_A1_XPEDMIN - Ava Pedi Min?">
+												Ava Pedi Min
+											</label>
+											<select class="form-control" name="A1_XPEDMIN" id="A1_XPEDMIN">
+												<option value="2">2 - Não</option>
+												<option value="1">1 - Sim</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_XEXPO">
+											<label for="A1_XEXPO">Exportação<span class="text-danger">*</span></label>
+											<select class="form-control" name="A1_XEXPO" id="A1_XEXPO">
+												<option value="N">Não</option>
+												<option value="S">Sim</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_VEND">
+											<label for="zoom_A1_VEND">Cód. Vendedor</label>
+											<input type="zoom" id="zoom_A1_VEND" name="zoom_A1_VEND"
+												data-zoom="{		
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sa3',
+													'maximumSelectionLength':'1',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'NOME | COD'
+													}, {
+														'field':'A3_COD',
+														'label':'A3_COD'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_VEND" id="A1_VEND" data-pkfield="A3_COD">
+										</div>
+										<div class="col-xs-12" id="div_A1_XEAN">
+											<label for="A1_XEAN">Cód. EAN</label>
+											<input type="text" class="form-control" name="A1_XEAN" id="A1_XEAN" step=""
+												maxlength="13" />
+										</div>
+										<div class="col-xs-12" id="div_A1_FILTRF">
+											<label for="zoom_A1_FILTRF">Filial Transf.</label>
+											<input type="zoom" id="zoom_A1_FILTRF" name="zoom_A1_FILTRF" class="form-control"
+												data-zoom="{
+													'displayKey':'ALL',
+													'datasetId':'ds_consulta_filial',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALL',
+														'label':'ID Filial | Descrição Filial | ID Empresa | Descrição Empresa'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_FILTRF" id="A1_FILTRF">
+										</div>
+										<div class="col-xs-12" id="div_A1_CODSEG">
+											<label for="zoom_A1_CODSEG">Segmen. Canal<span class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_CODSEG" name="zoom_A1_CODSEG" class="form-control"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_c6',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_CODSEG" id="A1_CODSEG" data-pkfield="X5_CHAVE">
+										</div>
+										<div class="col-xs-12" id="div_A1_CANAL">
+											<label for="zoom_A1_CANAL">Canal<span class="text-danger">*</span></label>
+											<input type="zoom" id="zoom_A1_CANAL" name="zoom_A1_CANAL" class="form-control"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_z5',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_CANAL" id="A1_CANAL" data-pkfield="X5_CHAVE">
+										</div>
+										<div class="col-xs-12" id="div_A1_XCODFOR">
+											<label for="zoom_A1_XCODFOR">Cód. Fornecedor </label>
+											<input type="zoom" id="zoom_A1_XCODFOR" name="zoom_A1_XCODFOR"
+												data-zoom="{
+													'displayKey':'RESULT',
+													'datasetId':'ds_protheus_consulta_sa2_mirror_search',
+													'maximumSelectionLength':'1',
+													'fields':[{
+														'field':'RESULT',
+														'label':'COD | LOJA | NOME'
+													}, {
+														'field':'A2_COD',
+														'label':'A2_COD'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_XCODFOR" id="A1_XCODFOR" data-pkfield="A2_COD">
+										</div>
+										<div class="col-xs-12" id="div_A1_SATIV1">
+											<label for="zoom_A1_SATIV1">Rede</label>
+											<input type="zoom" id="zoom_A1_SATIV1" name="zoom_A1_SATIV1" class="form-control"
+												data-zoom="{
+													'displayKey':'ALLS',
+													'datasetId':'ds_protheus_consulta_sx5_t3',
+													'placeholder':'',
+													'fields':[{
+														'field':'ALLS',
+														'label':'CHAVE | DESCRIÇÃO'
+													}, {
+														'field':'X5_CHAVE',
+														'label':'X5_CHAVE'
+													}]
+												}"
+											/>
+											<input type="hidden" name="A1_SATIV1" id="A1_SATIV1" data-pkfield="X5_CHAVE">
+										</div>
+										<div class="col-xs-12" id="div_A1_XFATPAR">
+											<label for="A1_XFATPAR">Faturamento Parcial<span class="text-danger">*</span></label>
+											<select class="form-control" name="A1_XFATPAR" id="A1_XFATPAR">
+												<option value="N">N - Não aceita</option> 
+												<option value="P">P - Parcial do Pedido</option>
+												<option value="I">I - Parcial do Item</option>
+											</select>
+										</div>
+										<div class="col-xs-12" id="div_A1_XVALPED">
+											<label for="A1_XVALPED">Val. Pedido</label>
+											<input type="number" class="form-control" name="A1_XVALPED" id="A1_XVALPED" value="30" />
+										</div>
+										<div class="col-xs-12" id="div_A1_XELIRES">
+											<label for="A1_XELIRES">Elimina Residuo</label>
+											<select class="form-control" name="A1_XELIRES" id="A1_XELIRES">
+												<option value="2">2 - Não</option>
+												<option value="1">1 - Sim</option>
+												<option value="">Selecione</option>
+											</select>
+										</div>		
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- FIM DIV DYNAMICTABS -->
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<p class="well" style="padding: 15px"><b>Grupo atual:</b> <span
+									id="mostraGrupoAtual">EF_GRUPO_01</span>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<p>Campos não preenchidos não serão enviados na atividade de integração.</p>
+						<p>
+							O tempo de execução da atividade de integração pode variar conforme a
+							velocidade de conexão entre o ambiente Fluig e o ERP.
+						</p>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,955 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>wf_ef_cadastro_produtos</processId>
+    </processDefinitionPK>
+    <processDescription>Cadastro de Produtos</processDescription>
+    <instruction></instruction>
+    <active>true</active>
+    <publicProcess>true</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>Easy Flow</categoryId>
+    <managerEngineAllocationId>Usuário</managerEngineAllocationId>
+    <managerEngineAllocationConfiguration>&lt;AssignmentController&gt;&lt;User&gt;admin&lt;/User&gt;&lt;/AssignmentController&gt;</managerEngineAllocationConfiguration>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>false</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>1</complementsLevel>
+    <notifyRequisitionerComplements>true</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>true</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>Cadastro de Produtos</processId>
+      <version>29</version>
+    </processDefinitionVersionPK>
+    <versionDescription></versionDescription>
+    <formId>390</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>false</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>2</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>false</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </processStatePK>
+      <stateName>Início</stateName>
+      <stateDescription>Início</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>3600</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>80</positionX>
+      <positionY>104</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>18</sequence>
+      </processStatePK>
+      <stateName>Preenchimento do Formulário</stateName>
+      <stateDescription>Preenchimento do Formulário</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>7200</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;proximoGrupo&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>true</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>600</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>3600</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>440</positionX>
+      <positionY>199</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>23</sequence>
+      </processStatePK>
+      <stateName>Integração com ERP</stateName>
+      <stateDescription>Integração com ERP</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>false</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>0</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>800</positionX>
+      <positionY>198</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>82</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>1</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>26</sequence>
+      </processStatePK>
+      <stateName>Erro de Integração com o ERP</stateName>
+      <stateDescription>Erro de Integração com o ERP</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>7200</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Grupo</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;P&amp;D&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>true</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>600</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>3600</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>800</positionX>
+      <positionY>79</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>600</allowanceManagerTime>
+      <frequenceManagerTime>3600</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>25</sequence>
+      </processStatePK>
+      <stateName>Intermediário</stateName>
+      <stateDescription>Intermediário</stateDescription>
+      <instruction>Evento intermediário do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>1</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>840</positionX>
+      <positionY>186</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>43</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <parentSequence>23</parentSequence>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>16</sequence>
+      </processStatePK>
+      <stateName>Grupos</stateName>
+      <stateDescription>Grupos</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>253</positionX>
+      <positionY>190</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>20</sequence>
+      </processStatePK>
+      <stateName>Restam Grupos?</stateName>
+      <stateDescription>Restam Grupos?</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>670</positionX>
+      <positionY>182</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>29</sequence>
+      </processStatePK>
+      <stateName>Fim</stateName>
+      <stateDescription>Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>835</positionX>
+      <positionY>350</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>29</version>
+        <sequence>16</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;existemMaisGrupos&quot;) == &quot;SIM&quot;</condition>
+      <destinationSequenceId>18</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>29</version>
+        <sequence>16</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;existemMaisGrupos&quot;) == &quot;NAO&quot;</condition>
+      <destinationSequenceId>23</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>29</version>
+        <sequence>20</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;existemMaisGrupos&quot;) == &quot;SIM&quot;</condition>
+      <destinationSequenceId>18</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>29</version>
+        <sequence>20</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;existemMaisGrupos&quot;) == &quot;NAO&quot;</condition>
+      <destinationSequenceId>23</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>19</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>16</initialStateSequence>
+      <finalStateSequence>18</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>22</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>20</initialStateSequence>
+      <finalStateSequence>18</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>24</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>20</initialStateSequence>
+      <finalStateSequence>23</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>31</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>16</initialStateSequence>
+      <finalStateSequence>23</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>37</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>18</initialStateSequence>
+      <finalStateSequence>20</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>38</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>4</initialStateSequence>
+      <finalStateSequence>16</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>39</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>23</initialStateSequence>
+      <finalStateSequence>29</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>41</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>25</initialStateSequence>
+      <finalStateSequence>26</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>42</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>26</initialStateSequence>
+      <finalStateSequence>23</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <linkSequence>43</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>26</initialStateSequence>
+      <finalStateSequence>18</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterStateEntry</eventId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterStateEntry(sequenceId) {&#xd;
+	return;&#xd;
+	if (sequenceId == 18) {&#xd;
+		&#xd;
+		var gruposRestantes = &quot;&quot; + hAPI.getCardValue(&quot;gruposRestantes&quot;);&#xd;
+		&#xd;
+		if (gruposRestantes != &quot;&quot;) {&#xd;
+			var arrGruposRestantes = gruposRestantes.split(&quot;,&quot;);&#xd;
+			var arraySize = arrGruposRestantes.length;&#xd;
+			var axGroup = &quot;Pool:Group:&quot; + arrGruposRestantes[0];&#xd;
+&#xd;
+			hAPI.setCardValue(&quot;grupoAtual&quot;, axGroup);&#xd;
+			hAPI.setCardValue(&quot;existemMaisGrupos&quot;, &quot;SIM&quot;);&#xd;
+			hAPI.setCardValue(&quot;proximoGrupo&quot;, &quot;Pool:Group:&quot; + arrGruposRestantes[1]);&#xd;
+&#xd;
+			var axStr = &quot;&quot;;&#xd;
+			for (var i = 1; i &lt; arraySize; i++) {&#xd;
+				axStr += arrGruposRestantes[i];&#xd;
+				if ((i+1) &lt; arraySize) {&#xd;
+					axStr += &quot;,&quot;;&#xd;
+				}&#xd;
+			}&#xd;
+			&#xd;
+			hAPI.setCardValue(&quot;gruposRestantes&quot;, axStr);&#xd;
+		} else {&#xd;
+			hAPI.setCardValue(&quot;existemMaisGrupos&quot;, &quot;NAO&quot;);&#xd;
+		}&#xd;
+		&#xd;
+	}&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>servicetask23</eventId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function servicetask23(attempt, message) {&#xd;
+	log.info(&apos;task23 start - cadastro de produto&apos;);&#xd;
+    var resultFields = [&#xd;
+        &quot;resultadoReq1&quot;&#xd;
+    ];&#xd;
+&#xd;
+    var results = [&#xd;
+    	hAPI.getCardValue(resultFields[0]),&#xd;
+    ];&#xd;
+&#xd;
+    var IntegrationTypes = {&#xd;
+        CREATE: &quot;3&quot;,&#xd;
+        EDIT: &quot;4&quot;&#xd;
+    };&#xd;
+&#xd;
+    var editProduct = hAPI.getCardValue(&apos;consulta_sb1&apos;) &amp;&amp; hAPI.getCardValue(&quot;editProduct&quot;) == &apos;on&apos;; &#xd;
+    var integrationType = editProduct ? IntegrationTypes.EDIT : IntegrationTypes.CREATE;&#xd;
+    &#xd;
+    hAPI.setCardValue(&quot;erro&quot;, &quot;&quot;);&#xd;
+    &#xd;
+    // Se cadastro ainda não deu certo&#xd;
+    log.info(&apos;log task23 1&apos;);&#xd;
+    if (results[0] != 1) {&#xd;
+        var dsIntegracaoB1 = integrate(&quot;cadastro_produto&quot;, &quot;B1&quot;, integrationType);&#xd;
+        log.info(&apos;log task23 2&apos;);&#xd;
+        results[0] = checkResult(dsIntegracaoB1, true);&#xd;
+        log.info(&apos;log task23 3&apos;);&#xd;
+    }&#xd;
+    &#xd;
+    // Se cadastro essencial deu certo e cadastro de complemento ainda não deu certo&#xd;
+    // if (results[0] == 1 &amp;&amp; results[1] != 1) {&#xd;
+    //     var dsIntegracaoB5 = integrate(&quot;complemento_produto&quot;, &quot;B5&quot;, integrationType);&#xd;
+    //     results[1] = checkResult(dsIntegracaoB5, true);&#xd;
+        &#xd;
+    //     updateCardData(resultFields[1], results[1]);&#xd;
+    // }&#xd;
+    // Se cadastro de complemento deu certo ou já existe&#xd;
+    /*if (results[1] == 1 || resultFields[1] == 15) {&#xd;
+        var dsIntegracaoB5 = integrate(&quot;complemento_produto&quot;, &quot;B5&quot;, &quot;4&quot;);&#xd;
+        results[1] = checkResult(dsIntegracaoB5, true);&#xd;
+        &#xd;
+        updateCardData(resultFields[1], results[1]);&#xd;
+    }*/&#xd;
+&#xd;
+    // Se complemento deu certo e produto_fornecedor ainda não deu certo&#xd;
+    // if (results[1] == 1 &amp;&amp; results[2] != 1) {&#xd;
+    //     var dsIntegracaoA5 = integrate(&quot;produto_fornecedor&quot;, &quot;A5&quot;, integrationType);&#xd;
+    //     results[2] = checkResult(dsIntegracaoA5, true);&#xd;
+        &#xd;
+    //     updateCardData(resultFields[2], results[2]);&#xd;
+    // }&#xd;
+    &#xd;
+    // Se produto_fornecedor ainda não deu certo ou já existe&#xd;
+    /*if (results[2] == 1 || resultFields[2] == 15) {&#xd;
+        var dsIntegracaoA5 = integrate(&quot;produto_fornecedor&quot;, &quot;A5&quot;, &quot;4&quot;);&#xd;
+        results[2] = checkResult(dsIntegracaoA5, true);&#xd;
+        &#xd;
+        updateCardData(resultFields[2], results[2]);&#xd;
+    }*/&#xd;
+    &#xd;
+}&#xd;
+&#xd;
+function checkResult(dsIntegracao, shouldThrowError) {&#xd;
+    var code = dsIntegracao.getValue(0, &quot;Codigo&quot;);&#xd;
+    var msg = dsIntegracao.getValue(0, &quot;Mensagem&quot;);&#xd;
+    &#xd;
+    log.info(&apos;checkResult produto&apos;);&#xd;
+    log.info(code);&#xd;
+    log.info(msg);&#xd;
+    &#xd;
+    // Corrige as quebras de linha da mensagem&#xd;
+    msg = msg.replace(&quot; QUEBRA &quot;, &quot;&lt;br/&gt;&quot;);&#xd;
+    &#xd;
+    // Caso ocorra um erro&#xd;
+    if (code != 1 &amp;&amp; shouldThrowError) {&#xd;
+        if (code == 500) {&#xd;
+            msg = &quot;ERP retornou um erro desconhecido.&lt;br/&gt;&quot; +&#xd;
+                &quot;Provável causa: um valor não esperado foi rejeitado.&lt;br/&gt;&quot; +&#xd;
+                &quot;Verifique se todos os campos obrigatórios foram preenchidos.&lt;br/&gt;&quot; +&#xd;
+                msg;&#xd;
+            &#xd;
+        }&#xd;
+        &#xd;
+    	// updateCardData(&quot;erro&quot;, msg);&#xd;
+        &#xd;
+        throw msg;&#xd;
+        &#xd;
+    }&#xd;
+&#xd;
+    return code;&#xd;
+}&#xd;
+&#xd;
+&#xd;
+function updateCardData(field, value) {&#xd;
+    var username = &quot;admin&quot;;&#xd;
+    var password = &quot;adm&quot;;&#xd;
+    &#xd;
+    DatasetFactory.getDataset(&quot;ds_updateCardData&quot;, null, [&#xd;
+        DatasetFactory.createConstraint(&quot;cardId&quot;, getValue(&quot;WKCardId&quot;), null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;cardData&quot;, value, null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;cardField&quot;, field, null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;companyId&quot;, getValue(&quot;WKCompany&quot;), null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;username&quot;, username, null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;password&quot;, password, null, ConstraintType.MUST)&#xd;
+    ], null);&#xd;
+    &#xd;
+}&#xd;
+&#xd;
+&#xd;
+function integrate(serviceCode, inputPrefix, operation) {&#xd;
+    return DatasetFactory.getDataset(&quot;ds_protheus_cadastro_produto&quot;, null, [&#xd;
+        DatasetFactory.createConstraint(&quot;serviceCode&quot;, serviceCode, null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;documentId&quot;, getValue(&quot;WKCardId&quot;), null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;inputPrefix&quot;, inputPrefix, null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;operation&quot;, operation, null, ConstraintType.MUST),&#xd;
+        DatasetFactory.createConstraint(&quot;branch&quot;, hAPI.getCardValue(&quot;branch&quot;), null, ConstraintType.MUST)&#xd;
+    ], null);&#xd;
+    &#xd;
+}&#xd;
+</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>afterTaskCreate</eventId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function afterTaskCreate(colleagueId){&#xd;
+	&#xd;
+	var WKNumProces = getValue(&quot;WKNumProces&quot;);&#xd;
+	var WKNumState = getValue(&quot;WKNumState&quot;);&#xd;
+	&#xd;
+	if (WKNumState == 0 || WKNumState == 4) {&#xd;
+		hAPI.setCardValue(&quot;nrProcesso&quot;, WKNumProces);&#xd;
+	}&#xd;
+	&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list/>
+  <list>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>411</height>
+      <width>970</width>
+      <positionX>10</positionX>
+      <positionY>10</positionY>
+      <stateName>Easy Flow</stateName>
+      <type>1</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>82b0b7</color>
+      <height>411</height>
+      <width>940</width>
+      <positionX>40</positionX>
+      <positionY>10</positionY>
+      <stateName>Cadastro de Produtos</stateName>
+      <type>2</type>
+      <parentSequence>1</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </swimLanePK>
+    </SwimLane>
+  </list>
+  <list/>
+  <list/>
+  <list>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>22</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>698</positionX>
+      <positionY>321</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>22</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>493</positionX>
+      <positionY>321</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>31</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>283</positionX>
+      <positionY>334</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>31</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>703</positionX>
+      <positionY>334</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>38</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>283</positionX>
+      <positionY>121</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>42</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>938</positionX>
+      <positionY>121</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>42</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>938</positionX>
+      <positionY>233</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>wf_ef_cadastro_produtos</processId>
+        <version>29</version>
+        <linkSequence>43</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>493</positionX>
+      <positionY>121</positionY>
+    </ProcessLinkBend>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list>
+    <ProcessStateService>
+      <companyId>1</companyId>
+      <processId>wf_ef_cadastro_produtos</processId>
+      <version>1</version>
+      <sequence>23</sequence>
+      <attempts>0</attempts>
+      <sucessFullMessage>Integração executada com sucesso</sucessFullMessage>
+      <serviceName></serviceName>
+      <frequency>1</frequency>
+      <frequencyType>0</frequencyType>
+    </ProcessStateService>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+</list>

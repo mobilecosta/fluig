@@ -1,0 +1,128 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="flaticon flaticon-card-user icon-md"></span> Dados Pessoais</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label for="filial">Filial</label>
+				<input type="text" name="filial" id="filial" readonly="readonly" class="form-control">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="fornecedor">Fornecedor</label>
+				<input type="text" name="fornecedor" id="fornecedor" readonly="readonly" class="form-control">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="loja">Loja</label>
+				<input type="text" name="loja" id="loja" readonly="readonly" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="nome">Nome</label>
+				<input type="text" name="nome" id="nome" readonly="readonly" class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="email">E-mail</label>
+				<input type="email" name="email" id="email" readonly="readonly" class="form-control">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+	    <h3 class="panel-title"><span class="fluigicon fluigicon-map-marker icon-md"></span> Endereço</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label>Endereço</label>
+				<input type="text" name="endereco" id="endereco" readonly="readonly" class="form-control">
+			</div>
+			<div class="form-group col-md-3">
+				<label>Bairro</label>
+				<input type="text" name="bairro" id="bairro" readonly="readonly" class="form-control">
+			</div>
+			<div class="form-group col-md-2">
+				<label>Estado</label>
+				<input type="text" name="estado" id="estado" readonly="readonly" class="form-control">
+			</div>
+			<div class="form-group col-md-3">
+				<label>Município</label>
+				<input type="text" name="municipio" id="municipio" readonly="readonly" class="form-control">
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+	    <h3 class="panel-title"><span class="fluigicon fluigicon-money icon-md"></span> Dados Bancários</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label>Código do Banco</label>
+				<input type="text" name="codbco" id="codbco" class="form-control">
+			</div>
+			<div class="form-group col-md-2">
+				<label>Código da Agência</label>
+				<input type="text" name="codage" id="codage" class="form-control">
+			</div>
+			<div class="form-group col-md-4">
+				<label>Conta Corrente</label>
+				<input type="text" name="contac" id="contac" class="form-control">
+			</div>
+			<div class="form-group col-md-2">
+				<label>Dígito da Conta</label>
+				<input type="text" name="digito" id="digito" class="form-control">
+			</div>
+			<div class="form-group col-md-2">
+				<label></label>
+				<input type="text" name="process" id="process" class="form-control">
+			</div>
+		</div>
+	</div>
+</div>
+
+</form>
+</div>
+</body>
+<script>
+$(document).ready(function ()
+{
+	var email = $("#email").val();
+	var teste = $("#process").val();
+	if(teste == 1){
+	$.getJSON("//172.24.28.194:8043/TCADS001?Email="+email, function(dados){
+		$("#fornecedor").val(dados.responseWS.dados[0].codigo);
+		$("#loja").val(dados.responseWS.dados[0].loja);
+		$("#nome").val(dados.responseWS.dados[0].nome);
+		$("#endereco").val(dados.responseWS.dados[0].endereco);
+		$("#bairro").val(dados.responseWS.dados[0].bairro);
+		$("#estado").val(dados.responseWS.dados[0].estado);
+		$("#municipio").val(dados.responseWS.dados[0].municipio);
+		$("#codbco").val(dados.responseWS.dados[0].banco);
+		$("#codage").val(dados.responseWS.dados[0].agencia);
+		$("#contac").val(dados.responseWS.dados[0].conta);
+		$("#digito").val(dados.responseWS.dados[0].digito);
+	})
+	}
+})
+</script>
+</html>

@@ -1,0 +1,1065 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+	<script type="text/javascript" src="./easyflow.js"></script>
+	<script type="text/javascript" src="./funcoes.js"></script>
+	<script type="text/javascript" src="./frm_ef_alteracao_produtos.js"></script>
+	<script src="./requestDataset.js"></script>
+	<style>
+		div.row > div {
+			margin: 4px 0;
+		}
+		.panel-title {
+			display: flex;
+			align-items: center;
+		}
+		.panel-title .fluigicon,
+		.panel-title .flaticon {
+			margin-right: 10px;
+		}
+		/* input#B1_OPC {
+			cursor: pointer;
+		} */
+		.opc-table-row.selectable:hover {
+			background-color: #eee;
+		}
+		.opc-table-row.blocked {
+			opacity: 0.5;
+			background-color: #ddd;
+		}
+		.opc-table-row.group-header {
+			background-color: #aaa;
+    		font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+
+	<!-- Campos para parametrização do fluxo -->
+	<input type="hidden" name="nrProcesso" id="nrProcesso" />
+	<input type="hidden" name="grupoAtual" id="grupoAtual" />
+	<input type="hidden" name="proximoGrupo" id="proximoGrupo" />
+	<input type="hidden" name="gruposRestantes" id="gruposRestantes" />
+	<input type="hidden" name="existemMaisGrupos" id="existemMaisGrupos" />
+	<input type="hidden" name="usuarioInicio" id="usuarioInicio" />
+
+	<input type="hidden" name="resultadoReq1" id="resultadoReq1" />
+	<input type="hidden" name="resultadoReq2" id="resultadoReq2" />
+	<input type="hidden" name="resultadoReq3" id="resultadoReq3" />
+
+	<input type="hidden" name="erro" id="erro" value="" />
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-info alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+					Todos os campos com <strong>*</strong> são de preenchimento obrigatório.
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Empresa e Filial</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10">
+				<label for="branch">ID da Filial<span class="text-danger">*</span></label>
+				<input type="zoom" id="zoom_branch" name="zoom_branch" class="form-control"
+					data-zoom="{
+						'displayKey':'ALL',
+						'datasetId':'ds_consulta_filial',
+						'placeholder':'',
+						'fields':[{
+							'field':'ALL',
+							'label':'ID Filial | Descrição Filial | ID Empresa | Descrição Empresa'
+						}]
+					}"
+				/>
+				<input type="hidden" name="branch" id="branch" data-pkfield="ALL">
+			</div>
+			<div class="col-md-2">
+				<label for="company">ID da Empresa<span class="text-danger">*</span></label>
+				<input type="text" class="form-control" name="company" id="company" readonly>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<label for="branch_desc">Descrição da Filial</label>
+				<input type="text" class="form-control" name="branch_desc" id="branch_desc" readonly>
+			</div>
+			<div class="col-md-5">
+				<label for="company_desc">Descrição da Empresa</label>
+				<input type="text" class="form-control" name="company_desc" id="company_desc" readonly>
+			</div>
+			<div class="col-md-2">
+				<!-- <label>Alteração de Produto</label><br> -->
+				<div class="switch switch-primary" style="display: none;">
+					<input class="switch-input" type="checkbox" name="editProduct" id="editProduct" />
+					<label class="switch-button" for="editProduct">Toggle</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" id="div_erro">
+		<div class="row">
+			<div class="col-md-12">
+				<button class="btn btn-warning btn-lg" data-modal-errors id="btnErrors">
+					Exibir erros da última tentantiva de integração
+				</button>
+				<div class="panel panel-warning" style="display: none;" data-showing="0">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fluigicon fluigicon-exclamation-sign-on icon-lg"></i>
+							Erro ocorrido na última tentativa de integração
+						</h3>
+					</div>
+					<div class="panel-body">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<label for="consulta_sb1">Seleção de Produto para Alteração</label>
+				<input type="zoom" id="consulta_sb1" name="consulta_sb1" data-zoom="{		
+					'displayKey':'RESULT',
+					'datasetId':'ds_protheus_consulta_sb1_mirror_search_2',
+					'maximumSelectionLength':'1',
+					'placeholder':'',
+					'fields':[{
+						'field':'RESULT',
+						'label':'Produto'
+					}]
+				}" />
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="panel with-nav-tabs" id="dynamicTabs">
+			<div class="panel-heading">
+				<!-- Tabs -->
+				<ul class="nav nav-tabs clearfix" role="tablist">
+					<li style="display: none;"><a href="#tab_ped" data-toggle="tab">P&D</a></li>
+					<li style="display: none;"><a href="#tab_compras" data-toggle="tab">Compras</a></li>
+					<li style="display: none;"><a href="#tab_estoque" data-toggle="tab">Estoque</a></li>
+					<li style="display: none;"><a href="#tab_pcp" data-toggle="tab">PCP</a></li>
+					<li style="display: none;"><a href="#tab_logistica" data-toggle="tab">Logística</a></li>
+					<li style="display: none;"><a href="#tab_qualidade" data-toggle="tab">Qualidade</a></li>
+					<li style="display: none;"><a href="#tab_contabilidade" data-toggle="tab">Contábil</a></li>
+					<li style="display: none;"><a href="#tab_fiscal" data-toggle="tab">Fiscal</a></li>
+				</ul>
+			</div>
+	
+			<div class="panel-body" id="dynamicContents">
+				<div class="tab-content">
+	
+					<!-- Tab Compras -->
+					<div class="tab-pane" id="tab_compras">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12" id="div_B1_PROC">
+									<label for="zoom_B1_PROC">Fornecedor Padrão</label>
+									<input type="zoom" id="zoom_B1_PROC" name="zoom_B1_PROC"		 
+										data-zoom="{		
+											'displayKey':'RESULT',
+											'datasetId':'ds_protheus_consulta_sa2_mirror_search',
+											'maximumSelectionLength':'1',
+											'fields':[{
+												'field':'RESULT',
+												'label':'COD | NOME | NREDUZ | CGC'
+											}, {
+												'field':'A2_COD',
+												'label':'A2_COD'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_PROC" id="B1_PROC" data-pkfield="A2_COD">
+								</div>
+								<div class="col-xs-12" id="div_B1_CONTRAT">
+									<label for="B1_CONTRAT">Contrato de Parceria</label>
+									<select name="B1_CONTRAT" id="B1_CONTRAT" class="form-control">
+										<option value="">Selecione</option>
+										<option value="S">S - Sim</option>
+										<option value="N">N - Não</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+					<!-- Tab Contábil -->
+					<div class="tab-pane" id="tab_contabilidade">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12" id="div_B1_COD_READONLY">
+									<label for="B1_COD_READONLY">
+										Código do Produto
+									</label>
+									<input type="text" class="form-control" name="B1_COD_READONLY" id="B1_COD_READONLY" maxlength="9" readonly />
+								</div>
+								<div class="col-xs-12" id="div_B1_DESC_READONLY">
+									<label for="B1_DESC_READONLY">Descrição do Produto</label>
+									<input type="text" class="form-control" name="B1_DESC_READONLY" id="B1_DESC_READONLY" maxlength="50" readonly />
+								</div>
+								<div class="col-xs-12" id="div_B1_CONTA">
+									<label for="zoom_B1_CONTA">Conta Contabil Prod.<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_CONTA" name="zoom_B1_CONTA" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_ct1',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'CT1_CONTA',
+												'label':'CT1_CONTA'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_CONTA" id="B1_CONTA" data-pkfield="CT1_CONTA" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CONTA2">
+									<label for="zoom_B1_CONTA2">Conta Contabil Prod.2</label>
+									<input type="zoom" id="zoom_B1_CONTA2" name="zoom_B1_CONTA2" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_ct1',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'CT1_CONTA',
+												'label':'CT1_CONTA'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_CONTA2" id="B1_CONTA2" data-pkfield="CT1_CONTA" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CLVL">
+									<label for="zoom_B1_CLVL">Classe Valor Contabil</label>
+									<input type="zoom" id="zoom_B1_CLVL" name="zoom_B1_CLVL" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_cth',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'CTH_CLVL',
+												'label':'CTH_CLVL'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_CLVL" id="B1_CLVL" data-pkfield="CTH_CLVL" />
+								</div>
+								<div class="col-xs-12" id="div_B1_ROYALTS">
+									<label for="B1_ROYALTS">Perc Royalts</label>
+									<input type="number" step="any" class="form-control" name="B1_ROYALTS" id="B1_ROYALTS" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tab Estoque -->
+					<div class="tab-pane" id="tab_estoque">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12" id="div_B1_LOCALIZ">
+									<label for="B1_LOCALIZ">Contr. Endere.<span class="text-danger">*</span></label>
+									<select class="form-control" name="B1_LOCALIZ" id="B1_LOCALIZ">
+										<option value="">Selecione</option>
+										<option value="N">N - Não</option>
+										<option value="S">S - Sim</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_RASTRO">
+									<label for="B1_RASTRO">Rastro<span class="text-danger">*</span></label>
+									<select name="B1_RASTRO" id="B1_RASTRO" class="form-control">
+										<option value="">Selecione</option>
+										<option value="L">L - Lote</option>
+										<option value="S">S - Sub Lote</option>
+										<option value="N">N - Não Utiliza</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_LOCPAD">
+									<label for="zoom_B1_LOCPAD">Armazém Pad.<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_LOCPAD" name="zoom_B1_LOCPAD" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_nnr',
+											'placeholder':'',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID'
+											}, {
+												'field':'NNR_CODIGO',
+												'label':'NNR_CODIGO'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_LOCPAD" id="B1_LOCPAD" data-pkfield="NNR_CODIGO" />
+								</div>
+								<div class="col-xs-12" id="div_B1_USAFEFO">
+									<label for="B1_USAFEFO">Utiliza FEFO</label>
+									<select class="form-control" name="B1_USAFEFO" id="B1_USAFEFO">
+										<option value="">Selecione</option>
+										<option value="1">1 - Sim</option>
+										<option value="2">2 - Não</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tab Fiscal -->
+					<div class="tab-pane" id="tab_fiscal">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12" id="div_B1_ORIGEM">
+									<label for="zoom_B1_ORIGEM">Origem</label>
+									<input type="zoom" id="zoom_B1_ORIGEM" name="zoom_B1_ORIGEM" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sx5_s0',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'X5_CHAVE',
+												'label':'X5_CHAVE'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_ORIGEM" id="B1_ORIGEM" data-pkfield="X5_CHAVE">
+								</div>
+								<div class="col-xs-12" id="div_B1_CODGTIN">
+									<label for="B1_CODGTIN">Cód. GTIN</label>
+									<input type="text" class="form-control" name="B1_CODGTIN" id="B1_CODGTIN" maxlength="15" />
+								</div>
+								<div class="col-xs-12" id="div_B1_POSIPI">
+									<label for="zoom_B1_POSIPI">NCM</label>
+									<input type="zoom" id="zoom_B1_POSIPI" name="zoom_B1_POSIPI" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_syd',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'YD_TEC',
+												'label':'YD_TEC'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_POSIPI" id="B1_POSIPI" data-pkfield="YD_TEC">
+								</div>
+								<div class="col-xs-12" id="div_B1_EX_NBM">
+									<label for="B1_EX_NBM">Ex-NBM - determina % IPI</label>
+									<input type="text" class="form-control" name="B1_EX_NBM" id="B1_EX_NBM" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PICM">
+									<label for="B1_PICM">Alíquota de ICMS</label>
+									<input type="number" step="any" class="form-control" name="B1_PICM" id="B1_PICM" />
+								</div>
+								<div class="col-xs-12" id="div_B1_IPI">
+									<label for="B1_IPI">Alíquota de IPI</label>
+									<input type="number" step="any" class="form-control" name="B1_IPI" id="B1_IPI" />
+								</div>
+								<div class="col-xs-12" id="div_B1_ALIQISS">
+									<label for="B1_ALIQISS">Alíquota de ISS</label>
+									<input type="number" step="any" class="form-control" name="B1_ALIQISS" id="B1_ALIQISS" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PRV1">
+									<label for="B1_PRV1">Preço de Venda</label>
+									<input type="number" step="any" class="form-control" name="B1_PRV1" id="B1_PRV1" />
+								</div>
+								<div class="col-xs-12" id="div_B1_TE">
+									<label for="zoom_B1_TE">Tes de Entrada</label>
+									<input type="zoom" id="zoom_B1_TE" name="zoom_B1_TE" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sf4_te',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'F4_CODIGO',
+												'label':'F4_CODIGO'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_TE" id="B1_TE" data-pkfield="F4_CODIGO" />
+								</div>
+								<div class="col-xs-12" id="div_B1_TS">
+									<label for="B1_TS">Tes de Saída</label>
+									<input type="zoom" id="zoom_B1_TS" name="zoom_B1_TS" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sf4_ts',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'F4_CODIGO',
+												'label':'F4_CODIGO'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_TS" id="B1_TS" data-pkfield="F4_CODIGO" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PICMENT">
+									<label for="B1_PICMENT">% Lucro Calc. Solid. Entrada</label>
+									<input type="number" step="any" class="form-control" name="B1_PICMENT" id="B1_PICMENT" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PICMRET">
+									<label for="B1_PICMRET">% Lucro Calc. Solid. Saida</label>
+									<input type="number" step="any" class="form-control" name="B1_PICMRET" id="B1_PICMRET" />
+								</div>
+								<div class="col-xs-12" id="div_B1_ICMSRS">
+									<label for="B1_ICMSRS">Aliq Icms RS</label>
+									<input type="number" step="any" class="form-control" name="B1_ICMSRS" id="B1_ICMSRS" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CLASFIS">
+									<label for="B1_CLASFIS">Classificação fiscal</label>
+									<input type="text" class="form-control" name="B1_CLASFIS" id="B1_CLASFIS" maxlength="2" />
+								</div>
+								<div class="col-xs-12" id="div_B1_IMPORT">
+									<label for="B1_IMPORT">Produto Importado</label>
+									<select class="form-control" name="B1_IMPORT" id="B1_IMPORT">
+										<option value="">Selecione</option>
+										<option value="S">S - Sim</option>
+										<option value="N">N - Não</option>											
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_GRTRIB">
+									<label for="zoom_B1_GRTRIB">Grupo de Tributação</label>
+									<input type="zoom" id="zoom_B1_GRTRIB" name="zoom_B1_GRTRIB" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sx5_21',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'X5_CHAVE',
+												'label':'X5_CHAVE'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_GRTRIB" id="B1_GRTRIB" data-pkfield="X5_CHAVE" />
+								</div>
+								<div class="col-xs-12" id="div_B1_INSS">
+									<label for="B1_INSS">Calcula INSS</label>
+									<select class="form-control" name="B1_INSS" id="B1_INSS">
+										<option value="">Selecione</option>
+										<option value="S">S - Sim</option>
+										<option value="N">N - Não</option>											
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_PCOFINS">
+									<label for="B1_PCOFINS">Percentual COFINS</label>
+									<input type="number" step="any" class="form-control" name="B1_PCOFINS" id="B1_PCOFINS" />
+								</div>
+								<div class="col-xs-12" id="div_B1_REDPIS">
+									<label for="B1_REDPIS">Redução PIS</label>
+									<input type="number" step="any" class="form-control" name="B1_REDPIS" id="B1_REDPIS" />
+								</div>
+								<div class="col-xs-12" id="div_B1_REDCOF">
+									<label for="B1_REDCOF">Redução COFINS</label>
+									<input type="number" step="any" class="form-control" name="B1_REDCOF" id="B1_REDCOF" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PPIS">
+									<label for="B1_PPIS">Percentual PIS</label>
+									<input type="number" step="any" class="form-control" name="B1_PPIS" id="B1_PPIS" />
+								</div>
+								<div class="col-xs-12" id="div_B1_REDINSS">
+									<label for="B1_REDINSS">Perc. de redução do INSS</label>
+									<input type="number" step="any" class="form-control" name="B1_REDINSS" id="B1_REDINSS" />
+								</div>
+								<div class="col-xs-12" id="div_B1_REDIRRF">
+									<label for="B1_REDIRRF">Perc. de redução do IRRF</label>
+									<input type="number" step="any" class="form-control" name="B1_REDIRRF" id="B1_REDIRRF" />
+								</div>
+								<div class="col-xs-12" id="div_B1_TAB_IPI">
+									<label for="B1_TAB_IPI">Tabela para IPI de Pauta</label>
+									<input type="text" class="form-control" name="B1_TAB_IPI" id="B1_TAB_IPI" maxlength="2" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PCSLL">
+									<label for="B1_PCSLL">Percentual CSLL</label>
+									<input type="number" step="any" class="form-control" name="B1_PCSLL" id="B1_PCSLL" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PIS">
+									<label for="B1_PIS">Calcula PIS</label>
+									<select class="form-control" name="B1_PIS" id="B1_PIS">
+										<option value="">Selecione</option>
+										<option value="1">1 - Sim</option>
+										<option value="2">2 - Não</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_COFINS">
+									<label for="B1_COFINS">Calcula COFINS</label>
+									<select class="form-control" name="B1_COFINS" id="B1_COFINS">
+										<option value="">Selecione</option>
+										<option value="1">1 - Sim</option>
+										<option value="2">2 - Não</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_RETOPER">
+									<label for="B1_RETOPER">Retém PIS/COFINS operação</label>
+									<select class="form-control" name="B1_RETOPER" id="B1_RETOPER">
+										<option value="">Selecione</option>
+										<option value="1">1 - Sim</option>
+										<option value="2">2 - Não</option>												
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_BASTSC">
+									<label for="B1_BASTSC">Base ST - Art 55 RICMS-SC</label>
+									<select class="form-control" name="B1_BASTSC" id="B1_BASTSC">
+										<option value="">Selecione</option>
+										<option value="S">S - Sim</option>
+										<option value="N">N - Não</option>												
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_ESCRIPI">
+									<label for="B1_ESCRIPI">Estorno de Credito de IPI</label>
+									<select class="form-control" name="B1_ESCRIPI" id="B1_ESCRIPI">
+										<option value="">Selecione</option>
+										<option value="1">1 - M.P</option>
+										<option value="2">2 - P.A</option>
+										<option value="3">3 - Não</option>												
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_CRICMS">
+									<label for="B1_CRICMS">Credito ICMS-Art. 271 RIC</label>
+									<select class="form-control" name="B1_CRICMS" id="B1_CRICMS">
+										<option value="">Selecione</option>
+										<option value="0">0 - Não</option>
+										<option value="1">1 - Sim</option>												
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_TRIBMUN">
+									<label for="B1_TRIBMUN">Cód. Trib. Municipal</label>
+									<input type="text" class="form-control" name="B1_TRIBMUN" id="B1_TRIBMUN" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CRDPRES">
+									<label for="B1_CRDPRES">%Credito Presumido</label>
+									<input type="number" step="any" class="form-control" name="B1_CRDPRES" id="B1_CRDPRES" />
+								</div>
+								<div class="col-xs-12" id="div_B1_REFBAS">
+									<label for="B1_REFBAS">Referencia Base ST</label>
+									<select class="form-control" name="B1_REFBAS" id="B1_REFBAS">
+										<option value="">Selecione</option>
+										<option value="0">0 - Preco Tabelado/Maximo</option>
+										<option value="1">1 - Valor Agregado</option>
+										<option value="2">2 - Lista Negativa</option>
+										<option value="3">3 - Lista Positiva</option>
+										<option value="4">4 - Lista Neutra</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_TNATREC">
+									<label for="zoom_B1_TNATREC">Tab. Nat. Receita</label>
+									<input type="zoom" id="zoom_B1_TNATREC" name="zoom_B1_TNATREC" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_ccz',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'CCZ_TABELA',
+												'label':'CCZ_TABELA'
+											}, {
+												'field':'CCZ_COD',
+												'label':'CCZ_COD'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_TNATREC" id="B1_TNATREC" data-pkfield="CCZ_TABELA" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CNATREC">
+									<label for="B1_CNATREC">Cod Nat Receita</label>
+									<input type="text" class="form-control" name="B1_CNATREC" id="B1_CNATREC" readonly />
+								</div>
+								<div class="col-xs-12" id="div_B1_DIFCNAE">
+									<label for="B1_DIFCNAE">Cod. Dif. CNAE</label>
+									<input type="text" class="form-control" name="B1_DIFCNAE" id="B1_DIFCNAE" />
+								</div>
+								<div class="col-xs-12" id="div_B1_REGESIM">
+									<label for="B1_REGESIM">Reg. Simlificado MT</label>
+									<select class="form-control" name="B1_REGESIM" id="B1_REGESIM">
+										<option value="">Selecione</option>
+										<option value="1">1 - Sim</option>
+										<option value="2">2 - Não</option>												
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_CRICMST">
+									<label for="B1_CRICMST">Cont Restituicao ICMS-ST</label>
+									<select class="form-control" name="B1_CRICMST" id="B1_CRICMST">
+										<option value="">Selecione</option>
+										<option value="0">0 - Não</option>
+										<option value="1">1 - Sim</option>												
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_SITTRIB">
+									<label for="B1_SITTRIB">Situação Tributária</label>
+									<input type="text" class="form-control" name="B1_SITTRIB" id="B1_SITTRIB" maxlength="1" />
+								</div>
+								<div class="col-xs-12" id="div_B1_GRPCST">
+									<label for="B1_GRPCST">Enquadramento do IPI</label>
+									<input type="zoom" id="zoom_B1_GRPCST" name="zoom_B1_GRPCST" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_f08',
+											'placeholder':'',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'F08_CODIGO',
+												'label':'F08_CODIGO'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_GRPCST" id="B1_GRPCST" data-pkfield="F08_CODIGO" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CEST">
+									<label for="B1_CEST">CEST</label>
+									<input type="zoom" id="zoom_B1_CEST" name="zoom_B1_CEST" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_f0g',
+											'placeholder':'',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'F0G_CEST',
+												'label':'F0G_CEST'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_CEST" id="B1_CEST" data-pkfield="F0G_CEST" />
+								</div>
+								<div class="col-xs-12" id="div_B1_MSBLQL">
+									<label for="B1_MSBLQL" class="popover-hover" data-toggle="popover" data-content="B1_MSBLQL - Produto bloqueado?">
+										Bloqueado
+									</label>
+									<select name="B1_MSBLQL" id="B1_MSBLQL" class="form-control">
+										<option value="2">2 - Não</option>
+										<option value="1">1 - Sim</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tab Logística -->
+					<div class="tab-pane" id="tab_logistica">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12" id="div_B1_DUN14">
+									<label for="B1_DUN14">DUN14</label>
+									<input type="text" class="form-control" name="B1_DUN14" id="B1_DUN14" maxlength="14" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XEAN13">
+									<label for="B1_XEAN13">EAN13</label>
+									<input type="text" class="form-control" name="B1_XEAN13" id="B1_XEAN13" maxlength="13"/>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+					<!-- Tab P&D -->
+					<div class="tab-pane" id="tab_ped">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12" id="div_B1_TIPO">
+									<label for="zoom_B1_TIPO">Tipo<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_TIPO" name="zoom_B1_TIPO" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sx5_b1_tipo',
+											'placeholder':'',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'X5_CHAVE',
+												'label':'X5_CHAVE'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_TIPO" id="B1_TIPO" data-pkfield="X5_CHAVE" />
+								</div>
+								<div class="col-xs-12" id="div_B1_COD">
+									<label for="B1_COD" class="popover-hover" data-toggle="popover" data-content="B1_COD - Código do Produto">
+										Código do Produto<span class="text-danger">*</span>
+									</label>
+									<input type="text" class="form-control" name="B1_COD" id="B1_COD" maxlength="9" />
+								</div>
+								<div class="col-xs-12" id="div_B1_DESC">
+									<label for="B1_DESC">Descrição do Produto<span class="text-danger">*</span></label>
+									<input type="text" class="form-control" name="B1_DESC" id="B1_DESC" maxlength="50" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CODVEN">
+									<label for="B1_CODVEN">Cód. Venda<span class="text-danger">*</span></label>
+									<input type="text" class="form-control" name="B1_CODVEN" id="B1_CODVEN" maxlength="7"/>
+								</div>
+								<div class="col-xs-12" id="div_B1_GRUPO">
+									<label for="zoom_B1_GRUPO">Grupo<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_GRUPO" name="zoom_B1_GRUPO" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sbm',
+											'fields':[{
+												'field':'ALLS',
+												'label':'ID Grupo | Descrição'
+											}, {
+												'field':'BM_GRUPO',
+												'label':'BM_GRUPO'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_GRUPO" id="B1_GRUPO" data-pkfield="BM_GRUPO" />
+								</div>
+								<div class="col-xs-12" id="div_B1_SUBGR">
+									<label for="zoom_B1_SUBGR">Sub Grupo<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_SUBGR" name="zoom_B1_SUBGR" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sx5_z1',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID Sub Grupo'
+											}, {
+												'field':'X5_CHAVE',
+												'label':'X5_CHAVE'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_SUBGR" id="B1_SUBGR" data-pkfield="X5_CHAVE" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PESO">
+									<label for="B1_PESO">Peso Líquido</label>
+									<input type="number" step="any" class="form-control" name="B1_PESO" id="B1_PESO" />
+								</div>
+								<div class="col-xs-12" id="div_B1_PESBRU">
+									<label for="B1_PESBRU">Peso Bruto</label>
+									<input type="number" step="any" class="form-control" name="B1_PESBRU" id="B1_PESBRU" />
+								</div>
+								<div class="col-xs-12" id="div_B1_LINHA">
+									<label for="zoom_B1_LINHA">Linha Prod.<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_LINHA" name="zoom_B1_LINHA" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sx5_z2',
+											'fields':[{
+												'field':'ALLS',
+												'label':'ID | Descrição'
+											}, {
+												'field':'X5_CHAVE',
+												'label':'X5_CHAVE'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_LINHA" id="B1_LINHA" data-pkfield="X5_CHAVE" />
+								</div>
+								<div class="col-xs-12" id="div_B1_UM">
+									<label for="zoom_B1_UM">Unidade de Medida<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_UM" name="zoom_B1_UM" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sah',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID'
+											}, {
+												'field':'AH_UNIMED',
+												'label':'AH_UNIMED'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_UM" id="B1_UM" data-pkfield="AH_UNIMED" />
+								</div>
+								<div class="col-xs-12" id="div_B1_CONV">
+									<label for="B1_CONV">Fator Conv.<span class="text-danger">*</span></label>
+									<input type="number" step="any" class="form-control" name="B1_CONV" id="B1_CONV" />
+								</div>
+								<div class="col-xs-12" id="div_B1_QB">
+									<label for="B1_QB">Base Estrut</label>
+									<input type="number" class="form-control" name="B1_QB" id="B1_QB" value="100" />
+								</div>
+								<div class="col-xs-12" id="div_B1_SEGUM">
+									<label for="zoom_B1_SEGUM">Segunda Unidade de Medida<span class="text-danger">*</span></label>
+									<input type="zoom" id="zoom_B1_SEGUM" name="zoom_B1_SEGUM" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_sah',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID'
+											}, {
+												'field':'AH_UNIMED',
+												'label':'AH_UNIMED'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_SEGUM" id="B1_SEGUM" data-pkfield="AH_UNIMED" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XFBCOMP">
+									<label for="B1_XFBCOMP">Fabricado ou Industrializ.<span class="text-danger">*</span></label>
+									<select class="form-control" name="B1_XFBCOMP" id="B1_XFBCOMP">
+										<option value="D">D	- Adq pela Distribuidora</option>
+										<option value="C">C - Adq de Fornecedor</option>
+										<option value="B">B	- Adq da Baruel</option>
+										<option value="I">I	- Produzido Internamente</option>
+										<option value="T">T	- Industrializado Terceiros</option>
+										<option value="N">N - Não se aplic</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_XSHRINK">
+									<label for="B1_XSHRINK">Aceita Shrink?<span class="text-danger">*</span></label>
+									<select class="form-control" name="B1_XSHRINK" id="B1_XSHRINK">
+										<option value="">Selecione</option>
+										<option value="S">S - Sim</option>
+										<option value="N">N - Não</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_XPROM">
+									<label for="B1_XPROM">Promoção</label>
+									<select class="form-control" name="B1_XPROM" id="B1_XPROM">
+										<option value="">Selecione</option>
+										<option value="2">2 - Não</option>
+										<option value="1">1 - Sim</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_XINOVAC">
+									<label for="B1_XINOVAC">Inovação</label>
+									<select class="form-control" name="B1_XINOVAC" id="B1_XINOVAC">
+										<option value="">Selecione</option>
+										<option value="2">2 - Não</option>
+										<option value="1">1 - Sim</option>
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_CODBAR">
+									<label for="B1_CODBAR" class="popover-hover" data-toggle="popover" data-content="B1_CODBAR - Código de barras">
+										Código de Barras<span class="text-danger">*</span>
+									</label>
+									<input type="text" class="form-control" name="B1_CODBAR" id="B1_CODBAR" value="0" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XCAT">
+									<label for="zoom_B1_XCAT">Categoria de Produto</label>
+									<input type="zoom" id="zoom_B1_XCAT" name="zoom_B1_XCAT" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_zx1',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID'
+											}, {
+												'field':'ZX1_XCAT',
+												'label':'ZX1_XCAT'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_XCAT" id="B1_XCAT" data-pkfield="ZX1_XCAT" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XSCAT">
+									<label for="zoom_B1_XSCAT">Sub Categoria Produto</label>
+									<input type="zoom" id="zoom_B1_XSCAT" name="zoom_B1_XSCAT" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_zx2',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID'
+											}, {
+												'field':'ZX2_XSCAT',
+												'label':'ZX2_XSCAT'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_XSCAT" id="B1_XSCAT" data-pkfield="ZX2_XSCAT" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XSEG">
+									<label for="zoom_B1_XSEG">Segmento do Produto</label>
+									<input type="zoom" id="zoom_B1_XSEG" name="zoom_B1_XSEG" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_zx3',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'ZX3_XSEG',
+												'label':'ZX3_XSEG'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_XSEG" id="B1_XSEG" data-pkfield="ZX3_XSEG" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XMARCA">
+									<label for="zoom_B1_XMARCA">Marca de Produto</label>
+									<input type="zoom" id="zoom_B1_XMARCA" name="zoom_B1_XMARCA" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_zx4',
+											'fields':[{
+												'field':'ALLS',
+												'label':'TODO'
+											}, {
+												'field':'ZX4_XMARCA',
+												'label':'ZX4_XMARCA'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_XMARCA" id="B1_XMARCA" data-pkfield="ZX4_XMARCA" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XTAM">
+									<label for="zoom_B1_XTAM">Tamanho de Produtos</label>
+									<input type="zoom" id="zoom_B1_XTAM" name="zoom_B1_XTAM" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_zx5',
+											'fields':[{
+												'field':'ALLS',
+												'label':'ALLS'
+											}, {
+												'field':'ZX5_XTAM',
+												'label':'ZX5_XTAM'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_XTAM" id="B1_XTAM" data-pkfield="ZX5_XTAM" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XLIN">
+									<label for="zoom_B1_XLIN">Linha de Produtos</label>
+									<input type="zoom" id="zoom_B1_XLIN" name="zoom_B1_XLIN" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_zx6',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID'
+											}, {
+												'field':'ZX6_XLIN',
+												'label':'ZX6_XLIN'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_XLIN" id="B1_XLIN" data-pkfield="ZX6_XLIN" />
+								</div>
+								<div class="col-xs-12" id="div_B1_XVER">
+									<label for="zoom_B1_XVER">Versão de Produto</label>
+									<input type="zoom" id="zoom_B1_XVER" name="zoom_B1_XVER" class="form-control"
+										data-zoom="{
+											'displayKey':'ALLS',
+											'datasetId':'ds_protheus_consulta_zx7',
+											'fields':[{
+												'field':'ALLS',
+												'label':'Descrição | ID'
+											}, {
+												'field':'ZX7_XVER',
+												'label':'ZX7_XVER'
+											}]
+										}"
+									/>
+									<input type="hidden" name="B1_XVER" id="B1_XVER" data-pkfield="ZX7_XVER" />
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Tab PCP -->
+					<div class="tab-pane" id="tab_pcp">
+						<div class="container-fluid">
+							<div class="row">
+								<!-- <div class="col-xs-12" id="div_B1_OPC">
+									<label for="B1_OPC">Grupo de Opcional Padrão</label>
+									<input type="text" class="form-control" name="B1_OPC" id="B1_OPC" data-pkfield="GA_OPC" />
+								</div> -->
+								<div class="col-xs-12" id="div_B1_PE">
+									<label for="B1_PE">Prazo Entrega</label>
+									<input type="number" step="any" class="form-control" name="B1_PE" id="B1_PE" />
+								</div>
+								<div class="col-xs-12" id="div_B1_LE">
+									<label for="B1_LE">Lote Econômico </label>
+									<input type="number" step="any" class="form-control" name="B1_LE" id="B1_LE" />
+								</div>
+								<div class="col-xs-12" id="div_B1_MRP">
+									<label for="B1_MRP">Entra no Mrp?</label>
+									<select class="form-control" name="B1_MRP" id="B1_MRP">
+										<option value="">Selecione</option>
+										<option value="S">S - Sim</option>
+										<option value="N">N - Não</option>	
+										<option value="E">E - Especial</option>											
+									</select>
+								</div>
+								<div class="col-xs-12" id="div_B1_XDIASES">
+									<label for="B1_XDIASES">Dias Estoque</label>
+									<input type="number" step="any" class="form-control" name="B1_XDIASES" id="B1_XDIASES" />
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Tab Qualidade -->
+					<div class="tab-pane" id="tab_qualidade">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12" id="div_B1_TIPOCQ ">
+									<label for="B1_TIPOCQ ">Tipo de C.Q. a ser usado</label>
+									<select class="form-control" name="B1_TIPOCQ" id="B1_TIPOCQ">
+										<option value="">Selecione</option>
+										<option value="M">M - Materiais</option>
+										<option value="Q">Q - SigaQuality</option>												
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<p class="well" style="padding: 15px"><b>Grupo atual:</b> <span id="mostraGrupoAtual"></span></p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<p>Campos não preenchidos não serão enviados na atividade de integração.</p>
+			<p>
+				O tempo de execução da atividade de integração pode variar conforme a
+				velocidade de conexão entre o ambiente Fluig e o ERP.
+			</p>
+		</div>
+	</div>
+</form>
+</div>
+</body>
+</html>
