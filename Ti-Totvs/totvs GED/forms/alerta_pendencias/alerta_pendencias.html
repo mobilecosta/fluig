@@ -1,0 +1,141 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet"
+	href="/style-guide/css/fluig-style-guide.min.css" />
+<script type="text/javascript"
+	src="/portal/resources/js/jquery/jquery.js"></script>
+<script type="text/javascript"
+	src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript"
+	src="/portal/resources/js/mustache/mustache-min.js"></script>
+<script type="text/javascript"
+	src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="atualizacao.js"></script>	
+	
+</head>
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+
+			<div class="panel panel-default" id="Alertadependncias_1">
+				<div class="panel-body">
+					<h1>
+						<b>Alerta de pendências</b>
+					</h1>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Cabeçalho</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<input type="hidden" name="pastaRaiz" id="pastaRaiz"/>
+					<input type="hidden" name="situacaoProcesso" id="situacaoProcesso"/>
+					<div class="form-group row">
+						<div class="col-md-3">
+							<label for="escopo">Escopo</label> <input type="text"
+								class="form-control" name="escopo" id="escopo" readonly="">
+						</div>
+						<div class="col-md-3">
+							<label for="competencia">Competência</label>
+							<div class="input-group enable-calendar">
+								<input type="text" class="form-control" name="competencia"
+									id="competencia" mask="00/00/0000" readonly=""> <span
+									class="input-group-addon fs-cursor-pointer"> <span
+									class="fluigicon fluigicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<label for="competencia">Data Inicial</label>
+							<div class="input-group enable-calendar">
+								<input type="text" class="form-control" name="dtInicial"
+									id="dtInicial" mask="00/00/0000" readonly=""> <span
+									class="input-group-addon fs-cursor-pointer"> <span
+									class="fluigicon fluigicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<label for="competencia">Data Final</label>
+							<div class="input-group enable-calendar">
+								<input type="text" class="form-control" name="dtFinal"
+									id="dtFinal" mask="00/00/0000" readonly=""> <span
+									class="input-group-addon fs-cursor-pointer"> <span
+									class="fluigicon fluigicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Situação</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table border="0" class="table table-striped table-bordered"
+									tablename="tabelaSituacao" id="tabelaSituacao" nodeletebutton="false"
+									addbuttonclass="btn btn-primary" customFnDelete="fnCustomDelete(this)">
+									<thead>
+										<tr>
+											<td><b>Unidade</b></td>
+											<td><b>Caminho</b></td>
+											<td><b>Documento</b></td>
+											<td><b>Data esperada</b></td>
+											<td><b>Situação</b></td>
+											<td><b>Data entrega</b></td>
+											<td><b>Válido até</b></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><input type="text" class="form-control"
+												name="unidade" id="unidade" readonly=""></td>
+											<td><input type="text" class="form-control"
+												name="caminho" id="caminho" readonly=""></td>
+											<td><input type="text" class="form-control"
+												name="documento" id="documento" readonly=""></td>
+											<td><div class="input-group enable-calendar">
+													<input type="text" class="form-control" name="dataEsperada"
+														id="dataEsperada" mask="00/00/0000" readonly=""> <span
+														class="input-group-addon fs-cursor-pointer"> <span
+														class="fluigicon fluigicon-calendar"></span>
+													</span>
+												</div></td>
+											<td><input type="text" class="form-control"
+												name="situacao" id="situacao" readonly=""></td>
+											<td><div class="input-group enable-calendar">
+													<input type="text" class="form-control" name="dataEntrega"
+														id="dataEntrega" mask="00/00/0000" readonly=""> <span
+														class="input-group-addon fs-cursor-pointer"> <span
+														class="fluigicon fluigicon-calendar"></span>
+													</span>
+												</div></td>
+											<td><div class="input-group enable-calendar">
+													<input type="text" class="form-control" name="validade"
+														id="validade" mask="00/00/0000" readonly=""> <span
+														class="input-group-addon fs-cursor-pointer"> <span
+														class="fluigicon fluigicon-calendar"></span>
+													</span>
+												</div></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+function createDataset(fields, constraints, sortFields) {
+	log.info("arquivo_consulta_unidades - INICIO ##########");
+	
+	var sql = montaBusca(constraints);
+    return DatasetFactory.getDataset("fluig_sqlConsultaFluig", [sql], null, null);
+}
+
+function montaBusca(constraints){
+	var select = "SELECT * FROM VIEW_ARQ_UNIDADES ";
+
+	var where = "";
+	if (constraints != null && constraints.length > 0) {
+		where = " WHERE ";
+		for (var c = 0; c < constraints.length; c++) {
+			if(constraints[c].fieldName == "sqlLimit") continue;
+			
+			if(where != " WHERE ") where += " AND ";
+			
+			where += " (" + constraints[c].fieldName + " = '" + constraints[c].initialValue + "'";
+			where += " OR " + constraints[c].fieldName + " IS NULL) ";
+		}
+	}
+	
+	return select + where;
+}
+
+/**
+ * Verificar se o valor é nulo ou vazio
+ * @param valor
+ * @returns
+ */
+function isEmpty(valor){
+	if(valor == null) return true;
+	
+	var teste = "" + valor;
+	return teste.trim() == "";
+}

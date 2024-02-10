@@ -1,0 +1,284 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<link type="text/css" rel="stylesheet" href="custom.css" />
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js" charset="utf-8"></script>
+	<script type="text/javascript" src="prototype.js" charset="utf-8"></script>
+	<script type="text/javascript" src="estrutura.js" charset="utf-8"></script>
+	<script type="text/javascript" src="modal.js" charset="utf-8"></script>
+	<script type="text/javascript" src="custom.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zoom.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+
+			<div class="panel panel-default" id="header">
+				<div class="panel-body">
+					<h1>
+						<b>Taxonomia</b>
+					</h1>
+				</div>
+			</div>
+			<div class="panel panel-primary" id="cabecalho">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Cabeçalho</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<div class="col-md-4">
+							<label for="raiz" class="required">Pasta nível 1 - raíz</label>
+							<input type="hidden" name="cd_raiz" id="cd_raiz" />
+							<input type="hidden" name="raiz" id="raiz">
+							<input type="zoom" id="zoom_raiz" name="zoom_raiz" data-zoom="{
+					        	'displayKey':'docId_docDesc',
+					        	'datasetId':'arquivo_consulta_pastas',
+					        	'placeholder':'Escolha a pasta',
+					       		'fields':[
+					       			{
+					        			'field':'documentId',
+					     				'label':'Código',
+					     				'visible':'false'
+					      			},{
+					  					'field':'documentDescription',
+										'label':'Pasta',
+										'visible':'false'
+									},{
+										'field':'docId_docDesc',
+										'label':'Identificação do documento'
+									}
+								]
+					    	}" />
+						</div>
+						<div class="col-md-4">
+							<label for="grupo_alerta" class="required">Grupo resposável pendências</label>
+							<input type="zoom" id="grupo_alerta" name="grupo_alerta" data-zoom="{
+					        	'displayKey':'groupId',
+					        	'datasetId':'group',
+					        	'placeholder':'Escolha o grupo responsável alertas',
+					       		'fields':[
+					       			{
+					        			'field':'groupId',
+					     				'label':'Código'
+					      			},{
+					  					'field':'groupDescription',
+										'label':'Grupo'
+									}
+								]
+					    	}" />
+						</div>
+						<div class="col-md-4">
+							<label for="periodicidade_alerta" class="required">Periodicidade alerta pendências</label>
+							<select class="form-control" name="periodicidade_alerta" id="periodicidade_alerta">
+								<option value="">Selecione</option>
+								<option value="semanal">Semanal</option>
+								<option value="quinzenal">Quinzenal</option>
+								<option value="mensal">Mensal</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary" id="pnl_estrutura">
+				<div class="panel-heading ">
+					<h3 class="panel-title">
+						<b>Estrutura</b>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table border="0" class="table table-striped table-bordered"
+									tablename="tbl_estrutura" id="tbl_estrutura" 
+									nodeletebutton="true" noaddbutton="true">
+									<thead>
+										<tr>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="linha-estrutura">
+											<td>
+												<br/>
+												<button class="btn btn-default flaticon flaticon-trash icon-xl" 
+													onclick="NIVEL.removerItem(this)"></button>
+											</td>
+											<td>
+												<input type="hidden" name="idx" id="idx" value="" />
+												<input type="hidden" name="uuid_pai" id="uuid_pai" value="" />
+												<input type="hidden" name="uuid_nivel" id="uuid_nivel" value="" />
+												<input type="hidden" name="caminho" id="caminho" value="" />
+												<div class="col-md-1">
+													<label for="" class="required">Nível</label>
+													<input type="text" name="qual_nivel" id="qual_nivel" class="form-control" value="RAIZ" readonly />
+												</div>
+												<div class="col-md-3">
+													<label for="" class="required">Pasta pai</label>
+													<input type="text" name="referencia_nivel" id="referencia_nivel" class="form-control" value="RAIZ" readonly />
+												</div>
+												<div class="col-md-3">
+													<label for="" class="required">Tipo pasta</label>
+													<select name="tipo_pasta_nivel" id="tipo_pasta_nivel" class="form-control" onchange="MAIN.trocaTipoPasta(this)">
+														<option value=""></option>
+														<option value="unidades_totvs">Unidades TOTVS</option>
+														<option value="ano">Ano</option>
+														<option value="ano_mes">Ano - Mês</option>
+														<option value="especifico">Específico</option>
+														<option value="publicacao">Específico - Publicação</option>
+														<option value="publicacao_diretoria">Específico - Publicação - Diretoria</option>
+														<option value="sobdemanda">Sobdemanda</option>
+													</select>
+												</div>
+												<div class="col-md-3 especifico" style="display:none">
+													<label for="">Nome pasta</label>
+													<input type="text" name="nome_pasta" id="nome_pasta" class="form-control" value="" readonly />
+												</div>
+												<div class="col-md-4 publicacao" style="display:none">
+													<label for="">Assunto</label>
+													<input type="hidden" id="cd_assunto" name="cd_assunto" />
+													<input type="zoom" id="nm_assunto" name="nm_assunto" data-zoom="{
+											        	'displayKey':'nm_assunto',
+											        	'datasetId':'arquivo_assunto_temporalidade',
+											        	'placeholder':'Escolha o assunto',
+											       		'fields':[
+											       			{
+											        			'field':'cd_assunto',
+											     				'label':'Código',
+											     				'visible':'false'
+															},{
+											        			'field':'nm_assunto',
+											     				'label':'Assunto'
+															}
+														]
+											    	}" />
+												</div>
+												<div class="col-md-2 subniveis" style="display:none">
+													<br/>
+													<button class="btn btn-primary vinculos"
+														onclick="NIVEL.prepararModal(this)">Sub-níveis</button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-primary normal" onclick="MAIN.adicionarNivel('', 2, 'RAIZ', this)">+</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+
+<script type="text/template" id="tpl_modal_nivel">
+	<ol class="breadcrumb">
+		<!--li para cada pasta -->
+	</ol>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table border="0" class="table table-striped table-bordered"
+					id="tbl_estrutura_modal" nodeletebutton="true" noaddbutton="true">
+					<thead>
+						<tr>
+							<!--th class="th-1"></th>
+							<th class="th-1">Nível</th>
+							<th class="th-2">Pasta pai</th>
+							<th class="th-3">Tipo pasta</th>
+							<th style="display:none" class="th-3 especifico">Pasta</th>
+							<th style="display:none" class="th-3 publicacao">Assunto documento</th>
+							<th style="display:none" class="th-2 estrutura">Sub-níveis</th>
+						</tr-->
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#subniveis}}
+						<tr>
+							<td>
+								<br/>
+								<button class="btn btn-default flaticon flaticon-trash icon-xl" 
+									onclick="NIVEL.removerItem(this)"></button>
+							</td>
+							<td>
+								<input type="hidden" name="idx_modal" value="{{idx}}" />
+								<input type="hidden" name="uuid_pai_modal" value="{{uuid_pai}}" />
+								<input type="hidden" name="uuid_nivel_modal" value="{{uuid_nivel}}" />
+								<input type="hidden" name="caminho_modal" value="{{caminho}}" />
+								<div class="col-md-1">
+									<label for="" class="required">Nível</label>
+									<input type="text" name="qual_nivel_modal" class="form-control" value="{{qual_nivel}}" readonly />
+									<!-- referencia aqui só para questão de estrutura, não tem efeito -->
+								</div>
+								<div class="col-md-3">
+									<label for="" class="required">Pasta pai</label>
+									<input type="text" name="referencia_nivel_modal" class="form-control" value="{{referencia_nivel}}" readonly />
+								</div>
+								<div class="col-md-3">
+									<label for="" class="required">Tipo pasta</label>
+									<select name="tipo_pasta_nivel_modal" class="form-control" onchange="MAIN.trocaTipoPasta(this)">
+										<option value="" {{#sub_sem_tipo}}selected{{/sub_sem_tipo}}></option>
+										<option value="unidades_totvs" {{#sub_unidades_totvs}}selected{{/sub_unidades_totvs}}>Unidades TOTVS</option>
+										<option value="ano" {{#sub_ano}}selected{{/sub_ano}}>Ano</option>
+										<option value="ano_mes" {{#sub_ano_mes}}selected{{/sub_ano_mes}}>Ano - Mês</option>
+										<option value="especifico" {{#sub_especifico}}selected{{/sub_especifico}}>Específico</option>
+										<option value="publicacao" {{#sub_publicacao}}selected{{/sub_publicacao}}>Específico - Publicação</option>
+										<option value="publicacao_diretoria" {{#sub_publicacao_diretoria}}selected{{/sub_publicacao_diretoria}}>Específico - Publicação - Diretoria</option>
+										<option value="sobdemanda" {{#sub_sobdemanda}}selected{{/sub_sobdemanda}}>Sobdemanda</option>
+									</select>
+								</div>
+								<div class="col-md-3 especifico" style="display:none">
+									<label for="" class="required">Nome pasta</label>
+									<input type="text" name="nome_pasta_modal" class="form-control" value="{{nome_pasta}}" readonly />
+								</div>
+								<div class="col-md-4 publicacao" style="display:none">
+									<label for="" class="required">Assunto</label>
+
+									<input type="hidden" name="cd_assunto_modal" value="{{cd_assunto}}" />
+									<input type="zoom" id="nm_assunto_modal_{{uuid_nivel}}" name="nm_assunto_modal" data-zoom="{
+										'displayKey':'nm_assunto',
+										'datasetId':'arquivo_assunto_temporalidade',
+										'placeholder':'Escolha o assunto',
+										'fields':[
+											{
+												'field':'cd_assunto',
+												'label':'Código',
+												'visible': 'false'
+											}, {
+												'field':'nm_assunto',
+												'label':'Assunto'
+											}
+										]
+									}" />
+								</div>
+								<div class="col-md-2 subniveis" style="display:none">
+									<br/>
+									<button class="btn btn-primary vinculos"
+										onclick="NIVEL.modal(ESTRUTURA.getData(this))">Sub-níveis</button>
+								</div>
+							</td>
+						</tr>
+						{{/subniveis}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<button class="btn btn-primary modal" onclick="MAIN.adicionarNivel('{{uuid_nivel}}', {{proximo_nivel}}, '{{nome_complementar_pasta}}', this)">+</button>
+		</div>
+	</div>
+</script>

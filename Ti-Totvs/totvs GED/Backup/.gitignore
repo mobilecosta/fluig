@@ -1,0 +1,29 @@
+#Eclipse project files
+.classpath
+.settings/*
+/bin/
+
+#IntelliJ project files
+.idea/
+*.iml
+
+#Maven build
+target/
+*.zip
+*.war
+*.jar
+
+#Java class files
+.class
+
+#FLUIG Temporario
+*/.metadata
+workflow/.resources
+workflow/documentation
+
+#Pluguin README.md
+.README.md.html
+
+#Arquivos de teste
+workflow/diagrams/teste_paifilho.process
+workflow/scripts/teste_paifilho.afterTaskCreate

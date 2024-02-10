@@ -1,0 +1,1444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[importPackage(Packages.com.datasul.technology.webdesk.dataset.service);
+importPackage(Packages.com.datasul.technology.webdesk.dataset);
+importPackage(Packages.com.datasul.technology.webdesk.search.controller);
+importPackage(Packages.java.util);
+var count = 0;
+var dataset = null;
+var log = function(msg){
+	java.lang.System.out.println(msg);
+}
+]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="dataInicial" id="290">
+            <text-property name="helpText">Informe a data incial</text-property>
+            <text-property name="promptText">Data Inicial</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">31/12/2000</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">yyyy-MM-dd</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="dataFinal" id="347">
+            <property name="hidden">false</property>
+            <text-property name="helpText">Informe a data final</text-property>
+            <text-property name="promptText">Data Final</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">31/12/2000</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">yyyy-MM-dd</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="assunto" id="346">
+            <text-property name="helpText">Escolha o assunto</text-property>
+            <text-property name="promptText">Assunto</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">true</property>
+            <property name="dataSetName">DataSetConsultaAssuntos</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["cd_assunto"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["nm_assunto"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="unidade" id="291">
+            <text-property name="helpText">Escolha a unidade</text-property>
+            <text-property name="promptText">Unidade</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">DataSetConsultaUnidades</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["nm_filial"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["nm_filial"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="escopo" id="348">
+            <text-property name="promptText">Escopo</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value"></property>
+                    <property name="label">Adm de Gente</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <script-data-source name="DataSourceRelatorioPendencia" id="7"/>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="DataSourceFluig" id="665">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/fluig</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">MTIzNA==</encrypted-property>
+            <property name="odaJndiName">java:/jdbc/AppDS</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="DataSetRelatorioEntregaDocumentos" id="8">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">escopo</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">nmUnidade</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">documento</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">dataEsperada</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">situacao</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">dataEntrega</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">validade</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">cdAssunto</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">pastas</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">nmAssunto</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">idUnidade</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">escopo</property>
+                    <property name="alias">Escopo</property>
+                </structure>
+                <structure>
+                    <property name="columnName">nmUnidade</property>
+                    <property name="alias">Unidade</property>
+                </structure>
+                <structure>
+                    <property name="columnName">documento</property>
+                    <property name="alias">Documento</property>
+                </structure>
+                <structure>
+                    <property name="columnName">dataEsperada</property>
+                    <property name="alias">Data Esperada</property>
+                </structure>
+                <structure>
+                    <property name="columnName">situacao</property>
+                    <property name="alias">Situação</property>
+                </structure>
+                <structure>
+                    <property name="columnName">dataEntrega</property>
+                    <property name="alias">Data de Entrega</property>
+                </structure>
+                <structure>
+                    <property name="columnName">validade</property>
+                    <property name="alias">Validade</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cdAssunto</property>
+                    <property name="alias">Cód Assunto</property>
+                </structure>
+                <structure>
+                    <property name="columnName">pastas</property>
+                    <property name="alias">Caminho</property>
+                </structure>
+                <structure>
+                    <property name="columnName">nmAssunto</property>
+                    <property name="alias">Nome Assunto</property>
+                </structure>
+                <structure>
+                    <property name="columnName">idUnidade</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Escopo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Unidade</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Documento</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Data Esperada</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Situação</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Data de Entrega</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Validade</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Cód Assunto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Caminho</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Nome Assunto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">idUnidade</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[try{
+    var factory = DatasetFactory.getInstance(${WKCompany});
+  	var constraint = []
+  	
+  	if(params["assunto"].value != null &amp;&amp; params["assunto"].value != ""){
+  		constraint.push(factory.createConstraint("cdAssunto", params["assunto"].value, params["assunto"].value, ConstraintType.MUST));
+  	
+  		}
+  		
+  	if(params["dataInicial"].value != null &amp;&amp; params["dataInicial"].value != "" &amp;&amp; params["dataFinal"].value != null &amp;&amp; params["dataFinal"].value != ""){
+  	constraint.push(factory.createConstraint("dtPrevista", params["dataInicial"].value , params["dataFinal"].value, ConstraintType.MUST));
+  	}
+  	
+  	  	if(params["unidade"].value != null &amp;&amp; params["unidade"].value != ""){
+  		constraint.push(factory.createConstraint("nmUnidade", params["unidade"].value, params["unidade"].value, ConstraintType.MUST));
+  	
+  		}
+  	
+    
+
+    dataset = factory.getDataset("arquivo_consulta_entregas",["nmAssunto","pastas","dtEntrega","dtPrevista","documento","raiz","status","nmUnidade","dtValidade","cdAssunto"] ,constraint, null);
+     
+}catch (e) {
+	log("Erro Relatório de Entregas" + e);
+}]]></method>
+            <property name="dataSource">DataSourceRelatorioPendencia</property>
+            <method name="fetch"><![CDATA[if (dataset != null) {
+    if (count <  dataset.rowsCount){
+        row["pastas"] = dataset.getValue(count, "pastas");
+        row["dataEntrega"] = dataset.getValue(count, "dtEntrega");
+        row["dataEsperada"] = dataset.getValue(count, "dtPrevista");
+        row["documento"] = dataset.getValue(count, "documento");
+        row["escopo"] = dataset.getValue(count, "raiz");
+        row["situacao"] = dataset.getValue(count, "status");
+        row["nmUnidade"] = dataset.getValue(count, "nmUnidade");
+        row["validade"] = dataset.getValue(count, "dtValidade");
+        row["cdAssunto"] = dataset.getValue(count, "cdAssunto");
+        row["nmAssunto"] = dataset.getValue(count, "nmAssunto");
+        row["idUnidade"] = dataset.getValue(count, "idUnidade");
+        count++;
+        return true;
+    }
+}
+return false;]]></method>
+        </script-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="DataSetConsultaAssuntos" id="671">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">ID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">companyid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">cardid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">documentid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">version</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">tableid</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">anonymization_date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">anonymization_user_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">descritor</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">cd_assunto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">nm_assunto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">centraliza_matriz</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">tamanho_minimo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">validade</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">prazo_expiracao</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">periodicidade</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">quando</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">DataSourceFluig</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">ID</property>
+                    <property name="nativeName">ID</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">companyid</property>
+                    <property name="nativeName">companyid</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">cardid</property>
+                    <property name="nativeName">cardid</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">documentid</property>
+                    <property name="nativeName">documentid</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">version</property>
+                    <property name="nativeName">version</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">tableid</property>
+                    <property name="nativeName">tableid</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">anonymization_date</property>
+                    <property name="nativeName">anonymization_date</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">anonymization_user_id</property>
+                    <property name="nativeName">anonymization_user_id</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">descritor</property>
+                    <property name="nativeName">descritor</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">cd_assunto</property>
+                    <property name="nativeName">cd_assunto</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">nm_assunto</property>
+                    <property name="nativeName">nm_assunto</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">centraliza_matriz</property>
+                    <property name="nativeName">centraliza_matriz</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">tamanho_minimo</property>
+                    <property name="nativeName">tamanho_minimo</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">validade</property>
+                    <property name="nativeName">validade</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">prazo_expiracao</property>
+                    <property name="nativeName">prazo_expiracao</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">periodicidade</property>
+                    <property name="nativeName">periodicidade</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">quando</property>
+                    <property name="nativeName">quando</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT * FROM VIEW_ARQ_ASSUNTO_TEMP]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="DataSetConsultaUnidades" id="672">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">ID</property>
+                    <text-property name="displayName">ID</text-property>
+                    <text-property name="heading">ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">companyid</property>
+                    <text-property name="displayName">companyid</text-property>
+                    <text-property name="heading">companyid</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cardid</property>
+                    <text-property name="displayName">cardid</text-property>
+                    <text-property name="heading">cardid</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">documentid</property>
+                    <text-property name="displayName">documentid</text-property>
+                    <text-property name="heading">documentid</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">version</property>
+                    <text-property name="displayName">version</text-property>
+                    <text-property name="heading">version</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tableid</property>
+                    <text-property name="displayName">tableid</text-property>
+                    <text-property name="heading">tableid</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anonymization_date</property>
+                    <text-property name="displayName">anonymization_date</text-property>
+                    <text-property name="heading">anonymization_date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anonymization_user_id</property>
+                    <text-property name="displayName">anonymization_user_id</text-property>
+                    <text-property name="heading">anonymization_user_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descritor</property>
+                    <text-property name="displayName">descritor</text-property>
+                    <text-property name="heading">descritor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cd_coligada</property>
+                    <text-property name="displayName">cd_coligada</text-property>
+                    <text-property name="heading">cd_coligada</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cd_filial</property>
+                    <text-property name="displayName">cd_filial</text-property>
+                    <text-property name="heading">cd_filial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nm_filial</property>
+                    <text-property name="displayName">nm_filial</text-property>
+                    <text-property name="heading">nm_filial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">possui_diretoria</property>
+                    <text-property name="displayName">possui_diretoria</text-property>
+                    <text-property name="heading">possui_diretoria</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">concentrar_matriz</property>
+                    <text-property name="displayName">concentrar_matriz</text-property>
+                    <text-property name="heading">concentrar_matriz</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">ID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">companyid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">cardid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">documentid</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">version</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">tableid</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">anonymization_date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">anonymization_user_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">descritor</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">cd_coligada</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">cd_filial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">nm_filial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">possui_diretoria</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">concentrar_matriz</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">DataSourceFluig</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">ID</property>
+                    <property name="nativeName">ID</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">companyid</property>
+                    <property name="nativeName">companyid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">cardid</property>
+                    <property name="nativeName">cardid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">documentid</property>
+                    <property name="nativeName">documentid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">version</property>
+                    <property name="nativeName">version</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">tableid</property>
+                    <property name="nativeName">tableid</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">anonymization_date</property>
+                    <property name="nativeName">anonymization_date</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">anonymization_user_id</property>
+                    <property name="nativeName">anonymization_user_id</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">descritor</property>
+                    <property name="nativeName">descritor</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">cd_coligada</property>
+                    <property name="nativeName">cd_coligada</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">cd_filial</property>
+                    <property name="nativeName">cd_filial</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">nm_filial</property>
+                    <property name="nativeName">nm_filial</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">possui_diretoria</property>
+                    <property name="nativeName">possui_diretoria</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">concentrar_matriz</property>
+                    <property name="nativeName">concentrar_matriz</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT * FROM VIEW_ARQ_UNIDADES]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>companyid</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>companyid</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>companyid</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cardid</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cardid</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cardid</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>documentid</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>documentid</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>documentid</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>version</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>version</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>version</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>tableid</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>tableid</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>tableid</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>anonymization_date</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anonymization_date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anonymization_date</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>anonymization_user_id</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anonymization_user_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anonymization_user_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descritor</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descritor</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descritor</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cd_coligada</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cd_coligada</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cd_coligada</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cd_filial</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cd_filial</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cd_filial</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nm_filial</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nm_filial</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nm_filial</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>possui_diretoria</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>possui_diretoria</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>possui_diretoria</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>concentrar_matriz</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>21845</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>concentrar_matriz</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>concentrar_matriz</design:label>
+            <design:formattingHints>
+              <design:displaySize>21845</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="NewStyle" id="186">
+            <property name="fontSize">12px</property>
+            <property name="borderBottomColor">#C0C0C0</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="paddingTop">8px</property>
+            <property name="paddingLeft">8px</property>
+            <property name="paddingBottom">8px</property>
+            <property name="paddingRight">8px</property>
+            <property name="textAlign">left</property>
+            <property name="height">100%</property>
+            <property name="width">100%</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-header>
+                <label id="661">
+                    <property name="fontSize">24pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="textAlign">center</property>
+                    <text-property name="text">Relatório de Entrega de Documentos</text-property>
+                </label>
+            </page-header>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="413">
+            <property name="width">100%</property>
+            <property name="dataSet">DataSetRelatorioEntregaDocumentos</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Escopo</property>
+                    <text-property name="displayName">Escopo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Escopo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Unidade</property>
+                    <text-property name="displayName">Unidade</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Unidade"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Caminho</property>
+                    <text-property name="displayName">Caminho</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Caminho"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Documento</property>
+                    <text-property name="displayName">Documento</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Documento"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Data Esperada</property>
+                    <text-property name="displayName">Data Esperada</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Data Esperada"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Situação</property>
+                    <text-property name="displayName">Situação</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Situação"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Data de Entrega</property>
+                    <text-property name="displayName">Data de Entrega</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Data de Entrega"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Validade</property>
+                    <text-property name="displayName">Validade</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Validade"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Cód Assunto</property>
+                    <text-property name="displayName">Cód Assunto</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Cód Assunto"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Nome Assunto</property>
+                    <text-property name="displayName">Nome Assunto</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Nome Assunto"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="462">
+                <property name="width">0.20833333333333334in</property>
+            </column>
+            <column id="463">
+                <property name="width">1.6354166666666667in</property>
+            </column>
+            <column id="464">
+                <property name="width">1.1458333333333333in</property>
+            </column>
+            <column id="465">
+                <property name="width">0.9791666666666666in</property>
+            </column>
+            <column id="466">
+                <property name="width">1.09375in</property>
+            </column>
+            <column id="467">
+                <property name="width">1.0208333333333333in</property>
+            </column>
+            <column id="468">
+                <property name="width">0.9166666666666666in</property>
+            </column>
+            <column id="469">
+                <property name="width">0.8854166666666666in</property>
+            </column>
+            <column id="470">
+                <property name="width">0.5104166666666666in</property>
+            </column>
+            <header>
+                <row id="414">
+                    <property name="style">NewStyle</property>
+                    <cell id="415">
+                        <property name="colSpan">9</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="paddingTop">8px</property>
+                        <property name="paddingLeft">8px</property>
+                        <property name="paddingBottom">8px</property>
+                        <property name="paddingRight">8px</property>
+                        <label id="416">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Escopo: Adm de Gente</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <group id="621">
+                <property name="groupName">grupoUnidade</property>
+                <expression name="keyExpr" type="javascript">row["Unidade"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["Unidade"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="622">
+                        <property name="style">NewStyle</property>
+                        <cell id="623">
+                            <property name="colSpan">9</property>
+                            <property name="rowSpan">1</property>
+                            <data id="642">
+                                <property name="fontWeight">bold</property>
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <property name="paddingTop">8px</property>
+                                <property name="paddingLeft">8px</property>
+                                <property name="paddingBottom">8px</property>
+                                <property name="paddingRight">8px</property>
+                                <property name="textAlign">left</property>
+                                <property name="resultSetColumn">Unidade</property>
+                            </data>
+                        </cell>
+                    </row>
+                    <row id="643">
+                        <property name="style">NewStyle</property>
+                        <property name="backgroundColor">#C0C0C0</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
+                        <cell id="644"/>
+                        <cell id="645">
+                            <label id="664">
+                                <text-property name="text">Caminho</text-property>
+                            </label>
+                        </cell>
+                        <cell id="646">
+                            <label id="422">
+                                <property name="textAlign">center</property>
+                                <text-property name="text">Documento</text-property>
+                            </label>
+                        </cell>
+                        <cell id="647">
+                            <label id="668">
+                                <text-property name="text">Assunto</text-property>
+                            </label>
+                        </cell>
+                        <cell id="648">
+                            <label id="424">
+                                <property name="textAlign">center</property>
+                                <text-property name="text">Data Esperada</text-property>
+                            </label>
+                        </cell>
+                        <cell id="649">
+                            <label id="426">
+                                <property name="textAlign">center</property>
+                                <text-property name="text">Situação</text-property>
+                            </label>
+                        </cell>
+                        <cell id="650">
+                            <label id="428">
+                                <property name="textAlign">center</property>
+                                <text-property name="text">Data de Entrega</text-property>
+                            </label>
+                        </cell>
+                        <cell id="651">
+                            <label id="430">
+                                <property name="textAlign">center</property>
+                                <text-property name="text">Validade</text-property>
+                            </label>
+                        </cell>
+                        <cell id="652"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="632">
+                        <cell id="633"/>
+                        <cell id="634"/>
+                        <cell id="635"/>
+                        <cell id="636"/>
+                        <cell id="637"/>
+                        <cell id="638"/>
+                        <cell id="639"/>
+                        <cell id="640"/>
+                        <cell id="641"/>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="433">
+                    <property name="style">NewStyle</property>
+                    <property name="borderBottomColor">#808080</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="textAlign">left</property>
+                    <property name="pageBreakInside">auto</property>
+                    <cell id="434"/>
+                    <cell id="436">
+                        <data id="663">
+                            <property name="resultSetColumn">Caminho</property>
+                        </data>
+                    </cell>
+                    <cell id="438">
+                        <data id="441">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Documento</property>
+                        </data>
+                    </cell>
+                    <cell id="440">
+                        <data id="669">
+                            <property name="resultSetColumn">Cód Assunto</property>
+                        </data>
+                    </cell>
+                    <cell id="442">
+                        <data id="443">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Data Esperada</property>
+                        </data>
+                    </cell>
+                    <cell id="444">
+                        <data id="445">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Situação</property>
+                        </data>
+                    </cell>
+                    <cell id="446">
+                        <data id="447">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Data de Entrega</property>
+                        </data>
+                    </cell>
+                    <cell id="448">
+                        <data id="449">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Validade</property>
+                        </data>
+                    </cell>
+                    <cell id="450"/>
+                </row>
+            </detail>
+            <footer>
+                <row id="452">
+                    <cell id="453"/>
+                    <cell id="454"/>
+                    <cell id="455"/>
+                    <cell id="456"/>
+                    <cell id="457"/>
+                    <cell id="458"/>
+                    <cell id="459"/>
+                    <cell id="460"/>
+                    <cell id="461"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
